@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operador de Pistola Básico | Ricardo Taira · IAT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:       #080808;
+    --bg2:      #0f0f0f;
+    --bg3:      #161616;
+    --gold:     #c9a84c;
+    --gold-lt:  #e8c96a;
+    --gold-dk:  #8a6f2e;
+    --red:      #b22222;
+    --white:    #f0ede8;
+    --gray:     #8a8880;
+    --line:     rgba(201,168,76,0.18);
+    --radius:   4px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── CANVAS BG ── */
+  #canvas-bg {
+    position: fixed; inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.3;
+  }
+
+  main { position: relative; z-index: 1; }
+
+  /* ── HEADER STRIPE ── */
+  .top-bar {
+    background: var(--gold);
+    color: var(--bg);
+    text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px 40px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  /* crosshair bg decoration */
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 320px; height: 320px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse-ring 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes pulse-ring {
+    0%,100% { opacity: 0.4; transform: translate(-50%,-50%) scale(1); }
+    50%      { opacity: 0.8; transform: translate(-50%,-50%) scale(1.08); }
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--gold-dk);
+    color: var(--gold);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: blink 2s ease infinite;
+  }
+
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    animation: fadeUp 0.9s ease 0.1s both;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.8rem, 14vw, 6.5rem);
+    line-height: 0.92;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    margin-bottom: 8px;
+    animation: fadeUp 0.9s ease 0.15s both;
+  }
+
+  .hero-title span {
+    display: block;
+    color: var(--gold);
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+
+  .hero-divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, var(--gold-dk), var(--gold), var(--gold-dk));
+    margin: 20px auto;
+    animation: fadeUp 0.9s ease 0.2s both;
+  }
+
+  .hero-desc {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--gray);
+    max-width: 340px;
+    margin: 0 auto 32px;
+    animation: fadeUp 0.9s ease 0.25s both;
+  }
+
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 36px;
+    animation: fadeUp 0.9s ease 0.3s both;
+  }
+
+  .pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg3);
+    border: 1px solid var(--line);
+    border-radius: 50px;
+    padding: 7px 14px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+  }
+
+  .pill svg { width: 13px; height: 13px; fill: var(--gold); }
+
+  .cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 320px;
+    animation: fadeUp 0.9s ease 0.35s both;
+  }
+
+  .btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--bg);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 24px;
+    border-radius: var(--radius);
+    transition: background 0.2s, transform 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-primary:active { transform: scale(0.97); background: var(--gold-lt); }
+
+  .btn-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 24px;
+    border-radius: var(--radius);
+    transition: border-color 0.2s;
+  }
+
+  .btn-secondary:active { border-color: var(--gold); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 24px; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    animation: fadeUp 1.2s ease 0.8s both;
+  }
+
+  .scroll-hint span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
+
+  .scroll-arrow {
+    width: 18px; height: 18px;
+    border-right: 2px solid var(--gold-dk);
+    border-bottom: 2px solid var(--gold-dk);
+    transform: rotate(45deg);
+    animation: bounce 1.4s ease infinite;
+  }
+
+  @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(5px)} }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 64px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 9vw, 3rem);
+    line-height: 1;
+    letter-spacing: 0.04em;
+    margin-bottom: 24px;
+  }
+
+  .sep {
+    width: 40px; height: 2px;
+    background: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  /* ── SOBRE O CURSO ── */
+  .sobre-text {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #b0aca5;
+    margin-bottom: 16px;
+  }
+
+  .sobre-destaque {
+    background: var(--bg3);
+    border-left: 3px solid var(--gold);
+    padding: 14px 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    color: var(--white);
+    letter-spacing: 0.02em;
+    margin-top: 20px;
+  }
+
+  /* ── INFO CARDS ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 0;
+  }
+
+  .info-card {
+    background: var(--bg3);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 14px;
+    text-align: center;
+  }
+
+  .info-card .ic-icon {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .info-card .ic-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .info-card .ic-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    color: var(--gray);
+    text-transform: uppercase;
+    display: block;
+  }
+
+  /* ── GRADE CURRICULAR ── */
+  .grade-wrap {
+    background: var(--bg3);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .grade-header {
+    background: var(--gold);
+    padding: 12px 18px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--bg);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .grade-header span { font-size: 1rem; }
+
+  .grade-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .grade-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 13px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #c5c1bb;
+    transition: background 0.15s;
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: slideIn 0.4s ease forwards;
+  }
+
+  .grade-item:last-child { border-bottom: none; }
+
+  .grade-item:nth-child(1)  { animation-delay: 0.05s }
+  .grade-item:nth-child(2)  { animation-delay: 0.10s }
+  .grade-item:nth-child(3)  { animation-delay: 0.15s }
+  .grade-item:nth-child(4)  { animation-delay: 0.20s }
+  .grade-item:nth-child(5)  { animation-delay: 0.25s }
+  .grade-item:nth-child(6)  { animation-delay: 0.30s }
+  .grade-item:nth-child(7)  { animation-delay: 0.35s }
+  .grade-item:nth-child(8)  { animation-delay: 0.40s }
+  .grade-item:nth-child(9)  { animation-delay: 0.45s }
+  .grade-item:nth-child(10) { animation-delay: 0.50s }
+  .grade-item:nth-child(11) { animation-delay: 0.55s }
+  .grade-item:nth-child(12) { animation-delay: 0.60s }
+
+  @keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .grade-num {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    background: var(--gold-dk);
+    color: var(--gold-lt);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  /* ── MATERIAL & CERT ── */
+  .mc-grid {
+    display: grid;
+    gap: 14px;
+  }
+
+  .mc-card {
+    background: var(--bg3);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px 18px;
+  }
+
+  .mc-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mc-card h3::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .mc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mc-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #c5c1bb;
+  }
+
+  .mc-list li::before {
+    content: '';
+    width: 5px; height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .cert-box {
+    background: linear-gradient(135deg, var(--bg3), #1a1500);
+    border: 1px solid var(--gold-dk);
+    border-radius: var(--radius);
+    padding: 20px 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .cert-icon {
+    width: 48px; height: 48px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.3rem;
+  }
+
+  .cert-box h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .cert-box p {
+    font-size: 0.9rem;
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* ── INSTRUTOR ── */
+  .instrutor-card {
+    background: var(--bg3);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+  }
+
+  .inst-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+
+  .inst-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .inst-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: -6px;
+  }
+
+  .inst-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #999;
+    max-width: 320px;
+  }
+
+  .inst-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .inst-badge {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 50px;
+    padding: 5px 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
+
+  /* ── CTA FINAL ── */
+  .cta-section {
+    padding: 56px 20px 40px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cta-section .section-title {
+    margin-bottom: 12px;
+  }
+
+  .cta-section p {
+    font-size: 0.92rem;
+    color: var(--gray);
+    margin-bottom: 28px;
+    line-height: 1.7;
+  }
+
+  .cta-section .cta-group {
+    max-width: 340px;
+    margin: 0 auto;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 24px 20px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .footer-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .footer-insta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+  }
+
+  .footer-copy {
+    margin-top: 20px;
+    font-size: 0.72rem;
+    color: #444;
+    letter-spacing: 0.05em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── DIVIDER LINE ── */
+  .divider-line {
+    height: 1px;
+    background: var(--line);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* ── DESKTOP ── */
+  @media (min-width: 640px) {
+    section { padding: 80px 32px; }
+
+    .info-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .mc-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .cta-group { flex-direction: row; max-width: 480px; }
+
+    .btn-primary, .btn-secondary { flex: 1; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="canvas-bg"></canvas>
+
+<!-- TOP BAR -->
+<div class="top-bar">Ricardo Taira · IAT Credenciado Polícia Federal · @ricardo_taira</div>
+
+<main>
+
+<!-- ══════════════════════════════ HERO ══════════════════════════════ -->
+<div class="hero">
+  <div class="hero-badge">Turmas Abertas</div>
+  <p class="hero-eyebrow">Curso de Formação</p>
+  <h1 class="hero-title">
+    Operador<br>de Pistola
+    <span>Básico</span>
+  </h1>
+  <div class="hero-divider"></div>
+  <p class="hero-desc">
+    Aprenda os fundamentos de segurança, manuseio e tiro com pistola com instrução técnica certificada.
+  </p>
+  <div class="hero-pills">
+    <div class="pill">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      4 horas
+    </div>
+    <div class="pill">
+      <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+      Certificado Incluso
+    </div>
+    <div class="pill">
+      <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+      Prática no Estande
+    </div>
+  </div>
+  <div class="cta-group">
+    <a href="https://wa.me/5561999999999?text=Olá!%20Tenho%20interesse%20no%20Curso%20Operador%20de%20Pistola%20Básico." class="btn-primary" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Quero me inscrever
+    </a>
+    <a href="#grade" class="btn-secondary">Ver grade curricular</a>
+  </div>
+  <div class="scroll-hint">
+    <span>Saiba mais</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ SOBRE ══════════════════════════════ -->
+<div class="divider-line"></div>
+<section>
+  <p class="section-label">Sobre o curso</p>
+  <h2 class="section-title">O que você vai aprender</h2>
+  <div class="sep"></div>
+  <p class="sobre-text">
+    O Curso Operador de Pistola Básico foi desenvolvido para civis, atiradores iniciantes e profissionais de segurança que desejam aprender, com rigor técnico e responsabilidade, o manejo seguro da pistola.
+  </p>
+  <p class="sobre-text">
+    Com carga horária de 4 horas, o curso combina teoria fundamentada na legislação vigente e prática supervisionada em estande homologado. Ao final, o aluno estará apto a manusear, carregar, descarregar e operar uma pistola com segurança e técnica.
+  </p>
+  <div class="sobre-destaque">
+    🎯 Objetivo: Capacitar o aluno nos fundamentos básicos de segurança, manuseio e tiro com pistola semiautomática.
+  </div>
+</section>
+
+<!-- ══════════════════════════════ INFO CARDS ══════════════════════════════ -->
+<div class="divider-line"></div>
+<section style="padding-top:48px; padding-bottom:48px;">
+  <div class="info-grid">
+    <div class="info-card">
+      <span class="ic-icon">⏱</span>
+      <span class="ic-value">4h</span>
+      <span class="ic-label">Carga horária</span>
+    </div>
+    <div class="info-card">
+      <span class="ic-icon">📋</span>
+      <span class="ic-value">12</span>
+      <span class="ic-label">Módulos</span>
+    </div>
+    <div class="info-card">
+      <span class="ic-icon">🎯</span>
+      <span class="ic-value">Prática</span>
+      <span class="ic-label">No estande</span>
+    </div>
+    <div class="info-card">
+      <span class="ic-icon">📜</span>
+      <span class="ic-value">Cert.</span>
+      <span class="ic-label">Incluso</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ GRADE ══════════════════════════════ -->
+<div class="divider-line"></div>
+<section id="grade">
+  <p class="section-label">Conteúdo Programático</p>
+  <h2 class="section-title">Grade Curricular</h2>
+  <div class="sep"></div>
+  <div class="grade-wrap">
+    <div class="grade-header">
+      <span>📚</span> Operador de Pistola Básico — 4 horas
+    </div>
+    <ul class="grade-list">
+      <li class="grade-item"><span class="grade-num">01</span>Regras básicas de segurança</li>
+      <li class="grade-item"><span class="grade-num">02</span>Conduta no estande de tiro</li>
+      <li class="grade-item"><span class="grade-num">03</span>Partes principais da pistola</li>
+      <li class="grade-item"><span class="grade-num">04</span>Funcionamento básico da ação</li>
+      <li class="grade-item"><span class="grade-num">05</span>Tipos de munição e aplicações</li>
+      <li class="grade-item"><span class="grade-num">06</span>Empunhadura correta</li>
+      <li class="grade-item"><span class="grade-num">07</span>Postura de tiro</li>
+      <li class="grade-item"><span class="grade-num">08</span>Alinhamento de mira</li>
+      <li class="grade-item"><span class="grade-num">09</span>Acionamento do gatilho</li>
+      <li class="grade-item"><span class="grade-num">10</span>Controle básico do recuo</li>
+      <li class="grade-item"><span class="grade-num">11</span>Disparos práticos em alvo</li>
+      <li class="grade-item"><span class="grade-num">12</span>Correção de erros comuns</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ MATERIAL & CERT ══════════════════════════════ -->
+<div class="divider-line"></div>
+<section>
+  <p class="section-label">O que está incluso</p>
+  <h2 class="section-title">Material e Certificação</h2>
+  <div class="sep"></div>
+  <div class="mc-grid">
+    <div class="mc-card">
+      <h3>Material Incluso</h3>
+      <ul class="mc-list">
+        <li>Alvos para prática</li>
+        <li>EPIs durante toda a aula</li>
+      </ul>
+    </div>
+    <div class="mc-card">
+      <h3>O aluno deve trazer</h3>
+      <ul class="mc-list">
+        <li>Documento de identidade</li>
+        <li>Roupa confortável</li>
+        <li>Calçado fechado</li>
+      </ul>
+    </div>
+  </div>
+  <div style="margin-top: 14px;">
+    <div class="cert-box">
+      <div class="cert-icon">🏅</div>
+      <div>
+        <h3>Certificação</h3>
+        <p>Certificado de Conclusão – Operador de Pistola Básico</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ INSTRUTOR ══════════════════════════════ -->
+<div class="divider-line"></div>
+<section>
+  <p class="section-label">Quem ministra</p>
+  <h2 class="section-title">Seu Instrutor</h2>
+  <div class="sep"></div>
+  <div class="instrutor-card">
+    <div class="inst-avatar">🎯</div>
+    <div>
+      <div class="inst-name">Ricardo Taira</div>
+      <div class="inst-title">Instrutor de Armamento e Tiro · IAT</div>
+    </div>
+    <p class="inst-desc">
+      Instrutor de Armamento e Tiro (IAT), formado pela Combat Tático, credenciado pela Polícia Federal. Atua na instrução técnica de civis, atiradores e profissionais de segurança, com foco em segurança, técnica e responsabilidade no uso de armas de fogo.
+    </p>
+    <div class="inst-badges">
+      <span class="inst-badge">IAT · PF</span>
+      <span class="inst-badge">Combat Tático</span>
+      <span class="inst-badge">@ricardo_taira</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ CTA FINAL ══════════════════════════════ -->
+<div class="divider-line"></div>
+<div class="cta-section">
+  <p class="section-label">Próximos passos</p>
+  <h2 class="section-title">Garanta sua vaga</h2>
+  <div class="sep" style="margin: 0 auto 20px;"></div>
+  <p>Vagas limitadas por turma. Entre em contato pelo WhatsApp e tire todas as suas dúvidas antes de se inscrever.</p>
+  <div class="cta-group">
+    <a href="https://wa.me/5561999999999?text=Olá!%20Tenho%20interesse%20no%20Curso%20Operador%20de%20Pistola%20Básico." class="btn-primary" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Falar no WhatsApp
+    </a>
+    <a href="https://instagram.com/ricardo_taira" class="btn-secondary" target="_blank">
+      📸 @ricardo_taira
+    </a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ FOOTER ══════════════════════════════ -->
+<footer>
+  <div class="footer-logo">RICARDO TAIRA</div>
+  <div class="footer-sub">Instrutor de Armamento e Tiro · Credenciado PF</div>
+  <a href="https://instagram.com/ricardo_taira" class="footer-insta" target="_blank">
+    📸 @ricardo_taira
+  </a>
+  <div class="footer-copy">© 2025 Ricardo Taira · Todos os direitos reservados</div>
+</footer>
+
+</main>
+
+<script>
+// ── ANIMATED CANVAS BACKGROUND ──
+const canvas = document.getElementById('canvas-bg');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+const GOLD = 'rgba(201,168,76,';
+
+// Particles
+const particles = Array.from({length: 36}, () => ({
+  x: Math.random() * window.innerWidth,
+  y: Math.random() * window.innerHeight,
+  r: Math.random() * 1.2 + 0.3,
+  dx: (Math.random() - 0.5) * 0.3,
+  dy: (Math.random() - 0.5) * 0.3,
+  alpha: Math.random() * 0.5 + 0.1,
+}));
+
+// Crosshair lines
+let t = 0;
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  t += 0.005;
+
+  const cx = canvas.width / 2;
+  const cy = canvas.height / 2;
+
+  // outer rotating ring
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(t * 0.3);
+  ctx.beginPath();
+  ctx.arc(0, 0, Math.min(canvas.width, canvas.height) * 0.38, 0, Math.PI * 2);
+  ctx.strokeStyle = GOLD + '0.06)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  // tick marks on ring
+  for (let i = 0; i < 32; i++) {
+    const angle = (i / 32) * Math.PI * 2;
+    const inner = Math.min(canvas.width, canvas.height) * 0.38 - (i % 4 === 0 ? 14 : 7);
+    const outer = Math.min(canvas.width, canvas.height) * 0.38;
+    ctx.beginPath();
+    ctx.moveTo(Math.cos(angle) * inner, Math.sin(angle) * inner);
+    ctx.lineTo(Math.cos(angle) * outer, Math.sin(angle) * outer);
+    ctx.strokeStyle = GOLD + (i % 4 === 0 ? '0.2)' : '0.08)');
+    ctx.lineWidth = i % 4 === 0 ? 1.5 : 0.7;
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  // crosshair lines
+  ctx.strokeStyle = GOLD + '0.07)';
+  ctx.lineWidth = 0.8;
+  ctx.setLineDash([4, 12]);
+  ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, canvas.height); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(canvas.width, cy);   ctx.stroke();
+  ctx.setLineDash([]);
+
+  // particles
+  particles.forEach(p => {
+    p.x += p.dx; p.y += p.dy;
+    if (p.x < 0) p.x = canvas.width;
+    if (p.x > canvas.width) p.x = 0;
+    if (p.y < 0) p.y = canvas.height;
+    if (p.y > canvas.height) p.y = 0;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = GOLD + p.alpha + ')';
+    ctx.fill();
+  });
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('section, .cta-section').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>

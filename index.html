@@ -100,6 +100,8 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 .sub-title::after{content:'';flex:1;height:1px;background:var(--line);}
 
 .step-list{list-style:none;counter-reset:step;display:flex;flex-direction:column;gap:10px;margin-bottom:12px;}
+.rules-list li{padding-bottom:12px;border-bottom:1px solid var(--line2);}
+.rules-list li:last-child{border-bottom:none;padding-bottom:0;}
 .step-list li{counter-increment:step;display:flex;align-items:flex-start;gap:12px;font-size:.86rem;color:var(--gray-lt);line-height:1.55;}
 .step-list li::before{content:counter(step);flex-shrink:0;width:22px;height:22px;background:var(--gold-dk);color:var(--gold-lt);font-family:'Bebas Neue',sans-serif;font-size:.7rem;border-radius:3px;display:flex;align-items:center;justify-content:center;}
 
@@ -117,6 +119,23 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 .photo-slot .ps-icon{font-size:2rem;opacity:.4;}
 .photo-slot .ps-text{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.15em;color:var(--gray);text-transform:uppercase;}
 
+
+/* ── EVACUAÇÃO ── */
+.evac-section{padding:28px 18px 32px;border-top:3px solid var(--red);background:linear-gradient(180deg,rgba(178,34,34,.06),var(--bg));}
+.evac-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.4rem,5vw,1.8rem);color:#ef5350;letter-spacing:.06em;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.evac-step{background:var(--bg3);border:1px solid rgba(178,34,34,.2);border-radius:var(--r);padding:14px;margin-bottom:10px;}
+.evac-step h4{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#ef5350;margin-bottom:6px;}
+.evac-step p{font-size:.84rem;color:var(--gray-lt);line-height:1.6;margin:0;}
+.evac-step strong{color:var(--white);}
+.evac-hosp{background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:8px;}
+.evac-hosp .eh-badge{font-family:'Barlow Condensed',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.evac-hosp h4{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--white);margin-bottom:4px;}
+.evac-hosp .eh-info{font-size:.78rem;color:var(--gray);line-height:1.5;margin-bottom:6px;}
+.evac-hosp a{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;color:var(--gold);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;}
+.evac-fones{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
+.evac-fone{background:var(--bg3);border:1px solid rgba(178,34,34,.2);border-radius:var(--r);padding:10px;text-align:center;}
+.evac-fone .ef-num{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#ef5350;line-height:1;}
+.evac-fone .ef-name{font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;color:var(--gray);text-transform:uppercase;}
 /* ── FOOTER ── */
 .footer{border-top:1px solid var(--line);padding:28px 20px;text-align:center;}
 .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.1em;color:var(--gold);margin-bottom:4px;}
@@ -215,7 +234,7 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
       <strong>⚠️ REGRA NÚMERO ZERO:</strong> Você NÃO faz nada sem o comando do instrutor. Não toca na arma, não carrega, não aponta, não dispara — nada. Tudo acontece por comando. Sem exceção.
     </div>
 
-    <ol class="step-list">
+    <ol class="step-list rules-list">
       <li><strong>Toda arma é carregada até que VOCÊ confirme o contrário</strong> — Não importa se alguém disse que está vazia. Confie nos seus olhos e nas suas mãos. Sempre verifique.</li>
       <li><strong>Nunca aponte para algo que não queira destruir</strong> — O cano da arma aponta SEMPRE para a direção segura (para o alvo). Manuseando, limpando, guardando — sempre.</li>
       <li><strong>Dedo fora do gatilho até a hora de atirar</strong> — O dedo indicador fica esticado ao lado da arma (encostado no guarda-mato). Só entra no gatilho quando for disparar.</li>
@@ -866,11 +885,11 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 
     <div class="sub-title">Munição do Curso</div>
     <div class="highlight-box">
-      <h4>Quantidade de tiros por aluno</h4>
+      <h4>50 disparos + 5 de cortesia</h4>
       <ul class="key-list">
         <li><strong>25 tiros calibre .22</strong> — Para pegar o jeito. Recuo bem leve, ideal para aprender os fundamentos sem o impacto do recuo atrapalhar.</li>
         <li><strong>25 tiros calibre 9mm</strong> — Calibre real de defesa. Recuo mais forte, som mais alto. Aqui você vai sentir a diferença e aplicar tudo que aprendeu.</li>
-        <li><strong>5 tiros calibre 12 (bônus 🎁)</strong> — Espingarda! Uma experiência única. Recuo forte, som impressionante. Pura diversão com segurança.</li>
+        <li><strong>5 tiros calibre 12 — CORTESIA 🎁</strong> — Espingarda! Um presente nosso para você. Experiência única, recuo forte, som impressionante. Pura diversão com segurança.</li>
       </ul>
     </div>
 
@@ -937,6 +956,84 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
     <div class="callout callout-ok">
       <strong>✅ TIROS BEM AGRUPADOS MAS FORA DO CENTRO?</strong> Se seus tiros estão todos juntos (próximos) mas longe do centro do alvo — PARABÉNS. Agrupamento bom = técnica consistente. O problema pode ser só de regulagem da mira ou de alinhamento. O instrutor vai te ajudar a corrigir.
     </div>
+  </div>
+</div>
+
+
+<!-- ══════ PLANO DE EVACUAÇÃO ══════ -->
+<div class="evac-section">
+  <div class="evac-title">🚨 Plano de Evacuação — Acidente com Tiro</div>
+  
+  <div class="evac-step">
+    <h4>Passo 1 — Cessar Fogo Imediato</h4>
+    <p><strong>"CESSAR FOGO!"</strong> — Comando imediato. Todos param de atirar. Dedo fora do gatilho, arma apontada para o alvo.</p>
+  </div>
+
+  <div class="evac-step">
+    <h4>Passo 2 — Evacuação dos Alunos</h4>
+    <p>Todos os alunos devem <strong>largar as armas na bancada</strong> e sair da pista imediatamente, dirigindo-se direto para a <strong>recepção do clube</strong>. Não correr, não tocar em nenhuma arma na saída.</p>
+  </div>
+
+  <div class="evac-step">
+    <h4>Passo 3 — Segurança das Armas</h4>
+    <p>Instrutores e auxiliares <strong>asseguram todas as armas</strong> na pista: descarregadas, ferrolho aberto, carregadores removidos. Nenhuma arma fica carregada.</p>
+  </div>
+
+  <div class="evac-step">
+    <h4>Passo 4 — Atendimento MARCH</h4>
+    <p>Protocolo de atendimento tático pré-hospitalar:</p>
+    <p style="margin-top:6px;">
+      <strong style="color:#ef5350;">M</strong> — Hemorragia Maciça (torniquete)<br>
+      <strong style="color:#ef5350;">A</strong> — Vias Aéreas<br>
+      <strong style="color:#ef5350;">R</strong> — Respiração<br>
+      <strong style="color:#ef5350;">C</strong> — Circulação<br>
+      <strong style="color:#ef5350;">H</strong> — Hipotermia
+    </p>
+  </div>
+
+  <div class="evac-step">
+    <h4>Passo 5 — Funções da Equipe</h4>
+    <p>
+      🩺 <strong>Socorrista Principal:</strong> Ricardo Taira (APH Tático)<br>
+      🚗 <strong>Motorista Principal:</strong> Flávio Barreto<br>
+      📞 <strong>Auxiliar:</strong> Ligar para os serviços de emergência
+    </p>
+  </div>
+
+  <div class="sub-title" style="color:#ef5350;">Contatos de Emergência</div>
+  <div class="evac-fones">
+    <div class="evac-fone">
+      <div class="ef-num">192</div>
+      <div class="ef-name">SAMU</div>
+    </div>
+    <div class="evac-fone">
+      <div class="ef-num">193</div>
+      <div class="ef-name">Bombeiros</div>
+    </div>
+    <div class="evac-fone">
+      <div class="ef-num">190</div>
+      <div class="ef-name">Polícia</div>
+    </div>
+  </div>
+
+  <div class="sub-title" style="color:#ef5350;">Hospitais de Referência</div>
+
+  <div class="evac-hosp">
+    <div class="eh-badge">1ª Opção — 11 km · ~15 minutos</div>
+    <h4>Hospital Regional de Samambaia</h4>
+    <div class="eh-info">QS 614, Cj. C, Lote 01/02 — Samambaia, Brasília/DF<br>CEP 72322-583</div>
+    <a href="https://maps.app.goo.gl/bCS9KqNDYrKm35iW6" target="_blank">📍 Abrir rota no Google Maps →</a>
+  </div>
+
+  <div class="evac-hosp">
+    <div class="eh-badge">2ª Opção — 31 km · ~31 minutos</div>
+    <h4>Hospital de Base do Distrito Federal</h4>
+    <div class="eh-info">Setor Médico Hospitalar Sul, Área Especial, Quadra 101<br>Asa Sul, Brasília/DF — CEP 70330-150</div>
+    <a href="https://maps.app.goo.gl/B4cyrwtayK9ubndQA" target="_blank">📍 Abrir rota no Google Maps →</a>
+  </div>
+
+  <div class="callout callout-ok" style="margin-top:14px;">
+    <strong>✅ SEGURANÇA:</strong> Os instrutores Ricardo Taira e Flávio Barreto possuem formação em APH Tático com equipamentos de socorro (torniquete, curativo israelense, chest seal) disponíveis no local. O Clube de Tiro Matsumoto também conta com kit de primeiros socorros.
   </div>
 </div>
 

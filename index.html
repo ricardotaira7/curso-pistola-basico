@@ -60,7 +60,7 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold-dk),var(--gold));width:0%;transition:width .4s;border-radius:2px;}
 .progress-label{font-family:'Barlow Condensed',sans-serif;font-size:.58rem;letter-spacing:.12em;color:var(--gray);text-transform:uppercase;text-align:right;padding:2px 0 0;}
 .mod-nav{display:flex;justify-content:center;gap:3px;padding:6px 8px 8px;}
-.mod-dot{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--bg3);border:1.5px solid rgba(201,168,76,.25);font-family:'Bebas Neue',sans-serif;font-size:.72rem;color:var(--gray);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s;-webkit-tap-highlight-color:transparent;}
+.mod-dot{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--bg3);border:1.5px solid rgba(201,168,76,.25);font-family:'Bebas Neue',sans-serif;font-size:.68rem;color:var(--gray);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s;-webkit-tap-highlight-color:transparent;}
 .mod-dot.active{background:var(--gold);color:var(--bg);border-color:var(--gold);transform:scale(1.1);}
 .mod-dot.viewed{border-color:var(--gold);color:var(--gold);}
 
@@ -153,7 +153,7 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
   <p class="hero-desc">Conteúdo teórico digital do curso. Estude antes, tire dúvidas no grupo da turma com os instrutores, e chegue preparado para o curso 100% prático no estande.</p>
   <div class="hero-pills">
     <div class="pill">⏱ 6 horas</div>
-    <div class="pill">📋 12 módulos</div>
+    <div class="pill">📋 15 módulos</div>
     <div class="pill">🎯 Teoria + Prática</div>
     <div class="pill">📜 Certificado</div>
   </div>
@@ -175,7 +175,7 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 <div class="sticky-bar">
   <div class="progress-wrap">
     <div class="progress-bar"><div class="progress-fill" id="pFill"></div></div>
-    <div class="progress-label" id="pLabel">0 de 12 módulos</div>
+    <div class="progress-label" id="pLabel">0 de 15 módulos</div>
   </div>
   <nav class="mod-nav">
     <a href="#m1" class="mod-dot" data-m="1">1</a>
@@ -190,6 +190,9 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
     <a href="#m10" class="mod-dot" data-m="10">10</a>
     <a href="#m11" class="mod-dot" data-m="11">11</a>
     <a href="#m12" class="mod-dot" data-m="12">12</a>
+    <a href="#m13" class="mod-dot" data-m="13">13</a>
+    <a href="#m14" class="mod-dot" data-m="14">14</a>
+    <a href="#m15" class="mod-dot" data-m="15">15</a>
   </nav>
 </div>
 
@@ -291,12 +294,85 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
   </div>
 </div>
 
-<!-- ═══ MÓDULO 3 — PARTES DA PISTOLA ═══ -->
+<!-- ═══ MÓDULO 03 — MANUSEIO SEGURO ═══ -->
 <div class="modulo" id="m3">
   <div class="mod-header" onclick="toggle(this)">
     <div class="mod-num">03</div>
     <div class="mod-info">
-      <div class="mod-tag">Módulo 03 · Armamento</div>
+      <div class="mod-tag">Módulo 03 · Segurança</div>
+      <div class="mod-title">Manuseio Seguro da Arma</div>
+    </div>
+    <div class="mod-toggle">▼</div>
+  </div>
+  <div class="mod-body">
+    <p class="txt">Antes de conhecer as peças e atirar, você precisa saber <strong>como pegar, verificar, carregar, descarregar e passar uma arma</strong> com segurança. Esse módulo é a base de tudo que vem depois.</p>
+
+    <div class="callout callout-danger">
+      <strong>⚠️ LEMBRE-SE:</strong> Toda arma é carregada até que VOCÊ confirme o contrário. Sempre que pegar uma arma — mesmo que alguém diga que está vazia — faça a verificação você mesmo.
+    </div>
+
+    <div class="sub-title">Como pegar uma arma com segurança</div>
+    <ol class="step-list">
+      <li><strong>Cano para direção segura</strong> — Ao pegar a arma (da bancada, do instrutor, do estojo), mantenha o cano SEMPRE apontado para o alvo ou direção segura.</li>
+      <li><strong>Dedo fora do gatilho</strong> — O dedo indicador fica esticado ao longo da armação, fora do guarda-mato. Automático. Sempre.</li>
+      <li><strong>Segure pelo punho</strong> — Pegue a arma pela armação (parte de baixo), com firmeza. Nunca pelo cano ou pelo gatilho.</li>
+    </ol>
+
+    <div class="sub-title">Verificação de Segurança (inspeção visual e tátil)</div>
+    <p class="txt">Essa é a rotina que você vai fazer <strong>TODA vez</strong> que pegar ou receber uma arma:</p>
+    <ol class="step-list">
+      <li><strong>Retire o carregador</strong> — Aperte o botão do carregador e puxe o carregador para fora.</li>
+      <li><strong>Trave o ferrolho aberto</strong> — Puxe o ferrolho para trás e trave com a trava do ferrolho. A câmara fica exposta.</li>
+      <li><strong>Inspeção VISUAL</strong> — OLHE dentro da câmara. Está vazia? Vê alguma munição lá dentro? Olhe com atenção.</li>
+      <li><strong>Inspeção TÁTIL</strong> — Coloque o dedo mindinho dentro da câmara (pelo lado da janela de ejeção). Sinta se está vazio. Os olhos podem enganar — o dedo não mente.</li>
+      <li><strong>Confirme</strong> — Câmara vazia, sem carregador. Agora sim a arma está segura.</li>
+    </ol>
+
+    <div class="photo-slot">
+      <div class="ps-icon">📸</div>
+      <div class="ps-text">Foto: verificação visual e tátil da câmara</div>
+    </div>
+
+    <div class="sub-title">Como carregar a arma</div>
+    <ol class="step-list">
+      <li><strong>Arma apontada para o alvo</strong> — Sempre na direção segura.</li>
+      <li><strong>Insira o carregador</strong> — Empurre até ouvir o "click" de encaixe. Dê um puxão para confirmar que está firme.</li>
+      <li><strong>Aguarde o comando "ALIMENTAR"</strong> — NÃO puxe o ferrolho até o instrutor mandar.</li>
+      <li><strong>Puxe o ferrolho e SOLTE</strong> — Puxe totalmente para trás e solte de uma vez. Não acompanhe com a mão — deixe a mola fazer o trabalho. A munição entrou na câmara.</li>
+    </ol>
+
+    <div class="sub-title">Como descarregar a arma</div>
+    <ol class="step-list">
+      <li><strong>Dedo fora do gatilho</strong> — Sempre.</li>
+      <li><strong>Retire o carregador</strong> — Botão do carregador, puxe o carregador para fora.</li>
+      <li><strong>Puxe o ferrolho para trás</strong> — A munição que estava na câmara vai ser ejetada.</li>
+      <li><strong>Trave o ferrolho aberto</strong> — Faça a verificação visual e tátil.</li>
+      <li><strong>Pronto</strong> — Arma descarregada, verificada, segura.</li>
+    </ol>
+
+    <div class="sub-title">Como passar uma arma para outra pessoa</div>
+    <div class="highlight-box">
+      <h4>Regra de ouro</h4>
+      <ul class="key-list">
+        <li><strong>Descarregue completamente</strong> — Sem carregador, sem munição na câmara, ferrolho aberto.</li>
+        <li><strong>Faça a verificação</strong> — Visual e tátil. Confirme que está vazia.</li>
+        <li><strong>Apresente a arma</strong> — Ofereça com a câmara aberta visível, cano para direção segura, punho voltado para quem vai receber.</li>
+        <li><strong>Quem recebe, verifica também</strong> — A pessoa que pega a arma faz SUA PRÓPRIA verificação. Sempre.</li>
+      </ul>
+    </div>
+
+    <div class="callout callout-ok">
+      <strong>✅ RESUMO:</strong> Pegou arma → verifica. Recebeu arma → verifica. Vai guardar arma → verifica. Antes de atirar → verifica. Depois de atirar → verifica. Na dúvida → verifica.
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MÓDULO 3 — PARTES DA PISTOLA ═══ -->
+<div class="modulo" id="m4">
+  <div class="mod-header" onclick="toggle(this)">
+    <div class="mod-num">04</div>
+    <div class="mod-info">
+      <div class="mod-tag">Módulo 04 · Armamento</div>
       <div class="mod-title">Partes da Pistola</div>
     </div>
     <div class="mod-toggle">▼</div>
@@ -348,11 +424,11 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 </div>
 
 <!-- ═══ MÓDULO 4 — FUNCIONAMENTO ═══ -->
-<div class="modulo" id="m4">
+<div class="modulo" id="m5">
   <div class="mod-header" onclick="toggle(this)">
-    <div class="mod-num">04</div>
+    <div class="mod-num">05</div>
     <div class="mod-info">
-      <div class="mod-tag">Módulo 04 · Armamento</div>
+      <div class="mod-tag">Módulo 05 · Armamento</div>
       <div class="mod-title">Como a Pistola Funciona</div>
     </div>
     <div class="mod-toggle">▼</div>
@@ -388,11 +464,11 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 </div>
 
 <!-- ═══ MÓDULO 5 — MUNIÇÃO ═══ -->
-<div class="modulo" id="m5">
+<div class="modulo" id="m6">
   <div class="mod-header" onclick="toggle(this)">
-    <div class="mod-num">05</div>
+    <div class="mod-num">06</div>
     <div class="mod-info">
-      <div class="mod-tag">Módulo 05 · Munição</div>
+      <div class="mod-tag">Módulo 06 · Munição</div>
       <div class="mod-title">Tipos de Munição</div>
     </div>
     <div class="mod-toggle">▼</div>
@@ -443,11 +519,11 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 <div class="fund-divider">🎯 FUNDAMENTOS DO TIRO</div>
 
 <!-- ═══ MÓDULO 6 — POSTURA ═══ -->
-<div class="modulo" id="m6">
+<div class="modulo" id="m7">
   <div class="mod-header" onclick="toggle(this)">
-    <div class="mod-num">06</div>
+    <div class="mod-num">07</div>
     <div class="mod-info">
-      <div class="fund-badge">🎯 Fundamento 1 de 5</div>
+      <div class="fund-badge">🎯 Fundamento 1 de 6</div>
       <div class="mod-title">Bases e Posições de Tiro</div>
     </div>
     <div class="mod-toggle">▼</div>
@@ -496,11 +572,11 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 </div>
 
 <!-- ═══ MÓDULO 7 — EMPUNHADURA / PEGADA ═══ -->
-<div class="modulo" id="m7">
+<div class="modulo" id="m8">
   <div class="mod-header" onclick="toggle(this)">
-    <div class="mod-num">07</div>
+    <div class="mod-num">08</div>
     <div class="mod-info">
-      <div class="fund-badge">🎯 Fundamento 2 de 5</div>
+      <div class="fund-badge">🎯 Fundamento 2 de 6</div>
       <div class="mod-title">Empunhadura (Pegada)</div>
     </div>
     <div class="mod-toggle">▼</div>
@@ -544,11 +620,11 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 </div>
 
 <!-- ═══ MÓDULO 8 — VISADA ═══ -->
-<div class="modulo" id="m8">
+<div class="modulo" id="m9">
   <div class="mod-header" onclick="toggle(this)">
-    <div class="mod-num">08</div>
+    <div class="mod-num">09</div>
     <div class="mod-info">
-      <div class="fund-badge">🎯 Fundamento 3 de 5</div>
+      <div class="fund-badge">🎯 Fundamento 3 de 6</div>
       <div class="mod-title">Visada (Pontaria)</div>
     </div>
     <div class="mod-toggle">▼</div>
@@ -584,11 +660,11 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 </div>
 
 <!-- ═══ MÓDULO 9 — RESPIRAÇÃO ═══ -->
-<div class="modulo" id="m9">
+<div class="modulo" id="m10">
   <div class="mod-header" onclick="toggle(this)">
-    <div class="mod-num">09</div>
+    <div class="mod-num">10</div>
     <div class="mod-info">
-      <div class="fund-badge">🎯 Fundamento 4 de 5</div>
+      <div class="fund-badge">🎯 Fundamento 4 de 6</div>
       <div class="mod-title">Respiração</div>
     </div>
     <div class="mod-toggle">▼</div>
@@ -616,11 +692,11 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 </div>
 
 <!-- ═══ MÓDULO 10 — ACIONAMENTO DO GATILHO ═══ -->
-<div class="modulo" id="m10">
+<div class="modulo" id="m11">
   <div class="mod-header" onclick="toggle(this)">
-    <div class="mod-num">10</div>
+    <div class="mod-num">11</div>
     <div class="mod-info">
-      <div class="fund-badge">🎯 Fundamento 5 de 5</div>
+      <div class="fund-badge">🎯 Fundamento 5 de 6</div>
       <div class="mod-title">Acionamento do Gatilho</div>
     </div>
     <div class="mod-toggle">▼</div>
@@ -652,14 +728,135 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
   </div>
 </div>
 
+
+<!-- ═══ MÓDULO 12 — CONTROLE DO RECUO ═══ -->
+<div class="modulo" id="m12">
+  <div class="mod-header" onclick="toggle(this)">
+    <div class="mod-num">12</div>
+    <div class="mod-info">
+      <div class="fund-badge">🎯 Fundamento 6 de 6</div>
+      <div class="mod-title">Controle do Recuo e Acompanhamento</div>
+    </div>
+    <div class="mod-toggle">▼</div>
+  </div>
+  <div class="mod-body">
+    <p class="txt">O recuo é a reação natural da arma ao disparo — 3ª Lei de Newton: toda ação tem uma reação. Você <strong>não pode eliminar o recuo</strong>, mas pode controlá-lo para recuperar a mira rapidamente e fazer disparos consecutivos com precisão.</p>
+
+    <div class="sub-title">Como controlar o recuo</div>
+    <ul class="key-list">
+      <li><strong>Pegada firme e alta</strong> — Quanto mais alta a mão no punho, menor o "tombo" da arma. A mão de apoio espremendo lateralmente é o segredo para controlar o movimento lateral.</li>
+      <li><strong>Postura inclinada para frente</strong> — O peso do corpo à frente absorve o recuo. Se você estiver com o peso nos calcanhares, o recuo te empurra para trás.</li>
+      <li><strong>Braços com tensão controlada</strong> — Nem travados (que não absorvem nada), nem soltos (que perdem o controle). Firmes o suficiente, com uma leve flexão no cotovelo.</li>
+      <li><strong>Deixe o recuo acontecer</strong> — A arma sobe um pouco e volta sozinha para a posição. NÃO empurre a arma para baixo tentando "compensar" o recuo — isso é antecipação e causa tiro baixo.</li>
+    </ul>
+
+    <div class="sub-title">Acompanhamento (Follow-Through)</div>
+    <p class="txt">O tiro <strong>não acaba quando a bala sai</strong>. O que você faz DEPOIS do disparo é tão importante quanto o que faz antes.</p>
+    <ol class="step-list">
+      <li><strong>Mantenha a postura</strong> — Não relaxe o corpo imediatamente após o tiro. Fique na posição.</li>
+      <li><strong>Mantenha a visada</strong> — Continue olhando pela mira. Não tire os olhos do alvo para ver "onde acertou".</li>
+      <li><strong>Mantenha a pegada</strong> — Não afrouxe a pegada. A arma deve voltar sozinha para a posição original.</li>
+      <li><strong>Avalie o resultado</strong> — Agora sim, com a mira de volta no alvo, veja onde o tiro foi. O furo está onde você esperava?</li>
+      <li><strong>Prepare o próximo</strong> — Respire, realinhe a mira, e quando estiver pronto, repita o ciclo.</li>
+    </ol>
+
+    <div class="callout callout-danger">
+      <strong>⚠️ ANTECIPAÇÃO DO RECUO — o inimigo número 1:</strong> Seu cérebro SABE que o recuo vem. Por instinto, ele tenta "compensar" empurrando a arma para baixo ANTES do tiro sair. Resultado: tiro vai para baixo. A cura é confiar na técnica, focar no gatilho suave e deixar o disparo ser uma "surpresa controlada".
+    </div>
+
+    <div class="callout callout-tip">
+      <strong>💡 EXERCÍCIO:</strong> Peça ao instrutor para carregar a arma com uma câmara vazia aleatória no meio do carregador. Quando o percussor bater numa câmara vazia, você vai VER exatamente se está antecipando (a arma vai pular para baixo sem ter tiro). É o melhor diagnóstico que existe.
+    </div>
+
+    <div class="photo-slot">
+      <div class="ps-icon">📸</div>
+      <div class="ps-text">Foto: sequência do recuo — antes, durante e depois do disparo</div>
+    </div>
+  </div>
+</div>
+
 <div class="section-divider"></div>
 
-<!-- ═══ MÓDULO 11 — DISPAROS PRÁTICOS ═══ -->
-<div class="modulo" id="m11">
+<!-- ═══ MÓDULO 11 — PANES E INCIDENTES ═══ -->
+<div class="modulo" id="m13">
   <div class="mod-header" onclick="toggle(this)">
-    <div class="mod-num">11</div>
+    <div class="mod-num">13</div>
     <div class="mod-info">
-      <div class="mod-tag">Módulo 11 · Prática no Estande</div>
+      <div class="mod-tag">Módulo 13 · Segurança Operacional</div>
+      <div class="mod-title">Panes e Incidentes de Tiro</div>
+    </div>
+    <div class="mod-toggle">▼</div>
+  </div>
+  <div class="mod-body">
+    <p class="txt">Antes de ir para a pista, você precisa saber o que fazer quando algo não sai como esperado. <strong>Panes acontecem</strong> — o importante é saber identificar e resolver com segurança.</p>
+
+    <div class="callout callout-danger">
+      <strong>⚠️ REGRA GERAL PARA QUALQUER PANE:</strong> Mantenha a arma apontada para o alvo, dedo FORA do gatilho, e informe o instrutor. Nunca tente resolver sozinho se tiver dúvida.
+    </div>
+
+    <div class="sub-title">1. Nega (Misfire)</div>
+    <div class="highlight-box">
+      <h4>O que acontece</h4>
+      <p class="txt" style="margin-bottom:6px;">Você aperta o gatilho e ouve um "CLICK" — mas o tiro NÃO sai. A munição não funcionou.</p>
+      <h4>O que fazer</h4>
+      <ul class="key-list">
+        <li><strong>Mantenha a arma apontada para o alvo por 30 segundos</strong> — pode ser retardo de ignição (a munição demora para funcionar).</li>
+        <li>Após 30 segundos: puxe o ferrolho para trás para ejetar o cartucho que falhou.</li>
+        <li>O ferrolho vai câmarar uma nova munição automaticamente. A arma está pronta novamente.</li>
+        <li>O cartucho que falhou fica no chão — NÃO pegue ele de volta.</li>
+      </ul>
+    </div>
+
+    <div class="sub-title">2. Chaminé (Stovepipe)</div>
+    <div class="highlight-box">
+      <h4>O que acontece</h4>
+      <p class="txt" style="margin-bottom:6px;">O estojo vazio fica preso na janela de ejeção, parecendo uma "chaminé" saindo de cima da arma. O ferrolho não fecha completamente.</p>
+      <h4>O que fazer</h4>
+      <ul class="key-list">
+        <li><strong>Bata na base do carregador</strong> (para garantir que está encaixado).</li>
+        <li><strong>Puxe o ferrolho totalmente para trás e solte</strong> — o estojo preso vai cair e uma nova munição será câmarada.</li>
+        <li>Causa comum: empunhadura frouxa (a arma "dança" na mão e não tem energia para ejetar o estojo).</li>
+      </ul>
+    </div>
+
+    <div class="sub-title">3. Dupla Alimentação (Double Feed)</div>
+    <div class="highlight-box">
+      <h4>O que acontece</h4>
+      <p class="txt" style="margin-bottom:6px;">Duas munições tentam entrar na câmara ao mesmo tempo. O ferrolho trava e não fecha.</p>
+      <h4>O que fazer</h4>
+      <ol class="step-list">
+        <li><strong>Trave o ferrolho aberto</strong> (use a trava do ferrolho).</li>
+        <li><strong>Retire o carregador</strong> da arma.</li>
+        <li><strong>Puxe o ferrolho 2 ou 3 vezes</strong> para limpar a câmara — as munições presas vão cair.</li>
+        <li><strong>Recoloque o carregador</strong> e puxe o ferrolho para câmarar. Pronto.</li>
+      </ol>
+    </div>
+
+    <div class="sub-title">4. Falha de Extração</div>
+    <div class="highlight-box">
+      <h4>O que acontece</h4>
+      <p class="txt" style="margin-bottom:6px;">O estojo vazio não sai da câmara depois do tiro. Fica preso lá dentro. A arma não consegue câmarar a próxima munição.</p>
+      <h4>O que fazer</h4>
+      <ul class="key-list">
+        <li><strong>Retire o carregador</strong> primeiro.</li>
+        <li><strong>Puxe o ferrolho com força para trás</strong> — tente ejetar o estojo preso.</li>
+        <li>Se não sair, <strong>informe o instrutor</strong> — pode ser necessário usar uma vareta pelo cano.</li>
+        <li>Causa comum: garra do extrator desgastada, estojo inchado ou câmara suja.</li>
+      </ul>
+    </div>
+
+    <div class="callout callout-tip">
+      <strong>💡 MEMORIZE A SEQUÊNCIA UNIVERSAL:</strong> Para qualquer pane → Bater (base do carregador), Puxar (ferrolho), Soltar (deixar a mola trabalhar). Se não resolver, retire o carregador e repita. Se ainda não resolver, chame o instrutor.
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MÓDULO 11 — DISPAROS PRÁTICOS ═══ -->
+<div class="modulo" id="m14">
+  <div class="mod-header" onclick="toggle(this)">
+    <div class="mod-num">14</div>
+    <div class="mod-info">
+      <div class="mod-tag">Módulo 14 · Prática no Estande</div>
       <div class="mod-title">Disparos Práticos em Alvo</div>
     </div>
     <div class="mod-toggle">▼</div>
@@ -699,11 +896,11 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 </div>
 
 <!-- ═══ MÓDULO 12 — CORREÇÃO DE ERROS ═══ -->
-<div class="modulo" id="m12">
+<div class="modulo" id="m15">
   <div class="mod-header" onclick="toggle(this)">
-    <div class="mod-num">12</div>
+    <div class="mod-num">15</div>
     <div class="mod-info">
-      <div class="mod-tag">Módulo 12 · Diagnóstico de Tiro</div>
+      <div class="mod-tag">Módulo 15 · Diagnóstico de Tiro</div>
       <div class="mod-title">Correção de Agrupamento de Tiro</div>
     </div>
     <div class="mod-toggle">▼</div>

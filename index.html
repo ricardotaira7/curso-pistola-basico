@@ -2,1009 +2,812 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Operador de Pistola Básico | Ricardo Taira · IAT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Curso Operador de Pistola Básico | Ricardo Taira & Flávio Barreto</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-  :root {
-    --bg:       #080808;
-    --bg2:      #0f0f0f;
-    --bg3:      #161616;
-    --gold:     #c9a84c;
-    --gold-lt:  #e8c96a;
-    --gold-dk:  #8a6f2e;
-    --red:      #b22222;
-    --white:    #f0ede8;
-    --gray:     #8a8880;
-    --line:     rgba(201,168,76,0.18);
-    --radius:   4px;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--white);
-    font-family: 'Barlow', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* ── NOISE OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.025;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ── CANVAS BG ── */
-  #canvas-bg {
-    position: fixed; inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.3;
-  }
-
-  main { position: relative; z-index: 1; }
-
-  /* ── HEADER STRIPE ── */
-  .top-bar {
-    background: var(--gold);
-    color: var(--bg);
-    text-align: center;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 6px 16px;
-  }
-
-  /* ── HERO ── */
-  .hero {
-    position: relative;
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 20px 40px;
-    text-align: center;
-    overflow: hidden;
-  }
-
-  /* crosshair bg decoration */
-  .hero::after {
-    content: '';
-    position: absolute;
-    width: 320px; height: 320px;
-    border: 1px solid var(--line);
-    border-radius: 50%;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    animation: pulse-ring 4s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  @keyframes pulse-ring {
-    0%,100% { opacity: 0.4; transform: translate(-50%,-50%) scale(1); }
-    50%      { opacity: 0.8; transform: translate(-50%,-50%) scale(1.08); }
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border: 1px solid var(--gold-dk);
-    color: var(--gold);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    padding: 6px 16px;
-    margin-bottom: 28px;
-    animation: fadeUp 0.8s ease both;
-  }
-
-  .hero-badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--gold);
-    border-radius: 50%;
-    animation: blink 2s ease infinite;
-  }
-
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
-
-  .hero-eyebrow {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.3em;
-    color: var(--gray);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    animation: fadeUp 0.9s ease 0.1s both;
-  }
-
-  .hero-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3.8rem, 14vw, 6.5rem);
-    line-height: 0.92;
-    letter-spacing: 0.03em;
-    color: var(--white);
-    margin-bottom: 8px;
-    animation: fadeUp 0.9s ease 0.15s both;
-  }
-
-  .hero-title span {
-    display: block;
-    color: var(--gold);
-    font-size: clamp(2rem, 8vw, 3.5rem);
-  }
-
-  .hero-divider {
-    width: 60px; height: 2px;
-    background: linear-gradient(90deg, var(--gold-dk), var(--gold), var(--gold-dk));
-    margin: 20px auto;
-    animation: fadeUp 0.9s ease 0.2s both;
-  }
-
-  .hero-desc {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: var(--gray);
-    max-width: 340px;
-    margin: 0 auto 32px;
-    animation: fadeUp 0.9s ease 0.25s both;
-  }
-
-  .hero-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 36px;
-    animation: fadeUp 0.9s ease 0.3s both;
-  }
-
-  .pill {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--bg3);
-    border: 1px solid var(--line);
-    border-radius: 50px;
-    padding: 7px 14px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    color: var(--gold);
-  }
-
-  .pill svg { width: 13px; height: 13px; fill: var(--gold); }
-
-  .cta-group {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    max-width: 320px;
-    animation: fadeUp 0.9s ease 0.35s both;
-  }
-
-  .btn-primary {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: var(--gold);
-    color: var(--bg);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 16px 24px;
-    border-radius: var(--radius);
-    transition: background 0.2s, transform 0.15s;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  .btn-primary:active { transform: scale(0.97); background: var(--gold-lt); }
-
-  .btn-secondary {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: transparent;
-    border: 1px solid var(--line);
-    color: var(--white);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 14px 24px;
-    border-radius: var(--radius);
-    transition: border-color 0.2s;
-  }
-
-  .btn-secondary:active { border-color: var(--gold); }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 24px; left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    animation: fadeUp 1.2s ease 0.8s both;
-  }
-
-  .scroll-hint span {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: var(--gray);
-    text-transform: uppercase;
-  }
-
-  .scroll-arrow {
-    width: 18px; height: 18px;
-    border-right: 2px solid var(--gold-dk);
-    border-bottom: 2px solid var(--gold-dk);
-    transform: rotate(45deg);
-    animation: bounce 1.4s ease infinite;
-  }
-
-  @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(5px)} }
-
-  /* ── SECTION BASE ── */
-  section {
-    padding: 64px 20px;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.2rem, 9vw, 3rem);
-    line-height: 1;
-    letter-spacing: 0.04em;
-    margin-bottom: 24px;
-  }
-
-  .sep {
-    width: 40px; height: 2px;
-    background: var(--gold);
-    margin-bottom: 28px;
-  }
-
-  /* ── SOBRE O CURSO ── */
-  .sobre-text {
-    font-size: 0.95rem;
-    line-height: 1.8;
-    color: #b0aca5;
-    margin-bottom: 16px;
-  }
-
-  .sobre-destaque {
-    background: var(--bg3);
-    border-left: 3px solid var(--gold);
-    padding: 14px 16px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem;
-    color: var(--white);
-    letter-spacing: 0.02em;
-    margin-top: 20px;
-  }
-
-  /* ── INFO CARDS ── */
-  .info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 0;
-  }
-
-  .info-card {
-    background: var(--bg3);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 18px 14px;
-    text-align: center;
-  }
-
-  .info-card .ic-icon {
-    font-size: 1.5rem;
-    margin-bottom: 8px;
-    display: block;
-  }
-
-  .info-card .ic-value {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem;
-    color: var(--gold);
-    line-height: 1;
-    display: block;
-    margin-bottom: 4px;
-  }
-
-  .info-card .ic-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    color: var(--gray);
-    text-transform: uppercase;
-    display: block;
-  }
-
-  /* ── GRADE CURRICULAR ── */
-  .grade-wrap {
-    background: var(--bg3);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
-
-  .grade-header {
-    background: var(--gold);
-    padding: 12px 18px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem;
-    letter-spacing: 0.08em;
-    color: var(--bg);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .grade-header span { font-size: 1rem; }
-
-  .grade-list {
-    list-style: none;
-    padding: 0;
-  }
-
-  .grade-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 13px 18px;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    font-size: 0.9rem;
-    line-height: 1.4;
-    color: #c5c1bb;
-    transition: background 0.15s;
-    opacity: 0;
-    transform: translateX(-10px);
-    animation: slideIn 0.4s ease forwards;
-  }
-
-  .grade-item:last-child { border-bottom: none; }
-
-  .grade-item:nth-child(1)  { animation-delay: 0.05s }
-  .grade-item:nth-child(2)  { animation-delay: 0.10s }
-  .grade-item:nth-child(3)  { animation-delay: 0.15s }
-  .grade-item:nth-child(4)  { animation-delay: 0.20s }
-  .grade-item:nth-child(5)  { animation-delay: 0.25s }
-  .grade-item:nth-child(6)  { animation-delay: 0.30s }
-  .grade-item:nth-child(7)  { animation-delay: 0.35s }
-  .grade-item:nth-child(8)  { animation-delay: 0.40s }
-  .grade-item:nth-child(9)  { animation-delay: 0.45s }
-  .grade-item:nth-child(10) { animation-delay: 0.50s }
-  .grade-item:nth-child(11) { animation-delay: 0.55s }
-  .grade-item:nth-child(12) { animation-delay: 0.60s }
-
-  @keyframes slideIn {
-    to { opacity: 1; transform: translateX(0); }
-  }
-
-  .grade-num {
-    flex-shrink: 0;
-    width: 22px; height: 22px;
-    background: var(--gold-dk);
-    color: var(--gold-lt);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1px;
-  }
-
-  /* ── MATERIAL & CERT ── */
-  .mc-grid {
-    display: grid;
-    gap: 14px;
-  }
-
-  .mc-card {
-    background: var(--bg3);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 20px 18px;
-  }
-
-  .mc-card h3 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .mc-card h3::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--line);
-  }
-
-  .mc-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .mc-list li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.9rem;
-    color: #c5c1bb;
-  }
-
-  .mc-list li::before {
-    content: '';
-    width: 5px; height: 5px;
-    background: var(--gold);
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .cert-box {
-    background: linear-gradient(135deg, var(--bg3), #1a1500);
-    border: 1px solid var(--gold-dk);
-    border-radius: var(--radius);
-    padding: 20px 18px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .cert-icon {
-    width: 48px; height: 48px;
-    background: var(--gold);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 1.3rem;
-  }
-
-  .cert-box h3 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 4px;
-  }
-
-  .cert-box p {
-    font-size: 0.9rem;
-    color: var(--white);
-    font-weight: 500;
-  }
-
-  /* ── INSTRUTOR ── */
-  .instrutor-card {
-    background: var(--bg3);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 24px 18px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 14px;
-  }
-
-  .inst-avatar {
-    width: 80px; height: 80px;
-    border-radius: 50%;
-    border: 2px solid var(--gold);
-    background: var(--bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-  }
-
-  .inst-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem;
-    letter-spacing: 0.06em;
-    color: var(--white);
-    line-height: 1;
-  }
-
-  .inst-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-top: -6px;
-  }
-
-  .inst-desc {
-    font-size: 0.88rem;
-    line-height: 1.7;
-    color: #999;
-    max-width: 320px;
-  }
-
-  .inst-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-  }
-
-  .inst-badge {
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-radius: 50px;
-    padding: 5px 12px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var(--gray);
-    text-transform: uppercase;
-  }
-
-  /* ── CTA FINAL ── */
-  .cta-section {
-    padding: 56px 20px 40px;
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .cta-section .section-title {
-    margin-bottom: 12px;
-  }
-
-  .cta-section p {
-    font-size: 0.92rem;
-    color: var(--gray);
-    margin-bottom: 28px;
-    line-height: 1.7;
-  }
-
-  .cta-section .cta-group {
-    max-width: 340px;
-    margin: 0 auto;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--line);
-    padding: 24px 20px;
-    text-align: center;
-  }
-
-  .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem;
-    letter-spacing: 0.1em;
-    color: var(--gold);
-    margin-bottom: 8px;
-  }
-
-  .footer-sub {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    color: var(--gray);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-
-  .footer-insta {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--gold);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-  }
-
-  .footer-copy {
-    margin-top: 20px;
-    font-size: 0.72rem;
-    color: #444;
-    letter-spacing: 0.05em;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── DIVIDER LINE ── */
-  .divider-line {
-    height: 1px;
-    background: var(--line);
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  /* ── DESKTOP ── */
-  @media (min-width: 640px) {
-    section { padding: 80px 32px; }
-
-    .info-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .mc-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .cta-group { flex-direction: row; max-width: 480px; }
-
-    .btn-primary, .btn-secondary { flex: 1; }
-  }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#080808;--bg2:#0e0e0e;--bg3:#151515;--bg4:#1c1c1c;
+  --gold:#c9a84c;--gold-lt:#e8c96a;--gold-dk:#8a6f2e;
+  --red:#b22222;--red-bg:rgba(178,34,34,.08);
+  --green:#2e7d32;--green-bg:rgba(46,125,50,.08);
+  --blue:#1565c0;--blue-bg:rgba(21,101,192,.06);
+  --white:#f0ede8;--gray:#8a8880;--gray-lt:#b0aca5;
+  --line:rgba(201,168,76,.18);--line2:rgba(255,255,255,.05);
+  --r:6px;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--white);font-family:'Barlow',sans-serif;font-weight:400;overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:15px;line-height:1.7;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.02;pointer-events:none;z-index:0;}
+main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+
+/* ── TOP BAR ── */
+.top-bar{background:var(--gold);color:var(--bg);text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;}
+
+/* ── HERO ── */
+.hero{padding:40px 20px 28px;text-align:center;border-bottom:1px solid var(--line);}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--gold-dk);color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;padding:4px 12px;margin-bottom:16px;}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;animation:blink 2s ease infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.28em;color:var(--gray);text-transform:uppercase;margin-bottom:6px;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,11vw,4.5rem);line-height:.92;letter-spacing:.03em;margin-bottom:4px;}
+.hero-title span{display:block;color:var(--gold);font-size:clamp(1.5rem,6vw,2.5rem);}
+.hero-div{width:50px;height:2px;background:linear-gradient(90deg,var(--gold-dk),var(--gold),var(--gold-dk));margin:14px auto;}
+.hero-desc{font-size:.88rem;line-height:1.7;color:var(--gray-lt);max-width:340px;margin:0 auto 16px;}
+.hero-pills{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:16px;}
+.pill{display:flex;align-items:center;gap:4px;background:var(--bg3);border:1px solid var(--line);border-radius:50px;padding:4px 10px;font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.05em;color:var(--gold);}
+
+/* ── INFO INSTRUTORES ── */
+.inst-row{display:flex;gap:10px;justify-content:center;margin-bottom:14px;flex-wrap:wrap;}
+.inst-pill{display:flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:8px 12px;font-size:.78rem;color:var(--gray-lt);}
+.inst-pill strong{color:var(--white);font-weight:600;}
+.inst-pill a{color:var(--gold);text-decoration:none;font-weight:600;}
+
+/* ── LOCAL ── */
+.local-box{background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:10px 14px;margin:0 auto;max-width:360px;text-align:left;}
+.local-box .lb-name{font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px;}
+.local-box .lb-addr{font-size:.75rem;color:var(--gray);line-height:1.4;margin-bottom:6px;}
+.local-box a{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;color:var(--gold);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;}
+
+/* ── STICKY PROGRESS + NAV ── */
+.sticky-bar{position:sticky;top:0;z-index:99;background:var(--bg2);border-bottom:1px solid var(--line);}
+.progress-wrap{padding:6px 14px 0;}
+.progress-bar{height:3px;background:var(--bg3);border-radius:2px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold-dk),var(--gold));width:0%;transition:width .4s;border-radius:2px;}
+.progress-label{font-family:'Barlow Condensed',sans-serif;font-size:.58rem;letter-spacing:.12em;color:var(--gray);text-transform:uppercase;text-align:right;padding:2px 0 0;}
+.mod-nav{display:flex;justify-content:center;gap:3px;padding:6px 8px 8px;}
+.mod-dot{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--bg3);border:1.5px solid rgba(201,168,76,.25);font-family:'Bebas Neue',sans-serif;font-size:.72rem;color:var(--gray);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s;-webkit-tap-highlight-color:transparent;}
+.mod-dot.active{background:var(--gold);color:var(--bg);border-color:var(--gold);transform:scale(1.1);}
+.mod-dot.viewed{border-color:var(--gold);color:var(--gold);}
+
+/* ── MÓDULO ── */
+.modulo{padding:24px 16px 28px;border-bottom:1px solid var(--line2);}
+.mod-header{display:flex;align-items:flex-start;gap:12px;cursor:pointer;-webkit-tap-highlight-color:transparent;padding:4px 0;}
+.mod-num{flex-shrink:0;width:36px;height:36px;background:var(--gold-dk);color:var(--gold-lt);font-family:'Bebas Neue',sans-serif;font-size:.95rem;border-radius:var(--r);display:flex;align-items:center;justify-content:center;}
+.mod-info{flex:1;min-width:0;}
+.mod-tag{font-family:'Barlow Condensed',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:1px;}
+.mod-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.2rem,4.5vw,1.6rem);letter-spacing:.04em;line-height:1.1;}
+.mod-toggle{flex-shrink:0;width:26px;height:26px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;transition:transform .3s;margin-top:4px;}
+.modulo.open .mod-toggle{transform:rotate(180deg);}
+.mod-body{display:none;padding-top:12px;}
+.modulo.open .mod-body{display:block;}
+
+/* ── Fundamentos badge ── */
+.fund-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(201,168,76,.1);border:1px solid var(--gold-dk);border-radius:50px;padding:3px 10px;font-family:'Barlow Condensed',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:2px;}
+
+/* ── CONTEÚDO ── */
+.txt{font-size:.9rem;line-height:1.75;color:var(--gray-lt);margin-bottom:12px;}
+.txt strong{color:var(--white);font-weight:600;}
+.callout{padding:12px 14px;border-radius:var(--r);margin-bottom:12px;font-size:.84rem;line-height:1.6;}
+.callout-danger{background:var(--red-bg);border-left:3px solid var(--red);color:#e57373;}
+.callout-danger strong{color:#ef5350;}
+.callout-tip{background:rgba(201,168,76,.06);border-left:3px solid var(--gold);color:var(--gold-lt);}
+.callout-tip strong{color:var(--gold);}
+.callout-ok{background:var(--green-bg);border-left:3px solid var(--green);color:#81c784;}
+.callout-ok strong{color:#66bb6a;}
+.callout-blue{background:var(--blue-bg);border-left:3px solid var(--blue);color:#64b5f6;}
+.callout-blue strong{color:#42a5f5;}
+
+.key-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:12px;}
+.key-list li{display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:var(--gray-lt);line-height:1.55;}
+.key-list li::before{content:'';flex-shrink:0;width:5px;height:5px;background:var(--gold);border-radius:50%;margin-top:8px;}
+
+.sub-title{font-family:'Barlow Condensed',sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:16px 0 10px;display:flex;align-items:center;gap:8px;}
+.sub-title::after{content:'';flex:1;height:1px;background:var(--line);}
+
+.step-list{list-style:none;counter-reset:step;display:flex;flex-direction:column;gap:10px;margin-bottom:12px;}
+.step-list li{counter-increment:step;display:flex;align-items:flex-start;gap:12px;font-size:.86rem;color:var(--gray-lt);line-height:1.55;}
+.step-list li::before{content:counter(step);flex-shrink:0;width:22px;height:22px;background:var(--gold-dk);color:var(--gold-lt);font-family:'Bebas Neue',sans-serif;font-size:.7rem;border-radius:3px;display:flex;align-items:center;justify-content:center;}
+
+.highlight-box{background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:12px;}
+.highlight-box h4{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.col-card{background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:10px;text-align:center;}
+.col-card .cc-icon{font-size:1.3rem;margin-bottom:3px;display:block;}
+.col-card .cc-title{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;}
+.col-card .cc-text{font-size:.78rem;color:var(--gray-lt);line-height:1.45;}
+
+/* ── PHOTO PLACEHOLDER ── */
+.photo-slot{background:var(--bg3);border:2px dashed var(--line);border-radius:var(--r);padding:24px 14px;text-align:center;margin-bottom:12px;min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;}
+.photo-slot .ps-icon{font-size:2rem;opacity:.4;}
+.photo-slot .ps-text{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.15em;color:var(--gray);text-transform:uppercase;}
+
+/* ── FOOTER ── */
+.footer{border-top:1px solid var(--line);padding:28px 20px;text-align:center;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.1em;color:var(--gold);margin-bottom:4px;}
+.footer-sub{font-family:'Barlow Condensed',sans-serif;font-size:.65rem;letter-spacing:.12em;color:var(--gray);text-transform:uppercase;margin-bottom:4px;}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:10px 0;}
+.footer-links a{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:600;color:var(--gold);text-decoration:none;letter-spacing:.06em;}
+.footer-copy{margin-top:12px;font-size:.65rem;color:#444;letter-spacing:.05em;}
+
+/* ── SECTION DIVIDER ── */
+.section-divider{background:linear-gradient(90deg,transparent,var(--gold-dk),transparent);height:1px;margin:0;}
+.fund-divider{background:var(--gold-dk);color:var(--gold-lt);text-align:center;font-family:'Bebas Neue',sans-serif;font-size:clamp(.9rem,3vw,1.2rem);letter-spacing:.15em;padding:10px 16px;}
+
+@media(min-width:640px){
+  .modulo{padding:32px 24px 36px;}
+  .hero{padding:56px 28px 36px;}
+  .two-col{grid-template-columns:1fr 1fr;}
+}
+@media(min-width:900px){main{max-width:780px;}}
 </style>
 </head>
 <body>
 
-<canvas id="canvas-bg"></canvas>
-
-<!-- TOP BAR -->
-<div class="top-bar">Ricardo Taira · IAT Credenciado Polícia Federal · @ricardo_taira</div>
+<div class="top-bar">Operador de Pistola Básico · Material do Aluno</div>
 
 <main>
 
-<!-- ══════════════════════════════ HERO ══════════════════════════════ -->
+<!-- ══════ HERO ══════ -->
 <div class="hero">
-  <div class="hero-badge">Turmas Abertas</div>
+  <div class="hero-badge">Curso Presencial</div>
   <p class="hero-eyebrow">Curso de Formação</p>
-  <h1 class="hero-title">
-    Operador<br>de Pistola
-    <span>Básico</span>
-  </h1>
-  <div class="hero-divider"></div>
-  <p class="hero-desc">
-    Aprenda os fundamentos de segurança, manuseio e tiro com pistola com instrução técnica certificada.
-  </p>
+  <h1 class="hero-title">Operador<br>de Pistola<span>Básico</span></h1>
+  <div class="hero-div"></div>
+  <p class="hero-desc">Seu primeiro contato com a pistola. Aprenda do zero: segurança, manuseio e tiro com acompanhamento completo dos instrutores.</p>
   <div class="hero-pills">
-    <div class="pill">
-      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-      4 horas
-    </div>
-    <div class="pill">
-      <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
-      Certificado Incluso
-    </div>
-    <div class="pill">
-      <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
-      Prática no Estande
-    </div>
+    <div class="pill">⏱ 6 horas</div>
+    <div class="pill">📋 12 módulos</div>
+    <div class="pill">🎯 Teoria + Prática</div>
+    <div class="pill">📜 Certificado</div>
   </div>
-  <div class="cta-group">
-    <a href="https://wa.me/5561999999999?text=Olá!%20Tenho%20interesse%20no%20Curso%20Operador%20de%20Pistola%20Básico." class="btn-primary" target="_blank">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Quero me inscrever
-    </a>
-    <a href="#grade" class="btn-secondary">Ver grade curricular</a>
+
+  <div class="sub-title" style="margin:18px 0 10px;justify-content:center;">Instrutores</div>
+  <div class="inst-row">
+    <div class="inst-pill">🎯 <strong>Ricardo Taira</strong> · IAT · <a href="https://instagram.com/ricardo_taira" target="_blank">@ricardo_taira</a></div>
+    <div class="inst-pill">🎯 <strong>Flávio Barreto</strong> · IAT · <a href="https://www.instagram.com/barrettoflavio/" target="_blank">@barrettoflavio</a></div>
   </div>
-  <div class="scroll-hint">
-    <span>Saiba mais</span>
-    <div class="scroll-arrow"></div>
+
+  <div class="local-box">
+    <div class="lb-name">📍 Clube de Tiro Matsumoto — CTM</div>
+    <div class="lb-addr">Núcleo Rural Vargem da Benção<br>Recanto das Emas · Brasília/DF · CEP 72610-000</div>
+    <a href="https://maps.app.goo.gl/VwmnWWwC4dAkhJuP9" target="_blank">📍 Abrir no Google Maps →</a>
   </div>
 </div>
 
-<!-- ══════════════════════════════ SOBRE ══════════════════════════════ -->
-<div class="divider-line"></div>
-<section>
-  <p class="section-label">Sobre o curso</p>
-  <h2 class="section-title">O que você vai aprender</h2>
-  <div class="sep"></div>
-  <p class="sobre-text">
-    O Curso Operador de Pistola Básico foi desenvolvido para civis, atiradores iniciantes e profissionais de segurança que desejam aprender, com rigor técnico e responsabilidade, o manejo seguro da pistola.
-  </p>
-  <p class="sobre-text">
-    Com carga horária de 4 horas, o curso combina teoria fundamentada na legislação vigente e prática supervisionada em estande homologado. Ao final, o aluno estará apto a manusear, carregar, descarregar e operar uma pistola com segurança e técnica.
-  </p>
-  <div class="sobre-destaque">
-    🎯 Objetivo: Capacitar o aluno nos fundamentos básicos de segurança, manuseio e tiro com pistola semiautomática.
+<!-- ══════ STICKY: PROGRESS + NAV ══════ -->
+<div class="sticky-bar">
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="pFill"></div></div>
+    <div class="progress-label" id="pLabel">0 de 12 módulos</div>
   </div>
-</section>
+  <nav class="mod-nav">
+    <a href="#m1" class="mod-dot" data-m="1">1</a>
+    <a href="#m2" class="mod-dot" data-m="2">2</a>
+    <a href="#m3" class="mod-dot" data-m="3">3</a>
+    <a href="#m4" class="mod-dot" data-m="4">4</a>
+    <a href="#m5" class="mod-dot" data-m="5">5</a>
+    <a href="#m6" class="mod-dot" data-m="6">6</a>
+    <a href="#m7" class="mod-dot" data-m="7">7</a>
+    <a href="#m8" class="mod-dot" data-m="8">8</a>
+    <a href="#m9" class="mod-dot" data-m="9">9</a>
+    <a href="#m10" class="mod-dot" data-m="10">10</a>
+    <a href="#m11" class="mod-dot" data-m="11">11</a>
+    <a href="#m12" class="mod-dot" data-m="12">12</a>
+  </nav>
+</div>
 
-<!-- ══════════════════════════════ INFO CARDS ══════════════════════════════ -->
-<div class="divider-line"></div>
-<section style="padding-top:48px; padding-bottom:48px;">
-  <div class="info-grid">
-    <div class="info-card">
-      <span class="ic-icon">⏱</span>
-      <span class="ic-value">4h</span>
-      <span class="ic-label">Carga horária</span>
+<!-- ═══════════════════════════════════════════
+     MÓDULO 1 — 10 REGRAS DE SEGURANÇA
+     ═══════════════════════════════════════════ -->
+<div class="modulo open" id="m1">
+  <div class="mod-header" onclick="toggle(this)">
+    <div class="mod-num">01</div>
+    <div class="mod-info">
+      <div class="mod-tag">Módulo 01 · Segurança</div>
+      <div class="mod-title">10 Regras de Segurança</div>
     </div>
-    <div class="info-card">
-      <span class="ic-icon">📋</span>
-      <span class="ic-value">12</span>
-      <span class="ic-label">Módulos</span>
-    </div>
-    <div class="info-card">
-      <span class="ic-icon">🎯</span>
-      <span class="ic-value">Prática</span>
-      <span class="ic-label">No estande</span>
-    </div>
-    <div class="info-card">
-      <span class="ic-icon">📜</span>
-      <span class="ic-value">Cert.</span>
-      <span class="ic-label">Incluso</span>
-    </div>
+    <div class="mod-toggle">▼</div>
   </div>
-</section>
+  <div class="mod-body">
+    <p class="txt">Antes de tocar em qualquer arma, você precisa gravar estas regras. Elas são <strong>invioláveis</strong> — valem para qualquer pessoa, qualquer arma, qualquer situação.</p>
 
-<!-- ══════════════════════════════ GRADE ══════════════════════════════ -->
-<div class="divider-line"></div>
-<section id="grade">
-  <p class="section-label">Conteúdo Programático</p>
-  <h2 class="section-title">Grade Curricular</h2>
-  <div class="sep"></div>
-  <div class="grade-wrap">
-    <div class="grade-header">
-      <span>📚</span> Operador de Pistola Básico — 4 horas
+    <div class="callout callout-danger">
+      <strong>⚠️ REGRA NÚMERO ZERO:</strong> Você NÃO faz nada sem o comando do instrutor. Não toca na arma, não carrega, não aponta, não dispara — nada. Tudo acontece por comando. Sem exceção.
     </div>
-    <ul class="grade-list">
-      <li class="grade-item"><span class="grade-num">01</span>Regras básicas de segurança</li>
-      <li class="grade-item"><span class="grade-num">02</span>Conduta no estande de tiro</li>
-      <li class="grade-item"><span class="grade-num">03</span>Partes principais da pistola</li>
-      <li class="grade-item"><span class="grade-num">04</span>Funcionamento básico da ação</li>
-      <li class="grade-item"><span class="grade-num">05</span>Tipos de munição e aplicações</li>
-      <li class="grade-item"><span class="grade-num">06</span>Empunhadura correta</li>
-      <li class="grade-item"><span class="grade-num">07</span>Postura de tiro</li>
-      <li class="grade-item"><span class="grade-num">08</span>Alinhamento de mira</li>
-      <li class="grade-item"><span class="grade-num">09</span>Acionamento do gatilho</li>
-      <li class="grade-item"><span class="grade-num">10</span>Controle básico do recuo</li>
-      <li class="grade-item"><span class="grade-num">11</span>Disparos práticos em alvo</li>
-      <li class="grade-item"><span class="grade-num">12</span>Correção de erros comuns</li>
-    </ul>
-  </div>
-</section>
 
-<!-- ══════════════════════════════ MATERIAL & CERT ══════════════════════════════ -->
-<div class="divider-line"></div>
-<section>
-  <p class="section-label">O que está incluso</p>
-  <h2 class="section-title">Material e Certificação</h2>
-  <div class="sep"></div>
-  <div class="mc-grid">
-    <div class="mc-card">
-      <h3>Material Incluso</h3>
-      <ul class="mc-list">
-        <li>Alvos para prática</li>
-        <li>EPIs durante toda a aula</li>
-      </ul>
+    <ol class="step-list">
+      <li><strong>Toda arma é carregada até que VOCÊ confirme o contrário</strong> — Não importa se alguém disse que está vazia. Confie nos seus olhos e nas suas mãos. Sempre verifique.</li>
+      <li><strong>Nunca aponte para algo que não queira destruir</strong> — O cano da arma aponta SEMPRE para a direção segura (para o alvo). Manuseando, limpando, guardando — sempre.</li>
+      <li><strong>Dedo fora do gatilho até a hora de atirar</strong> — O dedo indicador fica esticado ao lado da arma (encostado no guarda-mato). Só entra no gatilho quando for disparar.</li>
+      <li><strong>Saiba o que tem atrás do seu alvo</strong> — O projétil pode atravessar o alvo ou ricochetear. Antes de atirar, olhe o que está ao redor e atrás.</li>
+      <li><strong>Use SEMPRE proteção nos ouvidos e olhos</strong> — Abafador e óculos de proteção são obrigatórios o tempo todo dentro da pista de tiro.</li>
+      <li><strong>Nunca dê ou aceite uma arma carregada</strong> — Ao passar uma arma para outra pessoa, ela precisa estar descarregada, com o ferrolho aberto e sem carregador.</li>
+      <li><strong>Não beba álcool nem use remédios que dão sono antes de manusear arma</strong> — Qualquer substância que diminua sua atenção é incompatível com arma de fogo.</li>
+      <li><strong>Não ultrapasse a linha de tiro</strong> — A linha de tiro é o limite. Nunca vá na frente dela enquanto a pista estiver quente. Se precisar de algo além da linha, peça ao instrutor.</li>
+      <li><strong>Não pegue a arma do colega</strong> — Cada aluno usa apenas a arma que o instrutor entregou. Não toque, não empreste, não troque de posição sem autorização.</li>
+      <li><strong>Se tiver dúvida, PARE e chame o instrutor</strong> — Dúvida não é vergonha — é segurança. Qualquer problema, qualquer dúvida: arma apontada para o alvo, dedo fora do gatilho, e chame o instrutor.</li>
+    </ol>
+
+    <div class="photo-slot">
+      <div class="ps-icon">📸</div>
+      <div class="ps-text">Foto: demonstração das 4 regras na prática</div>
     </div>
-    <div class="mc-card">
-      <h3>O aluno deve trazer</h3>
-      <ul class="mc-list">
-        <li>Documento de identidade</li>
-        <li>Roupa confortável</li>
-        <li>Calçado fechado</li>
-      </ul>
+
+    <div class="callout callout-tip">
+      <strong>💡 PARA LEMBRAR:</strong> Se esquecer tudo do curso, lembre dessas 10 regras. Elas salvam vidas — a sua e a de quem está ao seu lado.
     </div>
   </div>
-  <div style="margin-top: 14px;">
-    <div class="cert-box">
-      <div class="cert-icon">🏅</div>
-      <div>
-        <h3>Certificação</h3>
-        <p>Certificado de Conclusão – Operador de Pistola Básico</p>
+</div>
+
+<!-- ═══ MÓDULO 2 — CONDUTA NA PISTA ═══ -->
+<div class="modulo" id="m2">
+  <div class="mod-header" onclick="toggle(this)">
+    <div class="mod-num">02</div>
+    <div class="mod-info">
+      <div class="mod-tag">Módulo 02 · Segurança</div>
+      <div class="mod-title">Conduta na Pista de Tiro</div>
+    </div>
+    <div class="mod-toggle">▼</div>
+  </div>
+  <div class="mod-body">
+    <p class="txt">A pista de tiro é um ambiente controlado. <strong>O instrutor comanda tudo.</strong> Você só faz o que for mandado, na hora que for mandado.</p>
+
+    <div class="callout callout-danger">
+      <strong>⚠️ PRIORIDADE MÁXIMA:</strong> Tudo na pista acontece por COMANDO do instrutor. Sem comando, você não toca na arma, não carrega, não atira. Se ouvir "CESSAR FOGO", pare IMEDIATAMENTE o que estiver fazendo.
+    </div>
+
+    <div class="sub-title">Equipamentos de Proteção (EPI)</div>
+    <div class="two-col">
+      <div class="col-card">
+        <span class="cc-icon">🔇</span>
+        <div class="cc-title">Protetor de Ouvido</div>
+        <div class="cc-text">Abafador ou tampão. Obrigatório durante toda a permanência na pista.</div>
+      </div>
+      <div class="col-card">
+        <span class="cc-icon">🥽</span>
+        <div class="cc-title">Óculos de Proteção</div>
+        <div class="cc-text">Protege contra estojos quentes, fragmentos e gases. Uso permanente.</div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ══════════════════════════════ INSTRUTOR ══════════════════════════════ -->
-<div class="divider-line"></div>
-<section>
-  <p class="section-label">Quem ministra</p>
-  <h2 class="section-title">Seu Instrutor</h2>
-  <div class="sep"></div>
-  <div class="instrutor-card">
-    <div class="inst-avatar">🎯</div>
-    <div>
-      <div class="inst-name">Ricardo Taira</div>
-      <div class="inst-title">Instrutor de Armamento e Tiro · IAT</div>
+    <div class="sub-title">Comandos do Instrutor</div>
+    <div class="highlight-box">
+      <h4>Você vai ouvir esses comandos — grave bem</h4>
+      <ul class="key-list">
+        <li><strong>"PISTA QUENTE"</strong> — A pista está ativa. Pode-se manusear armas conforme orientação do instrutor.</li>
+        <li><strong>"PISTA FRIA"</strong> — Arma descarregada, ferrolho aberto, na bancada. NINGUÉM toca em nenhuma arma. Momento de trocar alvos ou verificar a pista.</li>
+        <li><strong>"CARREGAR"</strong> — Insira o carregador na arma. Aguarde o próximo comando.</li>
+        <li><strong>"ALIMENTAR"</strong> — Puxe o ferrolho para trás e solte para colocar a munição na câmara. A arma está pronta. Aguarde.</li>
+        <li><strong>"FOGO"</strong> (ou sinal de apito) — Pode disparar. Siga o ritmo e as instruções do exercício.</li>
+        <li><strong>"CESSAR FOGO"</strong> — PARE imediatamente. Dedo fora do gatilho, arma apontada para o alvo, aguarde instrução. <strong>Qualquer pessoa pode dar este comando em caso de emergência.</strong></li>
+      </ul>
     </div>
-    <p class="inst-desc">
-      Instrutor de Armamento e Tiro (IAT), formado pela Combat Tático, credenciado pela Polícia Federal. Atua na instrução técnica de civis, atiradores e profissionais de segurança, com foco em segurança, técnica e responsabilidade no uso de armas de fogo.
-    </p>
-    <div class="inst-badges">
-      <span class="inst-badge">IAT · PF</span>
-      <span class="inst-badge">Combat Tático</span>
-      <span class="inst-badge">@ricardo_taira</span>
-    </div>
-  </div>
-</section>
 
-<!-- ══════════════════════════════ CTA FINAL ══════════════════════════════ -->
-<div class="divider-line"></div>
-<div class="cta-section">
-  <p class="section-label">Próximos passos</p>
-  <h2 class="section-title">Garanta sua vaga</h2>
-  <div class="sep" style="margin: 0 auto 20px;"></div>
-  <p>Vagas limitadas por turma. Entre em contato pelo WhatsApp e tire todas as suas dúvidas antes de se inscrever.</p>
-  <div class="cta-group">
-    <a href="https://wa.me/5561999999999?text=Olá!%20Tenho%20interesse%20no%20Curso%20Operador%20de%20Pistola%20Básico." class="btn-primary" target="_blank">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Falar no WhatsApp
-    </a>
-    <a href="https://instagram.com/ricardo_taira" class="btn-secondary" target="_blank">
-      📸 @ricardo_taira
-    </a>
+    <div class="callout callout-ok">
+      <strong>✅ VESTUÁRIO:</strong> Calçado fechado obrigatório (estojos quentes caem no chão). Gola fechada (estojo pode cair dentro da roupa). Cabelo preso se for comprido.
+    </div>
+
+    <div class="photo-slot">
+      <div class="ps-icon">📸</div>
+      <div class="ps-text">Foto: posição correta na bancada durante "Pista Fria"</div>
+    </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════ FOOTER ══════════════════════════════ -->
-<footer>
+<!-- ═══ MÓDULO 3 — PARTES DA PISTOLA ═══ -->
+<div class="modulo" id="m3">
+  <div class="mod-header" onclick="toggle(this)">
+    <div class="mod-num">03</div>
+    <div class="mod-info">
+      <div class="mod-tag">Módulo 03 · Armamento</div>
+      <div class="mod-title">Partes da Pistola</div>
+    </div>
+    <div class="mod-toggle">▼</div>
+  </div>
+  <div class="mod-body">
+    <p class="txt">Vamos conhecer as peças da pistola que você vai usar no curso. Saber o nome de cada parte ajuda na comunicação com o instrutor e no manuseio seguro.</p>
+
+    <div class="sub-title">Partes Externas — O que você vê e toca</div>
+    <ul class="key-list">
+      <li><strong>Ferrolho</strong> — Peça que desliza em cima da arma. Serve para colocar a munição na câmara, fechar a câmara no disparo, e jogar fora o estojo vazio depois do tiro.</li>
+      <li><strong>Armação (Punho)</strong> — A parte de baixo da arma, onde a mão segura. Dentro dela ficam as peças do mecanismo de disparo.</li>
+      <li><strong>Cano</strong> — O tubo por onde o projétil sai. Por dentro tem ranhuras em espiral (raiamento) que fazem o projétil girar para ir mais reto e mais longe.</li>
+      <li><strong>Gatilho</strong> — A peça que você aperta com o dedo indicador para disparar.</li>
+      <li><strong>Guarda-Mato</strong> — A "proteção" ao redor do gatilho. Quando NÃO for atirar, o dedo fica encostado aqui do lado de fora.</li>
+      <li><strong>Carregador</strong> — O "pente" removível que guarda as munições. Encaixa na base do punho.</li>
+      <li><strong>Botão do Carregador</strong> — Botão que solta o carregador da arma quando apertado.</li>
+      <li><strong>Trava do Ferrolho</strong> — Alavanca que segura o ferrolho aberto (para trás). Quando acaba a munição, o ferrolho trava aberto sozinho.</li>
+      <li><strong>Massa de Mira</strong> — Ponto na frente do ferrolho, em cima. É onde você FOCA o olho para mirar.</li>
+      <li><strong>Alça de Mira</strong> — Entalhe atrás do ferrolho. A massa de mira tem que ficar centralizada dentro desse entalhe.</li>
+      <li><strong>Trava de Segurança</strong> — Alavanca que impede o disparo quando ativada. Importante: trava pode falhar — ela NÃO substitui as regras de segurança.</li>
+      <li><strong>Indicador de Câmara Carregada</strong> — Pequena peça que sobe quando tem munição na câmara. Serve como verificação visual e tátil.</li>
+    </ul>
+
+    <div class="photo-slot">
+      <div class="ps-icon">📸</div>
+      <div class="ps-text">Foto: pistola com cada peça identificada</div>
+    </div>
+
+    <div class="sub-title">Desmontagem Básica — 6 Peças</div>
+    <p class="txt">Quando você desmonta a pistola para limpeza (chamamos de desmontagem de 1º escalão), ela se separa em 6 peças:</p>
+    <ol class="step-list">
+      <li><strong>Armação (punho)</strong> — com o mecanismo de disparo dentro</li>
+      <li><strong>Ferrolho</strong> — a peça de cima que desliza</li>
+      <li><strong>Cano</strong> — o tubo por onde sai o projétil</li>
+      <li><strong>Mola recuperadora</strong> — mola que faz o ferrolho voltar para frente depois do tiro</li>
+      <li><strong>Guia da mola</strong> — haste que mantém a mola no lugar certo</li>
+      <li><strong>Carregador</strong> — o "pente" de munição</li>
+    </ol>
+
+    <div class="photo-slot">
+      <div class="ps-icon">📸</div>
+      <div class="ps-text">Foto: as 6 peças separadas na bancada</div>
+    </div>
+
+    <div class="callout callout-tip">
+      <strong>💡 DECORE:</strong> Armação, Ferrolho, Cano, Mola, Guia, Carregador = 6 peças. Essa lista cai em prova de credenciamento.
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MÓDULO 4 — FUNCIONAMENTO ═══ -->
+<div class="modulo" id="m4">
+  <div class="mod-header" onclick="toggle(this)">
+    <div class="mod-num">04</div>
+    <div class="mod-info">
+      <div class="mod-tag">Módulo 04 · Armamento</div>
+      <div class="mod-title">Como a Pistola Funciona</div>
+    </div>
+    <div class="mod-toggle">▼</div>
+  </div>
+  <div class="mod-body">
+    <p class="txt">A pistola semiautomática faz <strong>um tiro cada vez que você aperta o gatilho</strong>. Depois de cada tiro, ela prepara o próximo sozinha — você só precisa apertar o gatilho de novo.</p>
+
+    <div class="sub-title">Passo a Passo do Tiro</div>
+    <ol class="step-list">
+      <li><strong>Disparo</strong> — Você aperta o gatilho → o percussor bate na espoleta da munição → a pólvora queima e gera gases → o projétil sai pelo cano.</li>
+      <li><strong>Extração</strong> — Os gases empurram o ferrolho para trás → a garra (extrator) puxa o estojo vazio para fora da câmara.</li>
+      <li><strong>Ejeção</strong> — O ejetor empurra o estojo vazio para o lado, jogando ele para fora da arma pela janelinha lateral.</li>
+      <li><strong>Alimentação</strong> — A mola do carregador empurra a próxima munição para cima, pronta para entrar na câmara.</li>
+      <li><strong>Câmaramento</strong> — A mola recuperadora empurra o ferrolho de volta para frente → o ferrolho empurra a nova munição para dentro da câmara.</li>
+      <li><strong>Armamento</strong> — O mecanismo de disparo é rearmado sozinho. A arma está pronta para o próximo tiro.</li>
+    </ol>
+
+    <div class="callout callout-blue">
+      <strong>📌 TUDO ISSO ACONTECE EM MENOS DE 1 SEGUNDO.</strong> Você aperta o gatilho e, quando o ferrolho volta para frente, a arma já está pronta para o próximo tiro. É automático — menos o disparo, que depende de VOCÊ apertar o gatilho de novo.
+    </div>
+
+    <div class="sub-title">Tipos de Ação (como o gatilho funciona)</div>
+    <div class="highlight-box">
+      <h4>Entenda a diferença</h4>
+      <ul class="key-list">
+        <li><strong>Ação Simples — Single Action (SA)</strong> — O gatilho só dispara. O cão (martelo) precisa estar armado antes. Gatilho bem leve. Exemplo: algumas pistolas 1911.</li>
+        <li><strong>Ação Dupla — Double Action (DA)</strong> — O gatilho arma o cão E dispara tudo de uma vez. Gatilho mais pesado e com curso maior. Mais seguro contra disparos acidentais.</li>
+        <li><strong>Dupla Ação / Ação Simples — DA/SA (Double Action / Single Action)</strong> — O primeiro tiro é em ação dupla (pesado). Os tiros seguintes são em ação simples (leve), porque o recuo já armou o cão. Comum em pistolas da Taurus e Beretta.</li>
+        <li><strong>Percussor Interno — Striker Fired</strong> — Sem cão externo. O percussor fica dentro da arma, parcialmente tensionado. O gatilho completa o tensionamento e dispara. Gatilho consistente em todos os tiros. Exemplo: Glock, Taurus série G.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MÓDULO 5 — MUNIÇÃO ═══ -->
+<div class="modulo" id="m5">
+  <div class="mod-header" onclick="toggle(this)">
+    <div class="mod-num">05</div>
+    <div class="mod-info">
+      <div class="mod-tag">Módulo 05 · Munição</div>
+      <div class="mod-title">Tipos de Munição</div>
+    </div>
+    <div class="mod-toggle">▼</div>
+  </div>
+  <div class="mod-body">
+    <p class="txt">Munição <strong>não é a mesma coisa que bala</strong>. A munição completa se chama <strong>cartucho</strong>. "Bala" é só a parte que sai pela frente — o nome correto é <strong>projétil</strong>.</p>
+
+    <div class="sub-title">As 4 Partes do Cartucho</div>
+    <ol class="step-list">
+      <li><strong>Estojo</strong> — O "corpo" do cartucho, geralmente de latão (cor dourada). Segura todas as partes juntas. Depois do tiro, sai vazio pela lateral da arma.</li>
+      <li><strong>Espoleta</strong> — Fica na base do estojo. Quando o percussor bate nela, gera uma faísca que acende a pólvora. Em pistola, é sempre de percussão central (o percussor bate no centro da base).</li>
+      <li><strong>Pólvora</strong> — A carga que queima e gera os gases. Não é explosão — é uma queima muito rápida chamada deflagração. Os gases empurram o projétil pelo cano.</li>
+      <li><strong>Projétil</strong> — A parte que sai pelo cano e atinge o alvo. É o que a maioria das pessoas chama de "bala", mas o nome técnico é projétil.</li>
+    </ol>
+
+    <div class="photo-slot">
+      <div class="ps-icon">📸</div>
+      <div class="ps-text">Foto: cartucho aberto mostrando as 4 partes</div>
+    </div>
+
+    <div class="sub-title">Tipos de Projétil — Os mais comuns</div>
+    <div class="two-col">
+      <div class="col-card">
+        <span class="cc-icon">🔵</span>
+        <div class="cc-title">Ogival / Encamisado Total (FMJ)</div>
+        <div class="cc-text">Projétil revestido de cobre. Não expande. Usado para treino e competição. Mais barato. Também chamado de "ponta de cobre" ou "bala blindada".</div>
+      </div>
+      <div class="col-card">
+        <span class="cc-icon">🔴</span>
+        <div class="cc-title">Ponta Oca / Expansivo (JHP)</div>
+        <div class="cc-text">Tem um buraco na ponta. Ao atingir o alvo, abre como um cogumelo. Mais poder de parada. Usado para defesa. Também chamado de "Gold" ou "bala expansiva".</div>
+      </div>
+    </div>
+    <ul class="key-list">
+      <li><strong>Ponta de Chumbo (LRN/LFN)</strong> — Projétil todo de chumbo, sem revestimento. Mais barato mas suja mais o cano. Usado em treinos econômicos.</li>
+      <li><strong>Semi-encamisado (JSP)</strong> — Revestido parcialmente. A ponta de chumbo fica exposta. Deforma ao atingir o alvo.</li>
+    </ul>
+
+    <div class="callout callout-danger">
+      <strong>⚠️ CUIDADO:</strong> Use SEMPRE munição do calibre marcado na arma. Calibre errado pode causar explosão da arma e ferimentos graves. Na dúvida, pergunte ao instrutor.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     FUNDAMENTOS DO TIRO (M06-M10)
+     ═══════════════════════════════════ -->
+<div class="fund-divider">🎯 FUNDAMENTOS DO TIRO</div>
+
+<!-- ═══ MÓDULO 6 — POSTURA ═══ -->
+<div class="modulo" id="m6">
+  <div class="mod-header" onclick="toggle(this)">
+    <div class="mod-num">06</div>
+    <div class="mod-info">
+      <div class="fund-badge">🎯 Fundamento 1 de 5</div>
+      <div class="mod-title">Bases e Posições de Tiro</div>
+    </div>
+    <div class="mod-toggle">▼</div>
+  </div>
+  <div class="mod-body">
+    <p class="txt">A posição de tiro é a <strong>base de tudo</strong>. Se a base estiver errada, nada que você fizer com as mãos vai compensar. Uma boa posição absorve o recuo, mantém o equilíbrio e permite recuperação rápida.</p>
+
+    <div class="callout callout-ok">
+      <strong>✅ O MAIS IMPORTANTE:</strong> Você precisa se sentir CONFORTÁVEL e ESTÁVEL na sua posição. Se você está desconfortável, vai tremer, vai cansar rápido e vai errar. Encontre a posição que funciona para VOCÊ — o instrutor vai te ajudar a ajustar.
+    </div>
+
+    <div class="sub-title">3 Posições Principais</div>
+    <div class="highlight-box">
+      <h4>1. Isósceles (recomendada para iniciantes)</h4>
+      <p class="txt" style="margin-bottom:4px;">Braços estendidos simetricamente, formando um triângulo com o peito. Corpo de frente para o alvo. Posição mais natural e intuitiva — ideal para quem está começando.</p>
+    </div>
+    <div class="highlight-box">
+      <h4>2. Weaver</h4>
+      <p class="txt" style="margin-bottom:4px;">Corpo levemente angulado (45° em relação ao alvo). Braço forte estendido, braço de apoio dobrado. Pé forte atrás. Posição mais compacta, usada por muitos policiais.</p>
+    </div>
+    <div class="highlight-box">
+      <h4>3. CAR (Center Axis Relock)</h4>
+      <p class="txt" style="margin-bottom:4px;">Arma mais próxima do corpo, cotovelos dobrados. Usada em espaços apertados e distâncias curtas. Mais avançada — apenas apresentação neste curso.</p>
+    </div>
+
+    <div class="sub-title">Isósceles na prática — passo a passo</div>
+    <ol class="step-list">
+      <li><strong>Pés</strong> — Na largura dos ombros, paralelos. Peso distribuído igual nos dois pés. Imagine que está se preparando para alguém te empurrar de frente.</li>
+      <li><strong>Joelhos</strong> — Levemente dobrados, como amortecedores. NUNCA travados — joelho travado faz você perder o equilíbrio no recuo.</li>
+      <li><strong>Quadril</strong> — Encaixado, estável. Funciona como ponto central do corpo.</li>
+      <li><strong>Tronco</strong> — Ligeiramente inclinado para frente. O peso do corpo deve estar um pouco à frente — não nos calcanhares. Ombros ligeiramente à frente do quadril.</li>
+      <li><strong>Braços</strong> — Estendidos para frente, formando um triângulo com o peito. Cotovelos com uma leve dobra (não travados).</li>
+      <li><strong>Ombros</strong> — Relaxados e para frente, NÃO levantados. Ombro levantado = tensão = tremor = erro.</li>
+      <li><strong>Cabeça</strong> — Ereta, natural. A arma sobe até a linha dos seus olhos — NÃO abaixe a cabeça até a arma.</li>
+    </ol>
+
+    <div class="photo-slot">
+      <div class="ps-icon">📸</div>
+      <div class="ps-text">Foto: postura isósceles de frente e de lado</div>
+    </div>
+
+    <div class="callout callout-tip">
+      <strong>💡 TESTE RÁPIDO:</strong> Na postura correta, se alguém empurrar seus ombros para trás, você NÃO deve cair. Se cair, está com o peso muito atrás — incline mais para frente.
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MÓDULO 7 — EMPUNHADURA / PEGADA ═══ -->
+<div class="modulo" id="m7">
+  <div class="mod-header" onclick="toggle(this)">
+    <div class="mod-num">07</div>
+    <div class="mod-info">
+      <div class="fund-badge">🎯 Fundamento 2 de 5</div>
+      <div class="mod-title">Empunhadura (Pegada)</div>
+    </div>
+    <div class="mod-toggle">▼</div>
+  </div>
+  <div class="mod-body">
+    <p class="txt">A pegada é como você segura a arma. Uma pegada firme e alta <strong>controla o recuo</strong>, estabiliza a arma e permite que o dedo acione o gatilho sem desviar o tiro.</p>
+
+    <div class="sub-title">Mão forte (a que vai no gatilho)</div>
+    <ol class="step-list">
+      <li>A parte entre o polegar e o indicador (a "bifurcação") encosta <strong>o mais alto possível</strong> no punho da arma — quase tocando no ferrolho.</li>
+      <li>Os 3 dedos debaixo (médio, anelar e mindinho) envolvem o punho com pressão firme e por igual.</li>
+      <li>O dedo indicador fica <strong>esticado do lado de fora</strong>, encostado no guarda-mato. SÓ entra no gatilho na hora de atirar.</li>
+      <li>O polegar aponta para frente, acompanhando a arma.</li>
+    </ol>
+
+    <div class="sub-title">Mão de apoio (a outra mão)</div>
+    <ol class="step-list">
+      <li>Preenche TODO o espaço que a mão forte deixou no punho.</li>
+      <li>Os dedos da mão de apoio envolvem os dedos da mão forte, como se estivesse "abraçando" a pegada.</li>
+      <li>O polegar de apoio fica paralelo e abaixo do polegar forte — os dois apontando para frente.</li>
+      <li>A mão de apoio faz <strong>pressão lateral</strong>, como se estivesse espremendo a arma de fora para dentro. Isso controla o recuo lateral.</li>
+    </ol>
+
+    <div class="photo-slot">
+      <div class="ps-icon">📸</div>
+      <div class="ps-text">Foto: pegada correta — visão frontal e lateral</div>
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>⚠️ ERROS QUE VOCÊ VAI VER:</strong><br>
+      • Segurar como xícara (mão de apoio embaixo) — NÃO controla recuo nenhum.<br>
+      • Cruzar os polegares atrás do ferrolho — o ferrolho vai cortar seu dedo.<br>
+      • Pegada frouxa — a arma "dança" na mão e pode falhar a ciclagem.
+    </div>
+
+    <div class="photo-slot">
+      <div class="ps-icon">📸</div>
+      <div class="ps-text">Foto: exemplos de pegada ERRADA vs CORRETA</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MÓDULO 8 — VISADA ═══ -->
+<div class="modulo" id="m8">
+  <div class="mod-header" onclick="toggle(this)">
+    <div class="mod-num">08</div>
+    <div class="mod-info">
+      <div class="fund-badge">🎯 Fundamento 3 de 5</div>
+      <div class="mod-title">Visada (Pontaria)</div>
+    </div>
+    <div class="mod-toggle">▼</div>
+  </div>
+  <div class="mod-body">
+    <p class="txt">A visada é como você mira. O segredo é que o <strong>olho humano não consegue focar em 3 coisas ao mesmo tempo</strong> — então existe uma prioridade de foco.</p>
+
+    <div class="sub-title">Onde focar o olho — prioridade</div>
+    <ol class="step-list">
+      <li><strong>FOCO na massa de mira</strong> — O foco NÍTIDO do seu olho deve estar na massa de mira (o pontinho na frente da arma). Ela deve estar centralizada no entalhe da alça de mira.</li>
+      <li><strong>Alça de mira um pouco desfocada</strong> — Você vê a alça (o entalhe atrás), mas o foco fica na massa.</li>
+      <li><strong>Alvo borrado ao fundo</strong> — O alvo aparece desfocado. Isso é NORMAL e CORRETO. Você sabe onde ele está, mas os olhos focam na massa de mira.</li>
+    </ol>
+
+    <div class="highlight-box">
+      <h4>Alinhamento correto da mira</h4>
+      <ul class="key-list">
+        <li><strong>Centralizada</strong> — Mesma distância dos dois lados do entalhe da alça.</li>
+        <li><strong>Nivelada</strong> — O topo da massa de mira na mesma altura do topo da alça (alinhados).</li>
+        <li><strong>No alvo</strong> — Com a mira alinhada, posicione no centro do alvo.</li>
+      </ul>
+    </div>
+
+    <div class="photo-slot">
+      <div class="ps-icon">📸</div>
+      <div class="ps-text">Foto: visada correta — massa centralizada na alça, alvo ao fundo</div>
+    </div>
+
+    <div class="callout callout-tip">
+      <strong>💡 OLHO DOMINANTE:</strong> Você tem um olho mais forte que o outro (geralmente o do mesmo lado da mão forte). Faça o teste: estique os braços, faça um triângulo com as mãos, olhe para um objeto à distância, feche um olho por vez. O olho que mantém o objeto centralizado é o dominante. Use ele para mirar.
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MÓDULO 9 — RESPIRAÇÃO ═══ -->
+<div class="modulo" id="m9">
+  <div class="mod-header" onclick="toggle(this)">
+    <div class="mod-num">09</div>
+    <div class="mod-info">
+      <div class="fund-badge">🎯 Fundamento 4 de 5</div>
+      <div class="mod-title">Respiração</div>
+    </div>
+    <div class="mod-toggle">▼</div>
+  </div>
+  <div class="mod-body">
+    <p class="txt">A respiração move o peito, que move os ombros, que move os braços, que move a arma. Se você disparar enquanto respira, <strong>o tiro vai sair fora do lugar</strong>.</p>
+
+    <div class="sub-title">Como respirar na hora do tiro</div>
+    <ol class="step-list">
+      <li><strong>Respire normalmente</strong> enquanto se posiciona e alinha a mira. Não mude o ritmo da sua respiração.</li>
+      <li><strong>Solte o ar naturalmente</strong> — não force. Apenas expire com calma, como se estivesse relaxando.</li>
+      <li><strong>No FINAL NATURAL da expiração</strong> — existe um momento em que o ar já saiu e você ainda não inspirou de novo. É uma pausa natural do corpo. Nesse instante, seu peito está parado.</li>
+      <li><strong>Dispare nesse momento</strong> — com o peito parado naturalmente, a arma não se move. O tiro sai onde a mira está apontando.</li>
+      <li><strong>Continue respirando normalmente</strong> — não prenda o ar. A respiração segue fluindo.</li>
+    </ol>
+
+    <div class="callout callout-danger">
+      <strong>⚠️ NÃO prenda a respiração de propósito.</strong> Quanto mais você segura o ar, mais o coração bate forte e o corpo treme. O segredo é usar a PAUSA NATURAL que acontece entre a expiração e a próxima inspiração — ela já existe, você só precisa aproveitá-la.
+    </div>
+
+    <div class="callout callout-ok">
+      <strong>✅ RESUMO:</strong> Respira normal → expira com calma → no final natural da expiração → dispara → continua respirando. Sem forçar nada.
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MÓDULO 10 — ACIONAMENTO DO GATILHO ═══ -->
+<div class="modulo" id="m10">
+  <div class="mod-header" onclick="toggle(this)">
+    <div class="mod-num">10</div>
+    <div class="mod-info">
+      <div class="fund-badge">🎯 Fundamento 5 de 5</div>
+      <div class="mod-title">Acionamento do Gatilho</div>
+    </div>
+    <div class="mod-toggle">▼</div>
+  </div>
+  <div class="mod-body">
+    <p class="txt">Esse é o fundamento <strong>mais importante e mais difícil</strong>. De nada adianta postura perfeita e mira perfeita se você apertar o gatilho de forma errada — o tiro vai sair desviado.</p>
+
+    <div class="sub-title">Como acionar o gatilho corretamente</div>
+    <ol class="step-list">
+      <li><strong>Posição do dedo</strong> — A metade da pontinha do dedo indicador (a "polpinha") encosta no gatilho. Nem a ponta do dedo, nem a dobra — o meio da polpa.</li>
+      <li><strong>Direção</strong> — A pressão vai para TRÁS, em linha reta. Qualquer pressão para o lado desvia o tiro.</li>
+      <li><strong>Suavidade</strong> — Aperte devagar e de forma contínua. Como se estivesse espremendo uma esponja lentamente. NUNCA puxe de uma vez.</li>
+      <li><strong>Independência</strong> — Só o dedo indicador se move. Os outros dedos e a pegada inteira NÃO mudam. Se a pegada aperta junto, o tiro desvia.</li>
+      <li><strong>Surpresa controlada</strong> — Você sabe que o tiro vai sair, mas o momento EXATO do disparo te "surpreende" um pouco. Isso evita que você antecipe o recuo e empurre a arma para baixo.</li>
+    </ol>
+
+    <div class="photo-slot">
+      <div class="ps-icon">📸</div>
+      <div class="ps-text">Foto: posição correta do dedo no gatilho (close-up)</div>
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>⚠️ GATILHADA — o erro mais comum:</strong> Puxar o gatilho com força e rápido. O tiro vai para baixo-esquerda (destro) ou baixo-direita (canhoto). Se seus tiros estão indo para esse lado, o problema é aqui.
+    </div>
+
+    <div class="callout callout-tip">
+      <strong>💡 EXERCÍCIO EM CASA (sem arma):</strong> Aponte o dedo indicador para a parede. Dobre ele devagar como se estivesse apertando um gatilho. O dedo deve ir para trás sem que a "mira" (ponta do dedo) saia do ponto. Se a mão inteira se move, você precisa treinar a independência do dedo.
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══ MÓDULO 11 — DISPAROS PRÁTICOS ═══ -->
+<div class="modulo" id="m11">
+  <div class="mod-header" onclick="toggle(this)">
+    <div class="mod-num">11</div>
+    <div class="mod-info">
+      <div class="mod-tag">Módulo 11 · Prática no Estande</div>
+      <div class="mod-title">Disparos Práticos em Alvo</div>
+    </div>
+    <div class="mod-toggle">▼</div>
+  </div>
+  <div class="mod-body">
+    <p class="txt">Agora vamos juntar tudo na prática. Você vai disparar com acompanhamento direto do instrutor. <strong>Segurança primeiro, velocidade nunca.</strong></p>
+
+    <div class="sub-title">Munição do Curso</div>
+    <div class="highlight-box">
+      <h4>Quantidade de tiros por aluno</h4>
+      <ul class="key-list">
+        <li><strong>25 tiros calibre .22</strong> — Para pegar o jeito. Recuo bem leve, ideal para aprender os fundamentos sem o impacto do recuo atrapalhar.</li>
+        <li><strong>25 tiros calibre 9mm</strong> — Calibre real de defesa. Recuo mais forte, som mais alto. Aqui você vai sentir a diferença e aplicar tudo que aprendeu.</li>
+        <li><strong>5 tiros calibre 12 (bônus 🎁)</strong> — Espingarda! Uma experiência única. Recuo forte, som impressionante. Pura diversão com segurança.</li>
+      </ul>
+    </div>
+
+    <div class="sub-title">Sequência do Exercício</div>
+    <ol class="step-list">
+      <li><strong>Verificação de segurança</strong> — O instrutor verifica a arma primeiro. Depois, <strong>VOCÊ verifica também</strong>: olhe a câmara (vazia?), verifique se não tem carregador. Sempre confie nos SEUS olhos.</li>
+      <li><strong>Comando "CARREGAR"</strong> — Insira o carregador na arma. Empurre até encaixar (ouvir o "click").</li>
+      <li><strong>Comando "ALIMENTAR"</strong> — Puxe o ferrolho totalmente para trás e SOLTE. Não acompanhe — deixe a mola fazer o trabalho. A arma está carregada e pronta.</li>
+      <li><strong>Assuma a postura</strong> — Pés, joelhos, tronco, braços, ombros, cabeça. Tudo no lugar.</li>
+      <li><strong>Comando "FOGO"</strong> — Mire no alvo, respire, faça a pausa, acione o gatilho com suavidade.</li>
+      <li><strong>Acompanhamento</strong> — Após o disparo, mantenha a postura e a mira. Veja onde acertou. Prepare o próximo.</li>
+      <li><strong>Ao terminar</strong> — Dedo fora do gatilho, arma apontada para o alvo. Faça a <strong>verificação de segurança novamente</strong> (câmara vazia, sem carregador) ANTES de entregar a arma ao instrutor. Aguarde comando.</li>
+    </ol>
+
+    <div class="callout callout-danger">
+      <strong>⚠️ SE A ARMA NÃO DISPARAR (click sem tiro):</strong> Mantenha a arma apontada para o alvo por 30 segundos. NÃO mexa. Pode ser retardo de ignição (a munição demora para funcionar). Informe o instrutor.
+    </div>
+
+    <div class="callout callout-ok">
+      <strong>✅ CONTROLE DO RECUO:</strong> Pegada firme + postura inclinada = o recuo vem e vai naturalmente. A arma sobe um pouco e volta sozinha para a posição. NÃO empurre a arma para baixo — isso causa erro. Confie na sua pegada e postura.
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MÓDULO 12 — CORREÇÃO DE ERROS ═══ -->
+<div class="modulo" id="m12">
+  <div class="mod-header" onclick="toggle(this)">
+    <div class="mod-num">12</div>
+    <div class="mod-info">
+      <div class="mod-tag">Módulo 12 · Diagnóstico de Tiro</div>
+      <div class="mod-title">Correção de Agrupamento de Tiro</div>
+    </div>
+    <div class="mod-toggle">▼</div>
+  </div>
+  <div class="mod-body">
+    <p class="txt">O alvo conta a história do seu tiro. Cada padrão de agrupamento indica um erro específico. Veja o quadro abaixo para identificar <strong>o que está acontecendo com o SEU tiro</strong>.</p>
+
+    <div class="sub-title">Quadro de Diagnóstico — Atirador Destro</div>
+    <p class="txt">Imagine o alvo como um relógio. O centro é perfeito. As posições dos tiros indicam:</p>
+
+    <div class="highlight-box">
+      <h4>Para onde os tiros estão indo? Veja o erro:</h4>
+      <ul class="key-list">
+        <li><strong>12h (alto, no centro) — Sobressalto:</strong> Você está empurrando a arma para cima, tensionando os ombros antes do tiro.</li>
+        <li><strong>1h-2h (alto à direita) — Espalmamento:</strong> A palma da mão de apoio está empurrando a arma para cima-direita.</li>
+        <li><strong>3h (direita) — Inclinação:</strong> Você está inclinando a arma para o lado durante o tiro.</li>
+        <li><strong>4h-5h (baixo à direita) — Estrangulamento:</strong> Você está apertando demais com os dedos do meio, puxando para baixo-direita.</li>
+        <li><strong>6h (baixo, no centro) — Torção:</strong> Você está torcendo o pulso para baixo na hora do tiro.</li>
+        <li><strong>7h (baixo à esquerda) — Gatilhada:</strong> Você está puxando o gatilho com força/rapidez demais.</li>
+        <li><strong>9h (esquerda) — Excesso de dedo:</strong> Está colocando dedo demais no gatilho, puxando para a esquerda.</li>
+        <li><strong>10h-11h (alto à esquerda) — Antecipação do recuo:</strong> Você está "empurrando" a arma para baixo ANTES do tiro sair, tentando compensar o recuo que ainda nem veio.</li>
+      </ul>
+    </div>
+
+    <div class="photo-slot">
+      <div class="ps-icon">📸</div>
+      <div class="ps-text">Foto: quadro de correção de agrupamento oficial (alvo PF/ANP)</div>
+    </div>
+
+    <div class="callout callout-tip">
+      <strong>💡 SE VOCÊ É CANHOTO:</strong> O quadro funciona espelhado horizontalmente. Ex: gatilhada do destro (7h, baixo-esquerda) → no canhoto fica em baixo-direita.
+    </div>
+
+    <div class="callout callout-ok">
+      <strong>✅ TIROS BEM AGRUPADOS MAS FORA DO CENTRO?</strong> Se seus tiros estão todos juntos (próximos) mas longe do centro do alvo — PARABÉNS. Agrupamento bom = técnica consistente. O problema pode ser só de regulagem da mira ou de alinhamento. O instrutor vai te ajudar a corrigir.
+    </div>
+  </div>
+</div>
+
+<!-- ══════ FOOTER ══════ -->
+<footer class="footer">
+  <div class="footer-sub" style="margin-bottom:12px;letter-spacing:.18em;font-size:.7rem;">INSTRUTORES</div>
+
   <div class="footer-logo">RICARDO TAIRA</div>
-  <div class="footer-sub">Instrutor de Armamento e Tiro · Credenciado PF</div>
-  <a href="https://instagram.com/ricardo_taira" class="footer-insta" target="_blank">
-    📸 @ricardo_taira
-  </a>
-  <div class="footer-copy">© 2025 Ricardo Taira · Todos os direitos reservados</div>
+  <div class="footer-sub">Instrutor de Armamento e Tiro — IAT</div>
+  <a href="https://instagram.com/ricardo_taira" target="_blank" class="footer-ig" style="display:inline-flex;margin-bottom:16px;">📸 @ricardo_taira</a>
+
+  <div style="width:40px;height:1px;background:var(--line);margin:0 auto 16px;"></div>
+
+  <div class="footer-logo">FLÁVIO BARRETO</div>
+  <div class="footer-sub">Instrutor de Armamento e Tiro — IAT</div>
+  <a href="https://www.instagram.com/barrettoflavio/" target="_blank" class="footer-ig" style="display:inline-flex;margin-bottom:16px;">📸 @barrettoflavio</a>
+
+  <div style="width:40px;height:1px;background:var(--line);margin:0 auto 16px;"></div>
+
+  <div class="footer-sub">Formados pela Combat Tático — Escola de Formação credenciada pela Polícia Federal</div>
+  <div class="footer-copy">© 2026 Ricardo Taira · Todos os direitos reservados</div>
 </footer>
 
 </main>
 
 <script>
-// ── ANIMATED CANVAS BACKGROUND ──
-const canvas = document.getElementById('canvas-bg');
-const ctx = canvas.getContext('2d');
-
-function resize() {
-  canvas.width  = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener('resize', resize);
-
-const GOLD = 'rgba(201,168,76,';
-
-// Particles
-const particles = Array.from({length: 36}, () => ({
-  x: Math.random() * window.innerWidth,
-  y: Math.random() * window.innerHeight,
-  r: Math.random() * 1.2 + 0.3,
-  dx: (Math.random() - 0.5) * 0.3,
-  dy: (Math.random() - 0.5) * 0.3,
-  alpha: Math.random() * 0.5 + 0.1,
-}));
-
-// Crosshair lines
-let t = 0;
-
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  t += 0.005;
-
-  const cx = canvas.width / 2;
-  const cy = canvas.height / 2;
-
-  // outer rotating ring
-  ctx.save();
-  ctx.translate(cx, cy);
-  ctx.rotate(t * 0.3);
-  ctx.beginPath();
-  ctx.arc(0, 0, Math.min(canvas.width, canvas.height) * 0.38, 0, Math.PI * 2);
-  ctx.strokeStyle = GOLD + '0.06)';
-  ctx.lineWidth = 1;
-  ctx.stroke();
-
-  // tick marks on ring
-  for (let i = 0; i < 32; i++) {
-    const angle = (i / 32) * Math.PI * 2;
-    const inner = Math.min(canvas.width, canvas.height) * 0.38 - (i % 4 === 0 ? 14 : 7);
-    const outer = Math.min(canvas.width, canvas.height) * 0.38;
-    ctx.beginPath();
-    ctx.moveTo(Math.cos(angle) * inner, Math.sin(angle) * inner);
-    ctx.lineTo(Math.cos(angle) * outer, Math.sin(angle) * outer);
-    ctx.strokeStyle = GOLD + (i % 4 === 0 ? '0.2)' : '0.08)');
-    ctx.lineWidth = i % 4 === 0 ? 1.5 : 0.7;
-    ctx.stroke();
+const viewed=new Set();
+function toggle(header){
+  const mod=header.closest('.modulo');
+  mod.classList.toggle('open');
+  if(mod.classList.contains('open')){
+    const num=mod.id.replace('m','');
+    viewed.add(num);
   }
-  ctx.restore();
-
-  // crosshair lines
-  ctx.strokeStyle = GOLD + '0.07)';
-  ctx.lineWidth = 0.8;
-  ctx.setLineDash([4, 12]);
-  ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, canvas.height); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(canvas.width, cy);   ctx.stroke();
-  ctx.setLineDash([]);
-
-  // particles
-  particles.forEach(p => {
-    p.x += p.dx; p.y += p.dy;
-    if (p.x < 0) p.x = canvas.width;
-    if (p.x > canvas.width) p.x = 0;
-    if (p.y < 0) p.y = canvas.height;
-    if (p.y > canvas.height) p.y = 0;
-
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = GOLD + p.alpha + ')';
-    ctx.fill();
-  });
-
-  requestAnimationFrame(draw);
+  updateProgress();
 }
-draw();
-
-// ── SCROLL REVEAL ──
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
+function updateProgress(){
+  const total=document.querySelectorAll('.modulo').length;
+  const pct=(viewed.size/total)*100;
+  document.getElementById('pFill').style.width=pct+'%';
+  document.getElementById('pLabel').textContent=viewed.size+' de '+total+' módulos';
+  document.querySelectorAll('.mod-dot').forEach(d=>{
+    const m=d.getAttribute('data-m');
+    d.classList.toggle('viewed',viewed.has(m));
+  });
+}
+document.querySelectorAll('.mod-dot').forEach(dot=>{
+  dot.addEventListener('click',function(e){
+    e.preventDefault();
+    const id=this.getAttribute('href').replace('#','');
+    const mod=document.getElementById(id);
+    if(mod&&!mod.classList.contains('open')){
+      mod.classList.add('open');
+      viewed.add(id.replace('m',''));
+      updateProgress();
+    }
+    setTimeout(()=>mod.scrollIntoView({behavior:'smooth',block:'start'}),80);
+  });
+});
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const num=e.target.id.replace('m','');
+      document.querySelectorAll('.mod-dot').forEach(d=>d.classList.remove('active'));
+      const dot=document.querySelector(`.mod-dot[data-m="${num}"]`);
+      if(dot)dot.classList.add('active');
     }
   });
-}, { threshold: 0.12 });
-
-document.querySelectorAll('section, .cta-section').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(24px)';
-  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  observer.observe(el);
-});
+},{threshold:.2,rootMargin:'-90px 0px -50% 0px'});
+document.querySelectorAll('.modulo').forEach(m=>obs.observe(m));
+viewed.add('1');updateProgress();
 </script>
 </body>
 </html>

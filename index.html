@@ -27,7 +27,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 
 /* ── TOP BAR ── */
-.top-bar{background:var(--gold);color:var(--bg);text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;}
+.top-bar{background:var(--gold);color:var(--bg);text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;}
 
 /* ── HERO ── */
 .hero{padding:56px 20px 40px;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-bottom:1px solid var(--line);}
@@ -44,33 +44,33 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 
 /* ── INFO INSTRUTORES ── */
 .inst-row{display:flex;gap:10px;justify-content:center;margin-bottom:14px;flex-wrap:wrap;}
-.inst-pill{display:flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:8px 12px;font-size:.78rem;color:var(--gray-lt);}
+.inst-pill{display:flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:8px 12px;font-size:1.05rem;color:var(--gray-lt);}
 .inst-pill strong{color:var(--white);font-weight:600;}
 .inst-pill a{color:var(--gold);text-decoration:none;font-weight:600;}
 
 /* ── LOCAL ── */
 .local-box{background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:10px 14px;margin:0 auto;max-width:360px;text-align:left;}
-.local-box .lb-name{font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px;}
-.local-box .lb-addr{font-size:.75rem;color:var(--gray);line-height:1.4;margin-bottom:6px;}
-.local-box a{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;color:var(--gold);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;}
+.local-box .lb-name{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px;}
+.local-box .lb-addr{font-size:1rem;color:var(--gray);line-height:1.4;margin-bottom:6px;}
+.local-box a{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;color:var(--gold);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;}
 
 /* ── STICKY PROGRESS + NAV ── */
 .sticky-bar{position:sticky;top:0;z-index:99;background:var(--bg2);border-bottom:1px solid var(--line);}
 .progress-wrap{padding:6px 14px 0;}
 .progress-bar{height:3px;background:var(--bg3);border-radius:2px;overflow:hidden;}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold-dk),var(--gold));width:0%;transition:width .4s;border-radius:2px;}
-.progress-label{font-family:'Barlow Condensed',sans-serif;font-size:.58rem;letter-spacing:.12em;color:var(--gray);text-transform:uppercase;text-align:right;padding:2px 0 0;}
-.mod-nav{display:flex;justify-content:center;gap:3px;padding:6px 8px 8px;}
-.mod-dot{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--bg3);border:1.5px solid rgba(201,168,76,.25);font-family:'Bebas Neue',sans-serif;font-size:.68rem;color:var(--gray);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s;-webkit-tap-highlight-color:transparent;}
+.progress-label{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;letter-spacing:.12em;color:var(--gray);text-transform:uppercase;text-align:right;padding:2px 0 0;}
+.mod-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;padding:8px 12px 10px;}
+.mod-dot{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:var(--bg3);border:1.5px solid rgba(201,168,76,.25);font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--gray);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s;-webkit-tap-highlight-color:transparent;}
 .mod-dot.active{background:var(--gold);color:var(--bg);border-color:var(--gold);transform:scale(1.1);}
 .mod-dot.viewed{border-color:var(--gold);color:var(--gold);}
 
 /* ── MÓDULO ── */
 .modulo{padding:24px 16px 28px;border-bottom:1px solid var(--line2);}
 .mod-header{display:flex;align-items:flex-start;gap:12px;cursor:pointer;-webkit-tap-highlight-color:transparent;padding:4px 0;}
-.mod-num{flex-shrink:0;width:36px;height:36px;background:var(--gold-dk);color:var(--gold-lt);font-family:'Bebas Neue',sans-serif;font-size:.95rem;border-radius:var(--r);display:flex;align-items:center;justify-content:center;}
+.mod-num{flex-shrink:0;width:46px;height:46px;background:var(--gold-dk);color:var(--gold-lt);font-family:'Bebas Neue',sans-serif;font-size:1.3rem;border-radius:var(--r);display:flex;align-items:center;justify-content:center;}
 .mod-info{flex:1;min-width:0;}
-.mod-tag{font-family:'Barlow Condensed',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:1px;}
+.mod-tag{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:1px;}
 .mod-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.6rem,5.5vw,2rem);letter-spacing:.04em;line-height:1.1;}
 .mod-toggle{flex-shrink:0;width:26px;height:26px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;transition:transform .3s;margin-top:4px;}
 .modulo.open .mod-toggle{transform:rotate(180deg);}
@@ -78,7 +78,7 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 .modulo.open .mod-body{display:block;}
 
 /* ── Fundamentos badge ── */
-.fund-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(201,168,76,.1);border:1px solid var(--gold-dk);border-radius:50px;padding:3px 10px;font-family:'Barlow Condensed',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:2px;}
+.fund-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,.1);border:1px solid var(--gold-dk);border-radius:50px;padding:6px 14px;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:2px;}
 
 /* ── CONTEÚDO ── */
 .txt{font-size:1.12rem;line-height:1.85;color:var(--gray-lt);margin-bottom:12px;}
@@ -94,7 +94,7 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 .callout-blue strong{color:#42a5f5;}
 
 .key-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:12px;}
-.key-list li{display:flex;align-items:flex-start;gap:10px;font-size:1.12rem;color:var(--gray-lt);line-height:1.7;}
+.key-list li{display:flex;align-items:flex-start;gap:12px;font-size:1.12rem;color:var(--gray-lt);line-height:1.7;}
 .key-list li::before{content:'';flex-shrink:0;width:5px;height:5px;background:var(--gold);border-radius:50%;margin-top:8px;}
 
 .sub-title{font-family:'Barlow Condensed',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:16px 0 10px;display:flex;align-items:center;gap:8px;}
@@ -104,47 +104,82 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 .rules-list li{padding-bottom:12px;border-bottom:1px solid var(--line2);}
 .rules-list li:last-child{border-bottom:none;padding-bottom:0;}
 .step-list li{counter-increment:step;display:flex;align-items:flex-start;gap:12px;font-size:1.12rem;color:var(--gray-lt);line-height:1.7;}
-.step-list li::before{content:counter(step);flex-shrink:0;width:22px;height:22px;background:var(--gold-dk);color:var(--gold-lt);font-family:'Bebas Neue',sans-serif;font-size:.7rem;border-radius:3px;display:flex;align-items:center;justify-content:center;}
+.step-list li::before{content:counter(step);flex-shrink:0;width:28px;height:28px;background:var(--gold-dk);color:var(--gold-lt);font-family:'Bebas Neue',sans-serif;font-size:.95rem;border-radius:4px;display:flex;align-items:center;justify-content:center;}
 
 .highlight-box{background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:12px;}
-.highlight-box h4{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.highlight-box h4{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
 
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
 .col-card{background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:10px;text-align:center;}
 .col-card .cc-icon{font-size:1.3rem;margin-bottom:3px;display:block;}
-.col-card .cc-title{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;}
-.col-card .cc-text{font-size:.88rem;color:var(--gray-lt);line-height:1.5;}
+.col-card .cc-title{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;}
+.col-card .cc-text{font-size:1.05rem;color:var(--gray-lt);line-height:1.5;}
 
 /* ── PHOTO PLACEHOLDER ── */
 .photo-slot{background:var(--bg3);border:2px dashed var(--line);border-radius:var(--r);padding:24px 14px;text-align:center;margin-bottom:12px;min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;}
 .photo-slot .ps-icon{font-size:2rem;opacity:.4;}
-.photo-slot .ps-text{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.15em;color:var(--gray);text-transform:uppercase;}
+.photo-slot .ps-text{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:600;letter-spacing:.15em;color:var(--gray);text-transform:uppercase;}
 
 
 /* ── EVACUAÇÃO ── */
 .evac-section{padding:28px 18px 32px;border-top:3px solid var(--red);background:linear-gradient(180deg,rgba(178,34,34,.06),var(--bg));}
 .evac-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.6rem,5.5vw,2rem);color:#ef5350;letter-spacing:.06em;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
 .evac-step{background:var(--bg3);border:1px solid rgba(178,34,34,.2);border-radius:var(--r);padding:14px;margin-bottom:10px;}
-.evac-step h4{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#ef5350;margin-bottom:6px;}
-.evac-step p{font-size:.84rem;color:var(--gray-lt);line-height:1.6;margin:0;}
+.evac-step h4{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#ef5350;margin-bottom:6px;}
+.evac-step p{font-size:1.1rem;color:var(--gray-lt);line-height:1.6;margin:0;}
 .evac-step strong{color:var(--white);}
 .evac-hosp{background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:8px;}
-.evac-hosp .eh-badge{font-family:'Barlow Condensed',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.evac-hosp .eh-badge{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
 .evac-hosp h4{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--white);margin-bottom:6px;line-height:1.2;}
 .evac-hosp .eh-info{font-size:.95rem;color:var(--gray);line-height:1.5;margin-bottom:6px;}
-.evac-hosp a{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;color:var(--gold);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;}
+.evac-hosp a{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;color:var(--gold);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;}
 .evac-fones{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
 .evac-fone{background:var(--bg3);border:1px solid rgba(178,34,34,.2);border-radius:var(--r);padding:10px;text-align:center;}
-.evac-fone .ef-num{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#ef5350;line-height:1;}
-.evac-fone .ef-name{font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;color:var(--gray);text-transform:uppercase;}
+.evac-fone .ef-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:#ef5350;line-height:1;}
+.evac-fone .ef-name{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.1em;color:var(--gray);text-transform:uppercase;}
+
+/* ── LIGHTBOX ── */
+.lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);align-items:center;justify-content:center;padding:16px;-webkit-tap-highlight-color:transparent;}
+.lightbox.show{display:flex;}
+.lightbox img{max-width:100%;max-height:90vh;border-radius:8px;object-fit:contain;}
+.lightbox-close{position:absolute;top:16px;right:20px;font-size:2rem;color:#fff;cursor:pointer;z-index:10000;background:rgba(0,0,0,.5);width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;-webkit-tap-highlight-color:transparent;}
+
+/* ── CLICKABLE IMAGE ── */
+.img-click{width:100%;border-radius:var(--r);margin-bottom:14px;cursor:pointer;border:1px solid var(--line);transition:opacity .2s;}
+.img-click:active{opacity:.8;}
+
+/* ── RULE CARD (module 1 style) ── */
+.rule-card{background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:10px;}
+.rule-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:8px;}
+.rule-num{flex-shrink:0;width:32px;height:32px;background:var(--gold);color:var(--bg);font-family:'Bebas Neue',sans-serif;font-size:1.1rem;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.rule-title{font-size:1.15rem;font-weight:700;color:var(--white);line-height:1.35;}
+.rule-desc{font-size:1.1rem;color:var(--gray-lt);line-height:1.7;padding-left:44px;}
+
+/* ── COMMAND CARD (module 2 style) ── */
+.cmd-card{background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:8px;}
+.cmd-name{font-family:'Barlow Condensed',sans-serif;font-size:1.15rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
+.cmd-desc{font-size:1.1rem;color:var(--gray-lt);line-height:1.65;}
+
+/* ── PART CARD (module 4 style) ── */
+.part-card{display:flex;align-items:flex-start;gap:12px;background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:8px;}
+.part-num{flex-shrink:0;width:28px;height:28px;background:var(--gold-dk);color:var(--gold-lt);font-family:'Bebas Neue',sans-serif;font-size:.9rem;border-radius:4px;display:flex;align-items:center;justify-content:center;}
+.part-info{flex:1;}
+.part-name{font-size:1.12rem;font-weight:700;color:var(--white);margin-bottom:3px;}
+.part-desc{font-size:1.05rem;color:var(--gray-lt);line-height:1.6;}
+
+
+/* ── BACK TO TOP ── */
+.btn-top{position:fixed;bottom:20px;right:20px;z-index:998;width:48px;height:48px;background:var(--gold);color:var(--bg);border:none;border-radius:50%;font-size:1.4rem;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.4);-webkit-tap-highlight-color:transparent;transition:opacity .3s,transform .3s;}
+.btn-top.show{display:flex;}
+.btn-top:active{transform:scale(.9);}
 /* ── FOOTER ── */
 .footer{border-top:1px solid var(--line);padding:28px 20px;text-align:center;}
-.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.1em;color:var(--gold);margin-bottom:4px;}
-.footer-sub{font-family:'Barlow Condensed',sans-serif;font-size:.65rem;letter-spacing:.12em;color:var(--gray);text-transform:uppercase;margin-bottom:4px;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.1em;color:var(--gold);margin-bottom:4px;}
+.footer-sub{font-family:'Barlow Condensed',sans-serif;font-size:1rem;letter-spacing:.12em;color:var(--gray);text-transform:uppercase;margin-bottom:4px;}
 .footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:10px 0;}
-.footer-links a{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:600;color:var(--gold);text-decoration:none;letter-spacing:.06em;}
+.footer-links a{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:600;color:var(--gold);text-decoration:none;letter-spacing:.06em;}
 .footer-ig{display:inline-flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:600;color:var(--gold);text-decoration:none;letter-spacing:.08em;}
-.footer-copy{margin-top:12px;font-size:.65rem;color:#444;letter-spacing:.05em;}
+.footer-copy{margin-top:14px;font-size:.95rem;color:#444;letter-spacing:.05em;}
 
 /* ── SECTION DIVIDER ── */
 .section-divider{background:linear-gradient(90deg,transparent,var(--gold-dk),transparent);height:1px;margin:0;}
@@ -221,7 +256,7 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 <!-- ═══════════════════════════════════════════
      MÓDULO 1 — 10 REGRAS DE SEGURANÇA
      ═══════════════════════════════════════════ -->
-<div class="modulo open" id="m1">
+<div class="modulo" id="m1">
   <div class="mod-header" onclick="toggle(this)">
     <div class="mod-num">01</div>
     <div class="mod-info">
@@ -237,23 +272,57 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
       <strong>⚠️ REGRA NÚMERO ZERO:</strong> Você NÃO faz nada sem o comando do instrutor. Não toca na arma, não carrega, não aponta, não dispara — nada. Tudo acontece por comando. Sem exceção.
     </div>
 
-    <ol class="step-list rules-list">
-      <li><strong>Toda arma é carregada até que VOCÊ confirme o contrário</strong> — Não importa se alguém disse que está vazia. Confie nos seus olhos e nas suas mãos. Sempre verifique.</li>
-      <li><strong>Nunca aponte para algo que não queira destruir</strong> — O cano da arma aponta SEMPRE para a direção segura (para o alvo). Manuseando, limpando, guardando — sempre.</li>
-      <li><strong>Dedo fora do gatilho até a hora de atirar</strong> — O dedo indicador fica esticado ao lado da arma (encostado no guarda-mato). Só entra no gatilho quando for disparar.</li>
-      <li><strong>Saiba o que tem atrás do seu alvo</strong> — O projétil pode atravessar o alvo ou ricochetear. Antes de atirar, olhe o que está ao redor e atrás.</li>
-      <li><strong>Use SEMPRE proteção nos ouvidos e olhos</strong> — Abafador e óculos de proteção são obrigatórios o tempo todo dentro da pista de tiro.</li>
-      <li><strong>Nunca dê ou aceite uma arma carregada</strong> — Ao passar uma arma para outra pessoa, ela precisa estar descarregada, com o ferrolho aberto e sem carregador.</li>
-      <li><strong>Não beba álcool nem use remédios que dão sono antes de manusear arma</strong> — Qualquer substância que diminua sua atenção é incompatível com arma de fogo.</li>
-      <li><strong>Não ultrapasse a linha de tiro</strong> — A linha de tiro é o limite. Nunca vá na frente dela enquanto a pista estiver quente. Se precisar de algo além da linha, peça ao instrutor.</li>
-      <li><strong>Não pegue a arma do colega</strong> — Cada aluno usa apenas a arma que o instrutor entregou. Não toque, não empreste, não troque de posição sem autorização.</li>
-      <li><strong>Se tiver dúvida, PARE e chame o instrutor</strong> — Dúvida não é vergonha — é segurança. Qualquer problema, qualquer dúvida: arma apontada para o alvo, dedo fora do gatilho, e chame o instrutor.</li>
-    </ol>
-
-    <div class="photo-slot">
-      <div class="ps-icon">📸</div>
-      <div class="ps-text">Foto: demonstração das 4 regras na prática</div>
+    <div class="rule-card">
+      <div class="rule-top"><div class="rule-num">1</div><div class="rule-title">Toda arma é carregada até que VOCÊ confirme o contrário</div></div>
+      <div class="rule-desc">Não importa se alguém disse que está vazia. Confie nos seus olhos e nas suas mãos. Sempre verifique você mesmo.</div>
     </div>
+
+    <div class="rule-card">
+      <div class="rule-top"><div class="rule-num">2</div><div class="rule-title">Nunca aponte para algo que não queira destruir</div></div>
+      <div class="rule-desc">O cano da arma aponta SEMPRE para a direção segura (para o alvo). Manuseando, limpando, guardando — sempre.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-top"><div class="rule-num">3</div><div class="rule-title">Dedo fora do gatilho até a hora de atirar</div></div>
+      <div class="rule-desc">O dedo indicador fica esticado ao lado da arma (encostado no guarda-mato). Só entra no gatilho quando for disparar.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-top"><div class="rule-num">4</div><div class="rule-title">Saiba o que tem atrás do seu alvo</div></div>
+      <div class="rule-desc">O projétil pode atravessar o alvo ou ricochetear. Antes de atirar, olhe o que está ao redor e atrás.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-top"><div class="rule-num">5</div><div class="rule-title">Use SEMPRE proteção nos ouvidos e olhos</div></div>
+      <div class="rule-desc">Abafador e óculos de proteção são obrigatórios o tempo todo dentro da pista de tiro.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-top"><div class="rule-num">6</div><div class="rule-title">Nunca dê ou aceite uma arma carregada</div></div>
+      <div class="rule-desc">Ao passar uma arma para outra pessoa, ela precisa estar descarregada, com o ferrolho aberto e sem carregador.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-top"><div class="rule-num">7</div><div class="rule-title">Não beba álcool nem use remédios que dão sono</div></div>
+      <div class="rule-desc">Qualquer substância que diminua sua atenção é incompatível com arma de fogo. Antes e durante o curso.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-top"><div class="rule-num">8</div><div class="rule-title">Não ultrapasse a linha de tiro</div></div>
+      <div class="rule-desc">A linha de tiro é o limite. Nunca vá na frente dela enquanto a pista estiver quente. Precisou de algo? Peça ao instrutor.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-top"><div class="rule-num">9</div><div class="rule-title">Não pegue a arma do colega</div></div>
+      <div class="rule-desc">Cada aluno usa apenas a arma que o instrutor entregou. Não toque, não empreste, não troque sem autorização.</div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-top"><div class="rule-num">10</div><div class="rule-title">Se tiver dúvida, PARE e chame o instrutor</div></div>
+      <div class="rule-desc">Dúvida não é vergonha — é segurança. Arma apontada para o alvo, dedo fora do gatilho, e chame o instrutor.</div>
+    </div>
+
+    <img src="https://i.imgur.com/261AYgf.jpg" alt="Dedo fora do gatilho" class="img-click" onclick="openLB(this.src)">
 
     <div class="callout callout-tip">
       <strong>💡 PARA LEMBRAR:</strong> Se esquecer tudo do curso, lembre dessas 10 regras. Elas salvam vidas — a sua e a de quem está ao seu lado.
@@ -293,27 +362,43 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
     </div>
 
     <div class="sub-title">Comandos do Instrutor</div>
-    <div class="highlight-box">
-      <h4>Você vai ouvir esses comandos — grave bem</h4>
-      <ul class="key-list">
-        <li><strong>"PISTA QUENTE"</strong> — A pista está ativa. Pode-se manusear armas conforme orientação do instrutor.</li>
-        <li><strong>"PISTA FRIA"</strong> — Arma descarregada, ferrolho aberto, na bancada. NINGUÉM toca em nenhuma arma. Momento de trocar alvos ou verificar a pista.</li>
-        <li><strong>"CARREGAR"</strong> — Insira o carregador na arma. Aguarde o próximo comando.</li>
-        <li><strong>"ALIMENTAR"</strong> — Puxe o ferrolho para trás e solte para colocar a munição na câmara. A arma está pronta. Aguarde.</li>
-        <li><strong>"FOGO"</strong> (ou sinal de apito) — Pode disparar. Siga o ritmo e as instruções do exercício.</li>
-        <li><strong>"CESSAR FOGO"</strong> — PARE imediatamente. Dedo fora do gatilho, arma apontada para o alvo, aguarde instrução. <strong>Qualquer pessoa pode dar este comando em caso de emergência.</strong></li>
-      </ul>
+    
+    <div class="cmd-card">
+      <div class="cmd-name">🟢 "Pista Quente"</div>
+      <div class="cmd-desc">A pista está ativa. Pode-se manusear armas conforme orientação do instrutor.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">🔴 "Pista Fria"</div>
+      <div class="cmd-desc">Arma descarregada, ferrolho aberto, na bancada. NINGUÉM toca em nenhuma arma. Momento de trocar alvos ou verificar a pista.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">📥 "Carregar"</div>
+      <div class="cmd-desc">Insira o carregador na arma. Empurre até encaixar. Aguarde o próximo comando.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">🔧 "Alimentar"</div>
+      <div class="cmd-desc">Puxe o ferrolho para trás e solte para colocar a munição na câmara. A arma está pronta. Aguarde.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">💥 "Fogo" (ou apito)</div>
+      <div class="cmd-desc">Pode disparar. Siga o ritmo e as instruções de cada exercício.</div>
+    </div>
+
+    <div class="cmd-card" style="border-color:rgba(178,34,34,.3);background:rgba(178,34,34,.06);">
+      <div class="cmd-name" style="color:#ef5350;">⛔ "Cessar Fogo"</div>
+      <div class="cmd-desc">PARE imediatamente. Dedo fora do gatilho, arma apontada para o alvo, aguarde instrução. <strong>Qualquer pessoa pode dar este comando em caso de emergência.</strong></div>
     </div>
 
     <div class="callout callout-ok">
       <strong>✅ VESTUÁRIO:</strong> Calçado fechado obrigatório (estojos quentes caem no chão). Gola fechada (estojo pode cair dentro da roupa). Cabelo preso se for comprido.
     </div>
 
-    <div class="photo-slot">
-      <div class="ps-icon">📸</div>
-      <div class="ps-text">Foto: posição correta na bancada durante "Pista Fria"</div>
+    
     </div>
-  </div>
 </div>
 
 <!-- ═══ MÓDULO 03 — MANUSEIO SEGURO ═══ -->
@@ -334,53 +419,101 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
     </div>
 
     <div class="sub-title">Como pegar uma arma com segurança</div>
-    <ol class="step-list">
-      <li><strong>Cano para direção segura</strong> — Ao pegar a arma (da bancada, do instrutor, do estojo), mantenha o cano SEMPRE apontado para o alvo ou direção segura.</li>
-      <li><strong>Dedo fora do gatilho</strong> — O dedo indicador fica esticado ao longo da armação, fora do guarda-mato. Automático. Sempre.</li>
-      <li><strong>Segure pelo punho</strong> — Pegue a arma pela armação (parte de baixo), com firmeza. Nunca pelo cano ou pelo gatilho.</li>
-    </ol>
+
+    <div class="cmd-card">
+      <div class="cmd-name">1. Cano para direção segura</div>
+      <div class="cmd-desc">Ao pegar a arma (da bancada, do instrutor, do estojo), mantenha o cano SEMPRE apontado para o alvo ou direção segura.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">2. Dedo fora do gatilho</div>
+      <div class="cmd-desc">O dedo indicador fica esticado ao longo da armação, fora do guarda-mato. Automático. Sempre.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">3. Segure pelo punho</div>
+      <div class="cmd-desc">Pegue a arma pela armação (parte de baixo), com firmeza. Nunca pelo cano ou pelo gatilho.</div>
+    </div>
 
     <div class="sub-title">Verificação de Segurança (inspeção visual e tátil)</div>
     <p class="txt">Essa é a rotina que você vai fazer <strong>TODA vez</strong> que pegar ou receber uma arma:</p>
-    <ol class="step-list">
-      <li><strong>Retire o carregador</strong> — Aperte o botão do carregador e puxe o carregador para fora.</li>
-      <li><strong>Trave o ferrolho aberto</strong> — Puxe o ferrolho para trás e trave com a trava do ferrolho. A câmara fica exposta.</li>
-      <li><strong>Inspeção VISUAL</strong> — OLHE dentro da câmara. Está vazia? Vê alguma munição lá dentro? Olhe com atenção.</li>
-      <li><strong>Inspeção TÁTIL</strong> — Coloque o dedo mindinho dentro da câmara (pelo lado da janela de ejeção). Sinta se está vazio. Os olhos podem enganar — o dedo não mente.</li>
-      <li><strong>Confirme</strong> — Câmara vazia, sem carregador. Agora sim a arma está segura.</li>
-    </ol>
-
-    <div class="photo-slot">
-      <div class="ps-icon">📸</div>
-      <div class="ps-text">Foto: verificação visual e tátil da câmara</div>
+    <div class="cmd-card">
+      <div class="cmd-name">1. Retire o carregador</div>
+      <div class="cmd-desc">Aperte o botão do carregador e puxe o carregador para fora.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">2. Trave o ferrolho aberto</div>
+      <div class="cmd-desc">Puxe o ferrolho para trás e trave com a trava do ferrolho. A câmara fica exposta.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">3. Inspeção VISUAL</div>
+      <div class="cmd-desc">OLHE dentro da câmara. Está vazia? Vê alguma munição lá dentro? Olhe com atenção.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">4. Inspeção TÁTIL</div>
+      <div class="cmd-desc">Coloque o dedo mindinho dentro da câmara (pelo lado da janela de ejeção). Sinta se está vazio. Os olhos podem enganar — o dedo não mente.</div>
+    </div>
+    <div class="cmd-card" style="border-color:var(--green);background:rgba(46,125,50,.06);">
+      <div class="cmd-name" style="color:#66bb6a;">5. Confirme ✅</div>
+      <div class="cmd-desc">Câmara vazia, sem carregador. Agora sim a arma está segura.</div>
     </div>
 
     <div class="sub-title">Como carregar a arma</div>
-    <ol class="step-list">
-      <li><strong>Arma apontada para o alvo</strong> — Sempre na direção segura.</li>
-      <li><strong>Insira o carregador</strong> — Empurre até ouvir o "click" de encaixe. Dê um puxão para confirmar que está firme.</li>
-      <li><strong>Aguarde o comando "ALIMENTAR"</strong> — NÃO puxe o ferrolho até o instrutor mandar.</li>
-      <li><strong>Puxe o ferrolho e SOLTE</strong> — Puxe totalmente para trás e solte de uma vez. Não acompanhe com a mão — deixe a mola fazer o trabalho. A munição entrou na câmara.</li>
-    </ol>
+    <div class="cmd-card">
+      <div class="cmd-name">1. Arma apontada para o alvo</div>
+      <div class="cmd-desc">Sempre na direção segura.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">2. Insira o carregador</div>
+      <div class="cmd-desc">Empurre até ouvir o "click" de encaixe. Dê um puxão para confirmar que está firme.</div>
+    </div>
+    <div class="cmd-card" style="border-color:var(--red);background:rgba(178,34,34,.06);">
+      <div class="cmd-name" style="color:#ef5350;">3. Aguarde o comando "ALIMENTAR"</div>
+      <div class="cmd-desc">NÃO puxe o ferrolho até o instrutor mandar.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">4. Puxe o ferrolho e SOLTE</div>
+      <div class="cmd-desc">Puxe totalmente para trás e solte de uma vez. Não acompanhe com a mão — deixe a mola fazer o trabalho. A munição entrou na câmara.</div>
+    </div>
 
     <div class="sub-title">Como descarregar a arma</div>
-    <ol class="step-list">
-      <li><strong>Dedo fora do gatilho</strong> — Sempre.</li>
-      <li><strong>Retire o carregador</strong> — Botão do carregador, puxe o carregador para fora.</li>
-      <li><strong>Puxe o ferrolho para trás</strong> — A munição que estava na câmara vai ser ejetada.</li>
-      <li><strong>Trave o ferrolho aberto</strong> — Faça a verificação visual e tátil.</li>
-      <li><strong>Pronto</strong> — Arma descarregada, verificada, segura.</li>
-    </ol>
+    <div class="cmd-card">
+      <div class="cmd-name">1. Dedo fora do gatilho</div>
+      <div class="cmd-desc">Sempre. Automático.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">2. Retire o carregador</div>
+      <div class="cmd-desc">Botão do carregador, puxe o carregador para fora.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">3. Puxe o ferrolho para trás</div>
+      <div class="cmd-desc">A munição que estava na câmara vai ser ejetada.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">4. Trave o ferrolho aberto</div>
+      <div class="cmd-desc">Faça a verificação visual e tátil.</div>
+    </div>
+    <div class="cmd-card" style="border-color:var(--green);background:rgba(46,125,50,.06);">
+      <div class="cmd-name" style="color:#66bb6a;">5. Pronto ✅</div>
+      <div class="cmd-desc">Arma descarregada, verificada, segura.</div>
+    </div>
 
     <div class="sub-title">Como passar uma arma para outra pessoa</div>
-    <div class="highlight-box">
-      <h4>Regra de ouro</h4>
-      <ul class="key-list">
-        <li><strong>Descarregue completamente</strong> — Sem carregador, sem munição na câmara, ferrolho aberto.</li>
-        <li><strong>Faça a verificação</strong> — Visual e tátil. Confirme que está vazia.</li>
-        <li><strong>Apresente a arma</strong> — Ofereça com a câmara aberta visível, cano para direção segura, punho voltado para quem vai receber.</li>
-        <li><strong>Quem recebe, verifica também</strong> — A pessoa que pega a arma faz SUA PRÓPRIA verificação. Sempre.</li>
-      </ul>
+    <div class="cmd-card">
+      <div class="cmd-name">1. Descarregue completamente</div>
+      <div class="cmd-desc">Sem carregador, sem munição na câmara, ferrolho aberto.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">2. Faça a verificação</div>
+      <div class="cmd-desc">Visual e tátil. Confirme que está vazia.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">3. Apresente a arma</div>
+      <div class="cmd-desc">Ofereça com a câmara aberta visível, cano para direção segura, punho voltado para quem vai receber.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">4. Quem recebe, verifica também</div>
+      <div class="cmd-desc">A pessoa que pega a arma faz SUA PRÓPRIA verificação. Sempre.</div>
     </div>
 
     <div class="callout callout-ok">
@@ -400,47 +533,74 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
     <div class="mod-toggle">▼</div>
   </div>
   <div class="mod-body">
-    <p class="txt">Vamos conhecer as peças da pistola que você vai usar no curso. Saber o nome de cada parte ajuda na comunicação com o instrutor e no manuseio seguro.</p>
+    <p class="txt">Vamos conhecer as peças da pistola. Saber o nome de cada parte ajuda na comunicação com o instrutor e no manuseio seguro.</p>
 
-    <div class="sub-title">Partes Externas — O que você vê e toca</div>
-    <ul class="key-list">
-      <li><strong>Ferrolho</strong> — Peça que desliza em cima da arma. Serve para colocar a munição na câmara, fechar a câmara no disparo, e jogar fora o estojo vazio depois do tiro.</li>
-      <li><strong>Armação (Punho)</strong> — A parte de baixo da arma, onde a mão segura. Dentro dela ficam as peças do mecanismo de disparo.</li>
-      <li><strong>Cano</strong> — O tubo por onde o projétil sai. Por dentro tem ranhuras em espiral (raiamento) que fazem o projétil girar para ir mais reto e mais longe.</li>
-      <li><strong>Gatilho</strong> — A peça que você aperta com o dedo indicador para disparar.</li>
-      <li><strong>Guarda-Mato</strong> — A "proteção" ao redor do gatilho. Quando NÃO for atirar, o dedo fica encostado aqui do lado de fora.</li>
-      <li><strong>Carregador</strong> — O "pente" removível que guarda as munições. Encaixa na base do punho.</li>
-      <li><strong>Botão do Carregador</strong> — Botão que solta o carregador da arma quando apertado.</li>
-      <li><strong>Trava do Ferrolho</strong> — Alavanca que segura o ferrolho aberto (para trás). Quando acaba a munição, o ferrolho trava aberto sozinho.</li>
-      <li><strong>Massa de Mira</strong> — Ponto na frente do ferrolho, em cima. É onde você FOCA o olho para mirar.</li>
-      <li><strong>Alça de Mira</strong> — Entalhe atrás do ferrolho. A massa de mira tem que ficar centralizada dentro desse entalhe.</li>
-      <li><strong>Trava de Segurança</strong> — Alavanca que impede o disparo quando ativada. Importante: trava pode falhar — ela NÃO substitui as regras de segurança.</li>
-      <li><strong>Indicador de Câmara Carregada</strong> — Pequena peça que sobe quando tem munição na câmara. Serve como verificação visual e tátil.</li>
-    </ul>
+    <img src="https://i.imgur.com/psmKrZn.png" alt="Partes da Beretta 92" class="img-click" onclick="openLB(this.src)">
 
-    <div class="photo-slot">
-      <div class="ps-icon">📸</div>
-      <div class="ps-text">Foto: pistola com cada peça identificada</div>
+    <div class="sub-title">12 Partes Principais</div>
+
+    <div class="part-card">
+      <div class="part-num">1</div>
+      <div class="part-info"><div class="part-name">Massa de Mira</div><div class="part-desc">Ponto na frente do ferrolho, em cima. É onde você FOCA o olho para mirar.</div></div>
     </div>
 
-    <div class="sub-title">Desmontagem Básica — 6 Peças</div>
-    <p class="txt">Quando você desmonta a pistola para limpeza (chamamos de desmontagem de 1º escalão), ela se separa em 6 peças:</p>
-    <ol class="step-list">
-      <li><strong>Armação (punho)</strong> — com o mecanismo de disparo dentro</li>
-      <li><strong>Ferrolho</strong> — a peça de cima que desliza</li>
-      <li><strong>Cano</strong> — o tubo por onde sai o projétil</li>
-      <li><strong>Mola recuperadora</strong> — mola que faz o ferrolho voltar para frente depois do tiro</li>
-      <li><strong>Guia da mola</strong> — haste que mantém a mola no lugar certo</li>
-      <li><strong>Carregador</strong> — o "pente" de munição</li>
-    </ol>
+    <div class="part-card">
+      <div class="part-num">2</div>
+      <div class="part-info"><div class="part-name">Alça de Mira</div><div class="part-desc">Entalhe atrás do ferrolho. A massa de mira deve ficar centralizada dentro desse entalhe.</div></div>
+    </div>
 
-    <div class="photo-slot">
-      <div class="ps-icon">📸</div>
-      <div class="ps-text">Foto: as 6 peças separadas na bancada</div>
+    <div class="part-card">
+      <div class="part-num">3</div>
+      <div class="part-info"><div class="part-name">Cano</div><div class="part-desc">Tubo por onde o projétil sai. Por dentro tem ranhuras em espiral (raiamento) que fazem o projétil girar.</div></div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-num">4</div>
+      <div class="part-info"><div class="part-name">Ferrolho / Slide</div><div class="part-desc">Peça que desliza em cima da arma. Serve para câmarar a munição, selar a câmara e ejetar o estojo vazio.</div></div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-num">5</div>
+      <div class="part-info"><div class="part-name">Retém do Ferrolho</div><div class="part-desc">Alavanca que segura o ferrolho na posição aberta (para trás). Quando acaba a munição, o ferrolho trava aberto sozinho.</div></div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-num">6</div>
+      <div class="part-info"><div class="part-name">Alavanca de Desmontagem</div><div class="part-desc">Peça que permite desmontar a arma para limpeza. Ao girá-la ou puxá-la, libera o ferrolho da armação.</div></div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-num">7</div>
+      <div class="part-info"><div class="part-name">Gatilho</div><div class="part-desc">A peça que você aperta com o dedo indicador para disparar. Fica protegida dentro do guarda-mato.</div></div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-num">8</div>
+      <div class="part-info"><div class="part-name">Cão (Martelo)</div><div class="part-desc">Peça que, ao ser liberada pelo gatilho, golpeia o percussor para iniciar o disparo. Fica na parte traseira da arma.</div></div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-num">9</div>
+      <div class="part-info"><div class="part-name">Trava Manual</div><div class="part-desc">Alavanca de segurança que impede o disparo quando ativada. Importante: a trava NÃO substitui as regras de segurança.</div></div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-num">10</div>
+      <div class="part-info"><div class="part-name">Retém do Carregador</div><div class="part-desc">Botão que, quando pressionado, solta o carregador da arma. Geralmente fica ao lado do gatilho.</div></div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-num">11</div>
+      <div class="part-info"><div class="part-name">Carregador</div><div class="part-desc">O "pente" removível que guarda as munições. Encaixa na base do cabo (punho) da arma.</div></div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-num">12</div>
+      <div class="part-info"><div class="part-name">Cabo (Punho)</div><div class="part-desc">A parte de baixo da arma onde a mão segura. Dentro dele ficam as peças do mecanismo de disparo.</div></div>
     </div>
 
     <div class="callout callout-tip">
-      <strong>💡 DECORE:</strong> Armação, Ferrolho, Cano, Mola, Guia, Carregador = 6 peças. Essa lista cai em prova de credenciamento.
+      <strong>💡 CLIQUE NA IMAGEM</strong> para ver em tamanho maior e identificar cada peça numerada na pistola.
     </div>
   </div>
 </div>
@@ -459,28 +619,55 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
     <p class="txt">A pistola semiautomática faz <strong>um tiro cada vez que você aperta o gatilho</strong>. Depois de cada tiro, ela prepara o próximo sozinha — você só precisa apertar o gatilho de novo.</p>
 
     <div class="sub-title">Passo a Passo do Tiro</div>
-    <ol class="step-list">
-      <li><strong>Disparo</strong> — Você aperta o gatilho → o percussor bate na espoleta da munição → a pólvora queima e gera gases → o projétil sai pelo cano.</li>
-      <li><strong>Extração</strong> — Os gases empurram o ferrolho para trás → a garra (extrator) puxa o estojo vazio para fora da câmara.</li>
-      <li><strong>Ejeção</strong> — O ejetor empurra o estojo vazio para o lado, jogando ele para fora da arma pela janelinha lateral.</li>
-      <li><strong>Alimentação</strong> — A mola do carregador empurra a próxima munição para cima, pronta para entrar na câmara.</li>
-      <li><strong>Câmaramento</strong> — A mola recuperadora empurra o ferrolho de volta para frente → o ferrolho empurra a nova munição para dentro da câmara.</li>
-      <li><strong>Armamento</strong> — O mecanismo de disparo é rearmado sozinho. A arma está pronta para o próximo tiro.</li>
-    </ol>
+    <div class="cmd-card">
+      <div class="cmd-name">1. Disparo</div>
+      <div class="cmd-desc">Você aperta o gatilho → o percussor bate na espoleta da munição → a pólvora queima e gera gases → o projétil sai pelo cano.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">2. Extração</div>
+      <div class="cmd-desc">Os gases empurram o ferrolho para trás → a garra (extrator) puxa o estojo vazio para fora da câmara.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">3. Ejeção</div>
+      <div class="cmd-desc">O ejetor empurra o estojo vazio para o lado, jogando para fora da arma pela janelinha lateral.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">4. Alimentação</div>
+      <div class="cmd-desc">A mola do carregador empurra a próxima munição para cima, pronta para entrar na câmara.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">5. Câmaramento</div>
+      <div class="cmd-desc">A mola recuperadora empurra o ferrolho de volta → o ferrolho empurra a nova munição para dentro da câmara.</div>
+    </div>
+    <div class="cmd-card" style="border-color:var(--green);background:rgba(46,125,50,.06);">
+      <div class="cmd-name" style="color:#66bb6a;">6. Armamento ✅</div>
+      <div class="cmd-desc">O mecanismo de disparo é rearmado sozinho. A arma está pronta para o próximo tiro.</div>
+    </div>
 
     <div class="callout callout-blue">
       <strong>📌 TUDO ISSO ACONTECE EM MENOS DE 1 SEGUNDO.</strong> Você aperta o gatilho e, quando o ferrolho volta para frente, a arma já está pronta para o próximo tiro. É automático — menos o disparo, que depende de VOCÊ apertar o gatilho de novo.
     </div>
 
     <div class="sub-title">Tipos de Ação (como o gatilho funciona)</div>
-    <div class="highlight-box">
-      <h4>Entenda a diferença</h4>
-      <ul class="key-list">
-        <li><strong>Ação Simples — Single Action (SA)</strong> — O gatilho só dispara. O cão (martelo) precisa estar armado antes. Gatilho bem leve. Exemplo: algumas pistolas 1911.</li>
-        <li><strong>Ação Dupla — Double Action (DA)</strong> — O gatilho arma o cão E dispara tudo de uma vez. Gatilho mais pesado e com curso maior. Mais seguro contra disparos acidentais.</li>
-        <li><strong>Dupla Ação / Ação Simples — DA/SA (Double Action / Single Action)</strong> — O primeiro tiro é em ação dupla (pesado). Os tiros seguintes são em ação simples (leve), porque o recuo já armou o cão. Comum em pistolas da Taurus e Beretta.</li>
-        <li><strong>Percussor Interno — Striker Fired</strong> — Sem cão externo. O percussor fica dentro da arma, parcialmente tensionado. O gatilho completa o tensionamento e dispara. Gatilho consistente em todos os tiros. Exemplo: Glock, Taurus série G.</li>
-      </ul>
+
+    <div class="cmd-card">
+      <div class="cmd-name">Ação Simples — Single Action (SA)</div>
+      <div class="cmd-desc">O gatilho só dispara. O cão (martelo) precisa estar armado antes. Gatilho bem leve. Exemplo: algumas pistolas 1911.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">Ação Dupla — Double Action (DA)</div>
+      <div class="cmd-desc">O gatilho arma o cão E dispara tudo de uma vez. Gatilho mais pesado e com curso maior. Mais seguro contra disparos acidentais.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">DA/SA — Double Action / Single Action</div>
+      <div class="cmd-desc">O primeiro tiro é em ação dupla (pesado). Os tiros seguintes são em ação simples (leve), porque o recuo já armou o cão. Comum em pistolas da Taurus e Beretta.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">Percussor Interno — Striker Fired</div>
+      <div class="cmd-desc">Sem cão externo. O percussor fica dentro da arma, parcialmente tensionado. O gatilho completa o tensionamento e dispara. Gatilho consistente em todos os tiros. Exemplo: Glock, Taurus série G.</div>
     </div>
   </div>
 </div>
@@ -499,38 +686,49 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
     <p class="txt">Munição <strong>não é a mesma coisa que bala</strong>. A munição completa se chama <strong>cartucho</strong>. "Bala" é só a parte que sai pela frente — o nome correto é <strong>projétil</strong>.</p>
 
     <div class="sub-title">As 4 Partes do Cartucho</div>
-    <ol class="step-list">
-      <li><strong>Estojo</strong> — O "corpo" do cartucho, geralmente de latão (cor dourada). Segura todas as partes juntas. Depois do tiro, sai vazio pela lateral da arma.</li>
-      <li><strong>Espoleta</strong> — Fica na base do estojo. Quando o percussor bate nela, gera uma faísca que acende a pólvora. Em pistola, é sempre de percussão central (o percussor bate no centro da base).</li>
-      <li><strong>Pólvora</strong> — A carga que queima e gera os gases. Não é explosão — é uma queima muito rápida chamada deflagração. Os gases empurram o projétil pelo cano.</li>
-      <li><strong>Projétil</strong> — A parte que sai pelo cano e atinge o alvo. É o que a maioria das pessoas chama de "bala", mas o nome técnico é projétil.</li>
-    </ol>
 
-    <div class="photo-slot">
-      <div class="ps-icon">📸</div>
-      <div class="ps-text">Foto: cartucho aberto mostrando as 4 partes</div>
+    <img src="https://i.imgur.com/kjYXA6Q.png" alt="Cartucho em corte transversal" class="img-click" onclick="openLB(this.src)">
+
+    <div class="cmd-card">
+      <div class="cmd-name">1. Espoleta</div>
+      <div class="cmd-desc">Fica na base do estojo. Quando o percussor bate nela, gera uma faísca que acende a pólvora. Em pistola, é sempre de percussão central (o percussor bate no centro da base).</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">2. Estojo</div>
+      <div class="cmd-desc">O "corpo" do cartucho, geralmente de latão (cor dourada). Segura todas as partes juntas. Depois do tiro, sai vazio pela lateral da arma.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">3. Pólvora</div>
+      <div class="cmd-desc">A carga que queima e gera os gases. Não é explosão — é uma queima muito rápida chamada deflagração. Os gases empurram o projétil pelo cano.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">4. Projétil</div>
+      <div class="cmd-desc">A parte que sai pelo cano e atinge o alvo. É o que a maioria das pessoas chama de "bala", mas o nome técnico é projétil.</div>
     </div>
 
     <div class="sub-title">Tipos de Projétil — Os mais comuns</div>
-    <div class="two-col">
-      <div class="col-card">
-        <span class="cc-icon">🔵</span>
-        <div class="cc-title">Ogival / Encamisado Total (FMJ)</div>
-        <div class="cc-text">Projétil revestido de cobre. Não expande. Usado para treino e competição. Mais barato. Também chamado de "ponta de cobre" ou "bala blindada".</div>
-      </div>
-      <div class="col-card">
-        <span class="cc-icon">🔴</span>
-        <div class="cc-title">Ponta Oca / Expansivo (JHP)</div>
-        <div class="cc-text">Tem um buraco na ponta. Ao atingir o alvo, abre como um cogumelo. Mais poder de parada. Usado para defesa. Também chamado de "Gold" ou "bala expansiva".</div>
-      </div>
+
+    <div class="highlight-box">
+      <h4>Ogival / Encamisado Total (FMJ)</h4>
+      <img src="https://i.imgur.com/1jeDHlZ.png" alt="Projétil Ogival FMJ" class="img-click" onclick="openLB(this.src)" style="margin-bottom:10px;">
+      <p class="txt" style="margin-bottom:0;">Projétil revestido de cobre. Não expande ao atingir o alvo. Usado para <strong>treino e competição</strong>. Mais barato. Também chamado de "ponta de cobre" ou "bala blindada".</p>
     </div>
-    <ul class="key-list">
-      <li><strong>Ponta de Chumbo (LRN/LFN)</strong> — Projétil todo de chumbo, sem revestimento. Mais barato mas suja mais o cano. Usado em treinos econômicos.</li>
-      <li><strong>Semi-encamisado (JSP)</strong> — Revestido parcialmente. A ponta de chumbo fica exposta. Deforma ao atingir o alvo.</li>
-    </ul>
+
+    <div class="highlight-box" style="margin-top:10px;">
+      <h4>Ponta Oca / Expansivo (JHP)</h4>
+      <img src="https://i.imgur.com/CsCMm5Y.png" alt="Projétil Ponta Oca JHP" class="img-click" onclick="openLB(this.src)" style="margin-bottom:10px;">
+      <p class="txt" style="margin-bottom:0;">Tem um buraco na ponta. Ao atingir o alvo, abre como um cogumelo — aumenta o diâmetro. Maior <strong>poder de parada</strong>. Usado para <strong>defesa pessoal</strong>. Também chamado de "Gold" ou "bala expansiva".</p>
+    </div>
 
     <div class="callout callout-danger">
       <strong>⚠️ CUIDADO:</strong> Use SEMPRE munição do calibre marcado na arma. Calibre errado pode causar explosão da arma e ferimentos graves. Na dúvida, pergunte ao instrutor.
+    </div>
+
+    <div class="callout callout-tip">
+      <strong>💡 CALIBRE NOMINAL vs REAL:</strong> O calibre impresso na munição (ex: 9mm, .380 ACP) é o calibre NOMINAL (comercial). O calibre REAL é medido entre os cheios do raiamento — nem sempre é exatamente o mesmo número.
     </div>
   </div>
 </div>
@@ -551,44 +749,46 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
     <div class="mod-toggle">▼</div>
   </div>
   <div class="mod-body">
-    <p class="txt">A posição de tiro é a <strong>base de tudo</strong>. Se a base estiver errada, nada que você fizer com as mãos vai compensar. Uma boa posição absorve o recuo, mantém o equilíbrio e permite recuperação rápida.</p>
+    <p class="txt">A posição de tiro é a <strong>base de tudo</strong>. Se a base estiver errada, nada que você fizer com as mãos vai compensar.</p>
 
     <div class="callout callout-ok">
-      <strong>✅ O MAIS IMPORTANTE:</strong> Você precisa se sentir CONFORTÁVEL e ESTÁVEL na sua posição. Se você está desconfortável, vai tremer, vai cansar rápido e vai errar. Encontre a posição que funciona para VOCÊ — o instrutor vai te ajudar a ajustar.
+      <strong>✅ O MAIS IMPORTANTE:</strong> Você precisa se sentir CONFORTÁVEL e ESTÁVEL na sua posição. Se está desconfortável, vai tremer, cansar rápido e errar. O instrutor vai te ajudar a encontrar a melhor posição para você.
     </div>
 
-    <div class="sub-title">3 Posições Principais</div>
-    <div class="highlight-box">
-      <h4>1. Isósceles (recomendada para iniciantes)</h4>
-      <p class="txt" style="margin-bottom:4px;">Braços estendidos simetricamente, formando um triângulo com o peito. Corpo de frente para o alvo. Posição mais natural e intuitiva — ideal para quem está começando.</p>
-    </div>
-    <div class="highlight-box">
-      <h4>2. Weaver</h4>
-      <p class="txt" style="margin-bottom:4px;">Corpo levemente angulado (45° em relação ao alvo). Braço forte estendido, braço de apoio dobrado. Pé forte atrás. Posição mais compacta, usada por muitos policiais.</p>
-    </div>
-    <div class="highlight-box">
-      <h4>3. CAR (Center Axis Relock)</h4>
-      <p class="txt" style="margin-bottom:4px;">Arma mais próxima do corpo, cotovelos dobrados. Usada em espaços apertados e distâncias curtas. Mais avançada — apenas apresentação neste curso.</p>
+    <div class="sub-title">1. Posição Isósceles</div>
+
+    <img src="https://i.imgur.com/OsY9JzH.png" alt="Posição Isósceles" class="img-click" onclick="openLB(this.src)">
+
+    <p class="txt">A posição mais usada e recomendada para quem está começando. O nome vem do triângulo formado pelos braços estendidos.</p>
+
+    <div class="cmd-card">
+      <div class="cmd-name">Como fazer</div>
+      <div class="cmd-desc">Pés paralelos na largura dos ombros, apontando para o alvo. Joelhos levemente dobrados. Tronco ligeiramente inclinado para frente. Braços estendidos simetricamente, formando um triângulo com o peito. Corpo de frente para o alvo.</div>
     </div>
 
-    <div class="sub-title">Isósceles na prática — passo a passo</div>
-    <ol class="step-list">
-      <li><strong>Pés</strong> — Na largura dos ombros, paralelos. Peso distribuído igual nos dois pés. Imagine que está se preparando para alguém te empurrar de frente.</li>
-      <li><strong>Joelhos</strong> — Levemente dobrados, como amortecedores. NUNCA travados — joelho travado faz você perder o equilíbrio no recuo.</li>
-      <li><strong>Quadril</strong> — Encaixado, estável. Funciona como ponto central do corpo.</li>
-      <li><strong>Tronco</strong> — Ligeiramente inclinado para frente. O peso do corpo deve estar um pouco à frente — não nos calcanhares. Ombros ligeiramente à frente do quadril.</li>
-      <li><strong>Braços</strong> — Estendidos para frente, formando um triângulo com o peito. Cotovelos com uma leve dobra (não travados).</li>
-      <li><strong>Ombros</strong> — Relaxados e para frente, NÃO levantados. Ombro levantado = tensão = tremor = erro.</li>
-      <li><strong>Cabeça</strong> — Ereta, natural. A arma sobe até a linha dos seus olhos — NÃO abaixe a cabeça até a arma.</li>
-    </ol>
+    <div class="cmd-card">
+      <div class="cmd-name">Vantagens</div>
+      <div class="cmd-desc">Posição natural e intuitiva. Permite engajar alvos em ângulo amplo (180°) sem mover os pés. Para quem usa colete balístico, apresenta a área mais protegida ao adversário.</div>
+    </div>
 
-    <div class="photo-slot">
-      <div class="ps-icon">📸</div>
-      <div class="ps-text">Foto: postura isósceles de frente e de lado</div>
+    <div class="sub-title">2. Posição Weaver</div>
+
+    <img src="https://i.imgur.com/Mp2vJIi.png" alt="Posição Weaver" class="img-click" onclick="openLB(this.src)">
+
+    <p class="txt">Criada por Jack Weaver. O corpo fica levemente angulado em relação ao alvo, com a perna de apoio à frente.</p>
+
+    <div class="cmd-card">
+      <div class="cmd-name">Como fazer</div>
+      <div class="cmd-desc">Perna do lado da mão de apoio ligeiramente à frente. Tronco levemente inclinado para frente. Braço forte estendido, braço de apoio dobrado. A mão de apoio pressiona a arma contra a mão forte, criando tensão isométrica que estabiliza o tiro.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">Vantagens</div>
+      <div class="cmd-desc">Reduz a silhueta do atirador. Excelente controle de recuo pela tensão entre os braços. Muito usada por policiais e instrutores experientes.</div>
     </div>
 
     <div class="callout callout-tip">
-      <strong>💡 TESTE RÁPIDO:</strong> Na postura correta, se alguém empurrar seus ombros para trás, você NÃO deve cair. Se cair, está com o peso muito atrás — incline mais para frente.
+      <strong>💡 QUAL ESCOLHER?</strong> No curso, vamos praticar as duas. Use a que te deixar mais confortável e estável. Não existe posição "errada" — existe a que funciona melhor para VOCÊ.
     </div>
   </div>
 </div>
@@ -604,39 +804,50 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
     <div class="mod-toggle">▼</div>
   </div>
   <div class="mod-body">
-    <p class="txt">A pegada é como você segura a arma. Uma pegada firme e alta <strong>controla o recuo</strong>, estabiliza a arma e permite que o dedo acione o gatilho sem desviar o tiro.</p>
+    <p class="txt">A pegada é como você segura a arma. Não existe pegada "correta" única — existe a pegada em que o atirador se sente <strong>confortável</strong> e consegue efetuar seus disparos com precisão.</p>
 
-    <div class="sub-title">Mão forte (a que vai no gatilho)</div>
-    <ol class="step-list">
-      <li>A parte entre o polegar e o indicador (a "bifurcação") encosta <strong>o mais alto possível</strong> no punho da arma — quase tocando no ferrolho.</li>
-      <li>Os 3 dedos debaixo (médio, anelar e mindinho) envolvem o punho com pressão firme e por igual.</li>
-      <li>O dedo indicador fica <strong>esticado do lado de fora</strong>, encostado no guarda-mato. SÓ entra no gatilho na hora de atirar.</li>
-      <li>O polegar aponta para frente, acompanhando a arma.</li>
-    </ol>
+    <img src="https://i.imgur.com/ME6a4TQ.png" alt="Empunhadura mais utilizada" class="img-click" onclick="openLB(this.src)">
 
-    <div class="sub-title">Mão de apoio (a outra mão)</div>
-    <ol class="step-list">
-      <li>Preenche TODO o espaço que a mão forte deixou no punho.</li>
-      <li>Os dedos da mão de apoio envolvem os dedos da mão forte, como se estivesse "abraçando" a pegada.</li>
-      <li>O polegar de apoio fica paralelo e abaixo do polegar forte — os dois apontando para frente.</li>
-      <li>A mão de apoio faz <strong>pressão lateral</strong>, como se estivesse espremendo a arma de fora para dentro. Isso controla o recuo lateral.</li>
-    </ol>
+    <div class="callout callout-tip">
+      <strong>💡 ESTA É A PEGADA MAIS UTILIZADA</strong> e considerada a mais eficiente para pistola. É a base que vamos ensinar no curso.
+    </div>
 
-    <div class="photo-slot">
-      <div class="ps-icon">📸</div>
-      <div class="ps-text">Foto: pegada correta — visão frontal e lateral</div>
+    <div class="sub-title">Mão Forte (a que vai no gatilho)</div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">1. Pegada alta e firme</div>
+      <div class="cmd-desc">A parte entre o polegar e o indicador encosta o mais alto possível no punho da arma — quase tocando no ferrolho. Quanto mais alta, mais controle do recuo.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">2. Aperto como um aperto de mão</div>
+      <div class="cmd-desc">Os 3 dedos debaixo (médio, anelar e mindinho) envolvem o punho com força firme — como um aperto de mão forte. Não é para esmagar, mas precisa ter firmeza.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">3. Dedo indicador fora</div>
+      <div class="cmd-desc">O dedo indicador fica esticado do lado de fora, encostado no guarda-mato. Só entra no gatilho na hora de atirar.</div>
+    </div>
+
+    <div class="sub-title">Mão de Apoio (a outra mão)</div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">1. Preencha o espaço</div>
+      <div class="cmd-desc">A mão de apoio preenche TODO o espaço que a mão forte deixou no punho, como se estivesse "abraçando" a pegada.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">2. Aperte MAIS que a mão forte</div>
+      <div class="cmd-desc">A mão de apoio faz pressão lateral forte — é essa pressão que estabiliza o tiro e controla o recuo lateral. Aperte mais do que a mão forte.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">3. Polegares paralelos para frente</div>
+      <div class="cmd-desc">O polegar de apoio fica paralelo e abaixo do polegar forte — os dois apontando para frente.</div>
     </div>
 
     <div class="callout callout-danger">
-      <strong>⚠️ ERROS QUE VOCÊ VAI VER:</strong><br>
-      • Segurar como xícara (mão de apoio embaixo) — NÃO controla recuo nenhum.<br>
-      • Cruzar os polegares atrás do ferrolho — o ferrolho vai cortar seu dedo.<br>
-      • Pegada frouxa — a arma "dança" na mão e pode falhar a ciclagem.
-    </div>
-
-    <div class="photo-slot">
-      <div class="ps-icon">📸</div>
-      <div class="ps-text">Foto: exemplos de pegada ERRADA vs CORRETA</div>
+      <strong>⚠️ ERROS COMUNS:</strong> Segurar como xícara (mão de apoio embaixo) — NÃO controla recuo. Cruzar polegares atrás do ferrolho — o ferrolho vai cortar seu dedo. Pegada frouxa — a arma "dança" na mão e pode falhar.
     </div>
   </div>
 </div>
@@ -652,31 +863,36 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
     <div class="mod-toggle">▼</div>
   </div>
   <div class="mod-body">
-    <p class="txt">A visada é como você mira. O segredo é que o <strong>olho humano não consegue focar em 3 coisas ao mesmo tempo</strong> — então existe uma prioridade de foco.</p>
+    <p class="txt">A visada define onde o tiro vai. O olho humano <strong>não consegue focar em 3 coisas ao mesmo tempo</strong> — então existe uma regra de prioridade que é crucial para acertar o alvo.</p>
 
-    <div class="sub-title">Onde focar o olho — prioridade</div>
-    <ol class="step-list">
-      <li><strong>FOCO na massa de mira</strong> — O foco NÍTIDO do seu olho deve estar na massa de mira (o pontinho na frente da arma). Ela deve estar centralizada no entalhe da alça de mira.</li>
-      <li><strong>Alça de mira um pouco desfocada</strong> — Você vê a alça (o entalhe atrás), mas o foco fica na massa.</li>
-      <li><strong>Alvo borrado ao fundo</strong> — O alvo aparece desfocado. Isso é NORMAL e CORRETO. Você sabe onde ele está, mas os olhos focam na massa de mira.</li>
-    </ol>
-
-    <div class="highlight-box">
-      <h4>Alinhamento correto da mira</h4>
-      <ul class="key-list">
-        <li><strong>Centralizada</strong> — Mesma distância dos dois lados do entalhe da alça.</li>
-        <li><strong>Nivelada</strong> — O topo da massa de mira na mesma altura do topo da alça (alinhados).</li>
-        <li><strong>No alvo</strong> — Com a mira alinhada, posicione no centro do alvo.</li>
-      </ul>
+    <div class="callout callout-danger">
+      <strong>⚠️ REGRA DE OURO:</strong> O foco do seu olho tem que estar na MASSA DE MIRA. Sempre. Se você focar no alvo, vai errar. Se focar na alça, vai errar. Foco na MASSA é o que faz o tiro ir onde você quer.
     </div>
 
-    <div class="photo-slot">
-      <div class="ps-icon">📸</div>
-      <div class="ps-text">Foto: visada correta — massa centralizada na alça, alvo ao fundo</div>
+    <img src="https://i.imgur.com/SSBaYkQ.jpg" alt="Foco correto na visada" class="img-click" onclick="openLB(this.src)">
+
+    <div class="cmd-card" style="border-color:var(--red);background:rgba(178,34,34,.06);">
+      <div class="cmd-name" style="color:#ef5350;">❌ ERRADO — Foco no alvo</div>
+      <div class="cmd-desc">O alvo fica nítido mas a mira fica borrada. Você não sabe se a mira está alinhada. O tiro vai para qualquer lugar.</div>
+    </div>
+
+    <div class="cmd-card" style="border-color:var(--red);background:rgba(178,34,34,.06);">
+      <div class="cmd-name" style="color:#ef5350;">❌ ERRADO — Foco na alça de mira</div>
+      <div class="cmd-desc">A alça (atrás) fica nítida mas a massa (frente) fica borrada. Você não consegue centralizar a massa no entalhe com precisão.</div>
+    </div>
+
+    <div class="cmd-card" style="border-color:var(--green);background:rgba(46,125,50,.06);">
+      <div class="cmd-name" style="color:#66bb6a;">✅ CORRETO — Foco na massa de mira</div>
+      <div class="cmd-desc">A massa de mira (frente) fica NÍTIDA. A alça fica levemente desfocada. O alvo fica borrado ao fundo. Isso é CORRETO — garantindo alinhamento perfeito.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">Alinhamento correto</div>
+      <div class="cmd-desc"><strong>Centralizada:</strong> mesma distância dos dois lados do entalhe. <strong>Nivelada:</strong> topo da massa na mesma altura do topo da alça. <strong>No alvo:</strong> com a mira alinhada, posicione no centro do alvo.</div>
     </div>
 
     <div class="callout callout-tip">
-      <strong>💡 OLHO DOMINANTE:</strong> Você tem um olho mais forte que o outro (geralmente o do mesmo lado da mão forte). Faça o teste: estique os braços, faça um triângulo com as mãos, olhe para um objeto à distância, feche um olho por vez. O olho que mantém o objeto centralizado é o dominante. Use ele para mirar.
+      <strong>💡 OLHO DOMINANTE:</strong> Estique os braços, faça um triângulo com as mãos, olhe para um objeto, feche um olho por vez. O olho que mantém o objeto centralizado é o dominante. Use esse para mirar.
     </div>
   </div>
 </div>
@@ -692,23 +908,41 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
     <div class="mod-toggle">▼</div>
   </div>
   <div class="mod-body">
-    <p class="txt">A respiração move o peito, que move os ombros, que move os braços, que move a arma. Se você disparar enquanto respira, <strong>o tiro vai sair fora do lugar</strong>.</p>
+    <p class="txt">A respiração move o peito, que move os ombros, que move os braços, que move a arma. Se você disparar respirando, <strong>o tiro vai sair fora do lugar</strong>.</p>
 
     <div class="sub-title">Como respirar na hora do tiro</div>
-    <ol class="step-list">
-      <li><strong>Respire normalmente</strong> enquanto se posiciona e alinha a mira. Não mude o ritmo da sua respiração.</li>
-      <li><strong>Solte o ar naturalmente</strong> — não force. Apenas expire com calma, como se estivesse relaxando.</li>
-      <li><strong>No FINAL NATURAL da expiração</strong> — existe um momento em que o ar já saiu e você ainda não inspirou de novo. É uma pausa natural do corpo. Nesse instante, seu peito está parado.</li>
-      <li><strong>Dispare nesse momento</strong> — com o peito parado naturalmente, a arma não se move. O tiro sai onde a mira está apontando.</li>
-      <li><strong>Continue respirando normalmente</strong> — não prenda o ar. A respiração segue fluindo.</li>
-    </ol>
+
+    <div class="cmd-card">
+      <div class="cmd-name">1. Respire normalmente</div>
+      <div class="cmd-desc">Enquanto se posiciona e alinha a mira, continue respirando no seu ritmo normal.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">2. Solte o ar naturalmente</div>
+      <div class="cmd-desc">Não force. Apenas expire com calma, como se estivesse relaxando.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">3. No final natural da expiração</div>
+      <div class="cmd-desc">Existe um momento em que o ar já saiu e você ainda não inspirou de novo. É uma pausa natural do corpo. Nesse instante, seu peito está parado.</div>
+    </div>
+
+    <div class="cmd-card" style="border-color:var(--gold);background:rgba(201,168,76,.06);">
+      <div class="cmd-name" style="color:var(--gold);">4. Dispare nesse momento 💥</div>
+      <div class="cmd-desc">Com o peito parado naturalmente, a arma não se move. O tiro sai onde a mira está apontando.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">5. Continue respirando</div>
+      <div class="cmd-desc">Não prenda o ar. A respiração segue fluindo normalmente.</div>
+    </div>
 
     <div class="callout callout-danger">
-      <strong>⚠️ NÃO prenda a respiração de propósito.</strong> Quanto mais você segura o ar, mais o coração bate forte e o corpo treme. O segredo é usar a PAUSA NATURAL que acontece entre a expiração e a próxima inspiração — ela já existe, você só precisa aproveitá-la.
+      <strong>⚠️ NÃO prenda a respiração de propósito.</strong> Quanto mais você segura o ar, mais o coração bate forte e o corpo treme. Use a PAUSA NATURAL entre expiração e inspiração — ela já existe.
     </div>
 
     <div class="callout callout-ok">
-      <strong>✅ RESUMO:</strong> Respira normal → expira com calma → no final natural da expiração → dispara → continua respirando. Sem forçar nada.
+      <strong>✅ RESUMO:</strong> Respira normal → expira com calma → no final natural da expiração → dispara → continua respirando.
     </div>
   </div>
 </div>
@@ -724,28 +958,44 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
     <div class="mod-toggle">▼</div>
   </div>
   <div class="mod-body">
-    <p class="txt">Esse é o fundamento <strong>mais importante e mais difícil</strong>. De nada adianta postura perfeita e mira perfeita se você apertar o gatilho de forma errada — o tiro vai sair desviado.</p>
+    <p class="txt">Esse é o fundamento <strong>mais importante e mais difícil</strong>. De nada adianta postura perfeita e mira perfeita se você apertar o gatilho errado — o tiro desvia.</p>
 
-    <div class="sub-title">Como acionar o gatilho corretamente</div>
-    <ol class="step-list">
-      <li><strong>Posição do dedo</strong> — A metade da pontinha do dedo indicador (a "polpinha") encosta no gatilho. Nem a ponta do dedo, nem a dobra — o meio da polpa.</li>
-      <li><strong>Direção</strong> — A pressão vai para TRÁS, em linha reta. Qualquer pressão para o lado desvia o tiro.</li>
-      <li><strong>Suavidade</strong> — Aperte devagar e de forma contínua. Como se estivesse espremendo uma esponja lentamente. NUNCA puxe de uma vez.</li>
-      <li><strong>Independência</strong> — Só o dedo indicador se move. Os outros dedos e a pegada inteira NÃO mudam. Se a pegada aperta junto, o tiro desvia.</li>
-      <li><strong>Surpresa controlada</strong> — Você sabe que o tiro vai sair, mas o momento EXATO do disparo te "surpreende" um pouco. Isso evita que você antecipe o recuo e empurre a arma para baixo.</li>
-    </ol>
+    <img src="https://i.imgur.com/MRsoaGB.jpg" alt="Posição do dedo no gatilho" class="img-click" onclick="openLB(this.src)">
 
-    <div class="photo-slot">
-      <div class="ps-icon">📸</div>
-      <div class="ps-text">Foto: posição correta do dedo no gatilho (close-up)</div>
+    <div class="cmd-card" style="border-color:var(--green);background:rgba(46,125,50,.06);">
+      <div class="cmd-name" style="color:#66bb6a;">✅ Correto — Dedo centralizado</div>
+      <div class="cmd-desc">A metade da pontinha do dedo indicador (a "polpinha") encosta no gatilho. Nem a ponta, nem a dobra — o meio da polpa. Pressão para TRÁS, em linha reta.</div>
+    </div>
+
+    <div class="cmd-card" style="border-color:var(--red);background:rgba(178,34,34,.06);">
+      <div class="cmd-name" style="color:#ef5350;">❌ Errado — Dedo passando demais</div>
+      <div class="cmd-desc">Se colocar dedo demais, a pressão puxa a arma para o lado da mão forte. Tiros vão para a esquerda (destro) ou direita (canhoto).</div>
+    </div>
+
+    <div class="cmd-card" style="border-color:var(--red);background:rgba(178,34,34,.06);">
+      <div class="cmd-name" style="color:#ef5350;">❌ Errado — Pouco dedo</div>
+      <div class="cmd-desc">Se colocar pouco dedo, a pressão empurra a arma para o lado oposto. Perde controle e precisão.</div>
+    </div>
+
+    <div class="sub-title">Princípios do Acionamento</div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">Suavidade</div>
+      <div class="cmd-desc">Aperte devagar e de forma contínua. Como espremendo uma esponja lentamente. NUNCA puxe de uma vez.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">Independência</div>
+      <div class="cmd-desc">Só o dedo indicador se move. Os outros dedos e a pegada NÃO mudam. Se a pegada aperta junto, o tiro desvia.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">Surpresa controlada</div>
+      <div class="cmd-desc">Você sabe que o tiro vai sair, mas o momento EXATO te "surpreende" um pouco. Isso evita antecipar o recuo.</div>
     </div>
 
     <div class="callout callout-danger">
-      <strong>⚠️ GATILHADA — o erro mais comum:</strong> Puxar o gatilho com força e rápido. O tiro vai para baixo-esquerda (destro) ou baixo-direita (canhoto). Se seus tiros estão indo para esse lado, o problema é aqui.
-    </div>
-
-    <div class="callout callout-tip">
-      <strong>💡 EXERCÍCIO EM CASA (sem arma):</strong> Aponte o dedo indicador para a parede. Dobre ele devagar como se estivesse apertando um gatilho. O dedo deve ir para trás sem que a "mira" (ponta do dedo) saia do ponto. Se a mão inteira se move, você precisa treinar a independência do dedo.
+      <strong>⚠️ GATILHADA:</strong> Puxar o gatilho com força e rápido. Tiro vai para baixo-esquerda (destro) ou baixo-direita (canhoto). Se seus tiros estão indo para esse lado, o problema é aqui.
     </div>
   </div>
 </div>
@@ -765,22 +1015,45 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
     <p class="txt">O recuo é a reação natural da arma ao disparo — 3ª Lei de Newton: toda ação tem uma reação. Você <strong>não pode eliminar o recuo</strong>, mas pode controlá-lo para recuperar a mira rapidamente e fazer disparos consecutivos com precisão.</p>
 
     <div class="sub-title">Como controlar o recuo</div>
-    <ul class="key-list">
-      <li><strong>Pegada firme e alta</strong> — Quanto mais alta a mão no punho, menor o "tombo" da arma. A mão de apoio espremendo lateralmente é o segredo para controlar o movimento lateral.</li>
-      <li><strong>Postura inclinada para frente</strong> — O peso do corpo à frente absorve o recuo. Se você estiver com o peso nos calcanhares, o recuo te empurra para trás.</li>
-      <li><strong>Braços com tensão controlada</strong> — Nem travados (que não absorvem nada), nem soltos (que perdem o controle). Firmes o suficiente, com uma leve flexão no cotovelo.</li>
-      <li><strong>Deixe o recuo acontecer</strong> — A arma sobe um pouco e volta sozinha para a posição. NÃO empurre a arma para baixo tentando "compensar" o recuo — isso é antecipação e causa tiro baixo.</li>
-    </ul>
+    <div class="cmd-card">
+      <div class="cmd-name">Pegada firme e alta</div>
+      <div class="cmd-desc">Quanto mais alta a mão no punho, menor o "tombo" da arma. A mão de apoio espremendo lateralmente é o segredo para controlar o movimento lateral.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">Postura inclinada para frente</div>
+      <div class="cmd-desc">O peso do corpo à frente absorve o recuo. Se você estiver com o peso nos calcanhares, o recuo te empurra para trás.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">Braços com tensão controlada</div>
+      <div class="cmd-desc">Nem travados (que não absorvem nada), nem soltos (que perdem o controle). Firmes o suficiente, com uma leve flexão no cotovelo.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">Deixe o recuo acontecer</div>
+      <div class="cmd-desc">A arma sobe um pouco e volta sozinha. NÃO empurre a arma para baixo tentando "compensar" — isso é antecipação e causa tiro baixo.</div>
+    </div>
 
     <div class="sub-title">Acompanhamento (Follow-Through)</div>
     <p class="txt">O tiro <strong>não acaba quando a bala sai</strong>. O que você faz DEPOIS do disparo é tão importante quanto o que faz antes.</p>
-    <ol class="step-list">
-      <li><strong>Mantenha a postura</strong> — Não relaxe o corpo imediatamente após o tiro. Fique na posição.</li>
-      <li><strong>Mantenha a visada</strong> — Continue olhando pela mira. Não tire os olhos do alvo para ver "onde acertou".</li>
-      <li><strong>Mantenha a pegada</strong> — Não afrouxe a pegada. A arma deve voltar sozinha para a posição original.</li>
-      <li><strong>Avalie o resultado</strong> — Agora sim, com a mira de volta no alvo, veja onde o tiro foi. O furo está onde você esperava?</li>
-      <li><strong>Prepare o próximo</strong> — Respire, realinhe a mira, e quando estiver pronto, repita o ciclo.</li>
-    </ol>
+    <div class="cmd-card">
+      <div class="cmd-name">1. Mantenha a postura</div>
+      <div class="cmd-desc">Não relaxe o corpo imediatamente após o tiro. Fique na posição.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">2. Mantenha a visada</div>
+      <div class="cmd-desc">Continue olhando pela mira. Não tire os olhos do alvo para ver "onde acertou".</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">3. Mantenha a pegada</div>
+      <div class="cmd-desc">Não afrouxe a pegada. A arma deve voltar sozinha para a posição original.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">4. Avalie o resultado</div>
+      <div class="cmd-desc">Agora sim, com a mira de volta no alvo, veja onde o tiro foi. O furo está onde você esperava?</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">5. Prepare o próximo</div>
+      <div class="cmd-desc">Respire, realinhe a mira, e quando estiver pronto, repita o ciclo.</div>
+    </div>
 
     <div class="callout callout-danger">
       <strong>⚠️ ANTECIPAÇÃO DO RECUO — o inimigo número 1:</strong> Seu cérebro SABE que o recuo vem. Por instinto, ele tenta "compensar" empurrando a arma para baixo ANTES do tiro sair. Resultado: tiro vai para baixo. A cura é confiar na técnica, focar no gatilho suave e deixar o disparo ser uma "surpresa controlada".
@@ -790,10 +1063,7 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
       <strong>💡 EXERCÍCIO:</strong> Peça ao instrutor para carregar a arma com uma câmara vazia aleatória no meio do carregador. Quando o percussor bater numa câmara vazia, você vai VER exatamente se está antecipando (a arma vai pular para baixo sem ter tiro). É o melhor diagnóstico que existe.
     </div>
 
-    <div class="photo-slot">
-      <div class="ps-icon">📸</div>
-      <div class="ps-text">Foto: sequência do recuo — antes, durante e depois do disparo</div>
-    </div>
+    
   </div>
 </div>
 
@@ -821,12 +1091,18 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
       <h4>O que acontece</h4>
       <p class="txt" style="margin-bottom:6px;">Você aperta o gatilho e ouve um "CLICK" — mas o tiro NÃO sai. A munição não funcionou.</p>
       <h4>O que fazer</h4>
-      <ul class="key-list">
-        <li><strong>Mantenha a arma apontada para o alvo por 30 segundos</strong> — pode ser retardo de ignição (a munição demora para funcionar).</li>
-        <li>Após 30 segundos: puxe o ferrolho para trás para ejetar o cartucho que falhou.</li>
-        <li>O ferrolho vai câmarar uma nova munição automaticamente. A arma está pronta novamente.</li>
-        <li>O cartucho que falhou fica no chão — NÃO pegue ele de volta.</li>
-      </ul>
+      <div class="cmd-card" style="margin-top:8px;">
+        <div class="cmd-name">1. Mantenha apontada 30 segundos</div>
+        <div class="cmd-desc">Pode ser retardo de ignição — a munição pode demorar para funcionar.</div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-name">2. Puxe o ferrolho para trás</div>
+        <div class="cmd-desc">O cartucho que falhou é ejetado. O ferrolho câmara uma nova munição automaticamente.</div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-name">3. NÃO pegue o cartucho do chão</div>
+        <div class="cmd-desc">O cartucho que falhou fica no chão. Não toque nele.</div>
+      </div>
     </div>
 
     <div class="sub-title">2. Chaminé (Stovepipe)</div>
@@ -834,11 +1110,18 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
       <h4>O que acontece</h4>
       <p class="txt" style="margin-bottom:6px;">O estojo vazio fica preso na janela de ejeção, parecendo uma "chaminé" saindo de cima da arma. O ferrolho não fecha completamente.</p>
       <h4>O que fazer</h4>
-      <ul class="key-list">
-        <li><strong>Bata na base do carregador</strong> (para garantir que está encaixado).</li>
-        <li><strong>Puxe o ferrolho totalmente para trás e solte</strong> — o estojo preso vai cair e uma nova munição será câmarada.</li>
-        <li>Causa comum: empunhadura frouxa (a arma "dança" na mão e não tem energia para ejetar o estojo).</li>
-      </ul>
+      <div class="cmd-card" style="margin-top:8px;">
+        <div class="cmd-name">1. Bata na base do carregador</div>
+        <div class="cmd-desc">Para garantir que está bem encaixado.</div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-name">2. Puxe o ferrolho e solte</div>
+        <div class="cmd-desc">O estojo preso cai e uma nova munição é câmarada automaticamente.</div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-name">💡 Causa comum</div>
+        <div class="cmd-desc">Empunhadura frouxa — a arma "dança" na mão e não tem energia para ejetar o estojo.</div>
+      </div>
     </div>
 
     <div class="sub-title">3. Dupla Alimentação (Double Feed)</div>
@@ -846,12 +1129,22 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
       <h4>O que acontece</h4>
       <p class="txt" style="margin-bottom:6px;">Duas munições tentam entrar na câmara ao mesmo tempo. O ferrolho trava e não fecha.</p>
       <h4>O que fazer</h4>
-      <ol class="step-list">
-        <li><strong>Trave o ferrolho aberto</strong> (use a trava do ferrolho).</li>
-        <li><strong>Retire o carregador</strong> da arma.</li>
-        <li><strong>Puxe o ferrolho 2 ou 3 vezes</strong> para limpar a câmara — as munições presas vão cair.</li>
-        <li><strong>Recoloque o carregador</strong> e puxe o ferrolho para câmarar. Pronto.</li>
-      </ol>
+      <div class="cmd-card" style="margin-top:8px;">
+        <div class="cmd-name">1. Trave o ferrolho aberto</div>
+        <div class="cmd-desc">Use a trava do ferrolho para manter aberto.</div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-name">2. Retire o carregador</div>
+        <div class="cmd-desc">Puxe o carregador completamente para fora da arma.</div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-name">3. Puxe o ferrolho 2 ou 3 vezes</div>
+        <div class="cmd-desc">Limpe a câmara — as munições presas vão cair.</div>
+      </div>
+      <div class="cmd-card" style="border-color:var(--green);background:rgba(46,125,50,.06);">
+        <div class="cmd-name" style="color:#66bb6a;">4. Recoloque o carregador ✅</div>
+        <div class="cmd-desc">Insira o carregador e puxe o ferrolho para câmarar. Pronto.</div>
+      </div>
     </div>
 
     <div class="sub-title">4. Falha de Extração</div>
@@ -859,12 +1152,18 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
       <h4>O que acontece</h4>
       <p class="txt" style="margin-bottom:6px;">O estojo vazio não sai da câmara depois do tiro. Fica preso lá dentro. A arma não consegue câmarar a próxima munição.</p>
       <h4>O que fazer</h4>
-      <ul class="key-list">
-        <li><strong>Retire o carregador</strong> primeiro.</li>
-        <li><strong>Puxe o ferrolho com força para trás</strong> — tente ejetar o estojo preso.</li>
-        <li>Se não sair, <strong>informe o instrutor</strong> — pode ser necessário usar uma vareta pelo cano.</li>
-        <li>Causa comum: garra do extrator desgastada, estojo inchado ou câmara suja.</li>
-      </ul>
+      <div class="cmd-card" style="margin-top:8px;">
+        <div class="cmd-name">1. Retire o carregador</div>
+        <div class="cmd-desc">Primeiro passo é sempre retirar o carregador da arma.</div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-name">2. Puxe o ferrolho com força</div>
+        <div class="cmd-desc">Tente ejetar o estojo preso puxando com firmeza.</div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-name">3. Não saiu? Chame o instrutor</div>
+        <div class="cmd-desc">Pode ser necessário usar uma vareta pelo cano. Causa: extrator gasto, estojo inchado ou câmara suja.</div>
+      </div>
     </div>
 
     <div class="callout callout-tip">
@@ -887,25 +1186,48 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
     <p class="txt">Agora vamos juntar tudo na prática. Você vai disparar com acompanhamento direto do instrutor. <strong>Segurança primeiro, velocidade nunca.</strong></p>
 
     <div class="sub-title">Munição do Curso</div>
-    <div class="highlight-box">
-      <h4>50 disparos + 5 de cortesia</h4>
-      <ul class="key-list">
-        <li><strong>25 tiros calibre .22</strong> — Para pegar o jeito. Recuo bem leve, ideal para aprender os fundamentos sem o impacto do recuo atrapalhar.</li>
-        <li><strong>25 tiros calibre 9mm</strong> — Calibre real de defesa. Recuo mais forte, som mais alto. Aqui você vai sentir a diferença e aplicar tudo que aprendeu.</li>
-        <li><strong>5 tiros calibre 12 — CORTESIA 🎁</strong> — Espingarda! Um presente nosso para você. Experiência única, recuo forte, som impressionante. Pura diversão com segurança.</li>
-      </ul>
+    <div class="cmd-card">
+      <div class="cmd-name">🔹 25 tiros calibre .22</div>
+      <div class="cmd-desc">Para pegar o jeito. Recuo bem leve, ideal para aprender os fundamentos sem o impacto do recuo atrapalhar.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">🔹 25 tiros calibre 9mm</div>
+      <div class="cmd-desc">Calibre real de defesa. Recuo mais forte, som mais alto. Aqui você vai sentir a diferença e aplicar tudo que aprendeu.</div>
+    </div>
+    <div class="cmd-card" style="border-color:var(--gold);background:rgba(201,168,76,.06);">
+      <div class="cmd-name" style="color:var(--gold);">🎁 5 tiros calibre 12 — CORTESIA</div>
+      <div class="cmd-desc">Espingarda! Um presente nosso para você. Experiência única, recuo forte, som impressionante. Pura diversão com segurança.</div>
     </div>
 
     <div class="sub-title">Sequência do Exercício</div>
-    <ol class="step-list">
-      <li><strong>Verificação de segurança</strong> — O instrutor verifica a arma primeiro. Depois, <strong>VOCÊ verifica também</strong>: olhe a câmara (vazia?), verifique se não tem carregador. Sempre confie nos SEUS olhos.</li>
-      <li><strong>Comando "CARREGAR"</strong> — Insira o carregador na arma. Empurre até encaixar (ouvir o "click").</li>
-      <li><strong>Comando "ALIMENTAR"</strong> — Puxe o ferrolho totalmente para trás e SOLTE. Não acompanhe — deixe a mola fazer o trabalho. A arma está carregada e pronta.</li>
-      <li><strong>Assuma a postura</strong> — Pés, joelhos, tronco, braços, ombros, cabeça. Tudo no lugar.</li>
-      <li><strong>Comando "FOGO"</strong> — Mire no alvo, respire, faça a pausa, acione o gatilho com suavidade.</li>
-      <li><strong>Acompanhamento</strong> — Após o disparo, mantenha a postura e a mira. Veja onde acertou. Prepare o próximo.</li>
-      <li><strong>Ao terminar</strong> — Dedo fora do gatilho, arma apontada para o alvo. Faça a <strong>verificação de segurança novamente</strong> (câmara vazia, sem carregador) ANTES de entregar a arma ao instrutor. Aguarde comando.</li>
-    </ol>
+    <div class="cmd-card">
+      <div class="cmd-name">1. Verificação de segurança</div>
+      <div class="cmd-desc">O instrutor verifica a arma primeiro. Depois, VOCÊ verifica também: olhe a câmara (vazia?), verifique se não tem carregador. Sempre confie nos SEUS olhos.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">2. Comando "CARREGAR"</div>
+      <div class="cmd-desc">Insira o carregador na arma. Empurre até encaixar (ouvir o "click").</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">3. Comando "ALIMENTAR"</div>
+      <div class="cmd-desc">Puxe o ferrolho totalmente para trás e SOLTE. Não acompanhe — deixe a mola fazer o trabalho. A arma está carregada e pronta.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">4. Assuma a postura</div>
+      <div class="cmd-desc">Pés, joelhos, tronco, braços, ombros, cabeça. Tudo no lugar.</div>
+    </div>
+    <div class="cmd-card" style="border-color:var(--gold);background:rgba(201,168,76,.06);">
+      <div class="cmd-name" style="color:var(--gold);">5. Comando "FOGO" 💥</div>
+      <div class="cmd-desc">Mire no alvo, respire, faça a pausa, acione o gatilho com suavidade.</div>
+    </div>
+    <div class="cmd-card">
+      <div class="cmd-name">6. Acompanhamento</div>
+      <div class="cmd-desc">Após o disparo, mantenha a postura e a mira. Veja onde acertou. Prepare o próximo.</div>
+    </div>
+    <div class="cmd-card" style="border-color:var(--green);background:rgba(46,125,50,.06);">
+      <div class="cmd-name" style="color:#66bb6a;">7. Ao terminar ✅</div>
+      <div class="cmd-desc">Dedo fora do gatilho, arma apontada para o alvo. Faça a verificação de segurança novamente (câmara vazia, sem carregador) ANTES de entregar a arma ao instrutor.</div>
+    </div>
 
     <div class="callout callout-danger">
       <strong>⚠️ SE A ARMA NÃO DISPARAR (click sem tiro):</strong> Mantenha a arma apontada para o alvo por 30 segundos. NÃO mexa. Pode ser retardo de ignição (a munição demora para funcionar). Informe o instrutor.
@@ -928,39 +1250,61 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
     <div class="mod-toggle">▼</div>
   </div>
   <div class="mod-body">
-    <p class="txt">O alvo conta a história do seu tiro. Cada padrão de agrupamento indica um erro específico. Veja o quadro abaixo para identificar <strong>o que está acontecendo com o SEU tiro</strong>.</p>
+    <p class="txt">O alvo conta a história do seu tiro. Cada padrão de agrupamento indica um erro específico. Veja o quadro para <strong>atirador DESTRO</strong>.</p>
 
-    <div class="sub-title">Quadro de Diagnóstico — Atirador Destro</div>
-    <p class="txt">Imagine o alvo como um relógio. O centro é perfeito. As posições dos tiros indicam:</p>
+    <img src="https://i.imgur.com/XSv8l0y.jpg" alt="Quadro de correção de agrupamento" class="img-click" onclick="openLB(this.src)">
 
-    <div class="highlight-box">
-      <h4>Para onde os tiros estão indo? Veja o erro:</h4>
-      <ul class="key-list">
-        <li><strong>12h (alto, no centro) — Sobressalto:</strong> Você está empurrando a arma para cima, tensionando os ombros antes do tiro.</li>
-        <li><strong>1h-2h (alto à direita) — Espalmamento:</strong> A palma da mão de apoio está empurrando a arma para cima-direita.</li>
-        <li><strong>3h (direita) — Inclinação:</strong> Você está inclinando a arma para o lado durante o tiro.</li>
-        <li><strong>4h-5h (baixo à direita) — Estrangulamento:</strong> Você está apertando demais com os dedos do meio, puxando para baixo-direita.</li>
-        <li><strong>6h (baixo, no centro) — Torção:</strong> Você está torcendo o pulso para baixo na hora do tiro.</li>
-        <li><strong>7h (baixo à esquerda) — Gatilhada:</strong> Você está puxando o gatilho com força/rapidez demais.</li>
-        <li><strong>9h (esquerda) — Excesso de dedo:</strong> Está colocando dedo demais no gatilho, puxando para a esquerda.</li>
-        <li><strong>10h-11h (alto à esquerda) — Antecipação do recuo:</strong> Você está "empurrando" a arma para baixo ANTES do tiro sair, tentando compensar o recuo que ainda nem veio.</li>
-      </ul>
+    <div class="sub-title">Para onde os tiros estão indo?</div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">1. Sobressalto — 12h (alto, no centro)</div>
+      <div class="cmd-desc">Empurrando a arma para cima, tensionando os ombros antes do tiro. Relaxe os ombros.</div>
     </div>
 
-    <div class="photo-slot">
-      <div class="ps-icon">📸</div>
-      <div class="ps-text">Foto: quadro de correção de agrupamento oficial (alvo PF/ANP)</div>
+    <div class="cmd-card">
+      <div class="cmd-name">2. Espalmamento — 1h-2h (alto à direita)</div>
+      <div class="cmd-desc">Palma da mão de apoio empurrando para cima-direita. Ajuste a pressão lateral.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">3. Inclinação — 3h (direita)</div>
+      <div class="cmd-desc">Inclinando a arma para o lado durante o tiro. Mantenha a arma reta.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">4. Estrangulamento — 4h-5h (baixo à direita)</div>
+      <div class="cmd-desc">Apertando demais com os dedos médio e anelar. Suavize a pegada.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">5. Torção — 6h (baixo, no centro)</div>
+      <div class="cmd-desc">Torcendo o pulso para baixo na hora do tiro. Mantenha o pulso reto e firme.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">6. Gatilhada — 7h (baixo à esquerda)</div>
+      <div class="cmd-desc">Puxando o gatilho com força/rapidez demais. Aperte devagar. Erro mais comum.</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">7. Excesso de dedo — 9h (esquerda)</div>
+      <div class="cmd-desc">Dedo demais no gatilho, puxando para a esquerda. Reposicione (polpinha centralizada).</div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-name">8. Antecipação — 10h-11h (alto à esquerda)</div>
+      <div class="cmd-desc">Empurrando a arma para baixo ANTES do tiro sair, tentando compensar o recuo. Confie na técnica.</div>
     </div>
 
     <div class="callout callout-tip">
-      <strong>💡 SE VOCÊ É CANHOTO:</strong> O quadro funciona espelhado horizontalmente. Ex: gatilhada do destro (7h, baixo-esquerda) → no canhoto fica em baixo-direita.
+      <strong>💡 PARA CANHOTO:</strong> Espelhe o quadro horizontalmente. Ex: gatilhada do destro (7h) → no canhoto fica em baixo-direita.
     </div>
 
     <div class="callout callout-ok">
-      <strong>✅ TIROS BEM AGRUPADOS MAS FORA DO CENTRO?</strong> Se seus tiros estão todos juntos (próximos) mas longe do centro do alvo — PARABÉNS. Agrupamento bom = técnica consistente. O problema pode ser só de regulagem da mira ou de alinhamento. O instrutor vai te ajudar a corrigir.
+      <strong>✅ TIROS BEM AGRUPADOS MAS FORA DO CENTRO?</strong> Agrupamento bom = técnica consistente. Pode ser regulagem de mira. O instrutor vai te ajudar a corrigir.
     </div>
   </div>
-</div>
+
 
 
 <!-- ══════ PLANO DE EVACUAÇÃO ══════ -->
@@ -1042,37 +1386,68 @@ main{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 
 <!-- ══════ FOOTER ══════ -->
 <footer class="footer">
-  <div class="footer-sub" style="margin-bottom:12px;letter-spacing:.18em;font-size:.7rem;">INSTRUTORES</div>
+  <div class="footer-sub" style="margin-bottom:16px;letter-spacing:.2em;font-size:1.05rem;">INSTRUTORES</div>
 
-  <div class="footer-logo">RICARDO TAIRA</div>
-  <div class="footer-sub">Instrutor de Armamento e Tiro — IAT</div>
-  <a href="https://instagram.com/ricardo_taira" target="_blank" class="footer-ig" style="display:inline-flex;margin-bottom:16px;">📸 @ricardo_taira</a>
+  <div style="background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin-bottom:12px;text-align:center;">
+    <div class="footer-logo">RICARDO TAIRA</div>
+    <div class="footer-sub" style="margin-bottom:6px;">Instrutor de Armamento e Tiro — IAT</div>
+    <a href="https://instagram.com/ricardo_taira" target="_blank" class="footer-ig">📸 @ricardo_taira</a>
+  </div>
 
-  <div style="width:40px;height:1px;background:var(--line);margin:0 auto 16px;"></div>
+  <div style="width:50px;height:1px;background:var(--line);margin:0 auto 12px;"></div>
 
-  <div class="footer-logo">FLÁVIO BARRETO</div>
-  <div class="footer-sub">Instrutor de Armamento e Tiro — IAT</div>
-  <a href="https://www.instagram.com/barrettoflavio/" target="_blank" class="footer-ig" style="display:inline-flex;margin-bottom:16px;">📸 @barrettoflavio</a>
+  <div style="background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin-bottom:16px;text-align:center;">
+    <div class="footer-logo">FLÁVIO BARRETO</div>
+    <div class="footer-sub" style="margin-bottom:6px;">Instrutor de Armamento e Tiro — IAT</div>
+    <a href="https://www.instagram.com/barrettoflavio/" target="_blank" class="footer-ig">📸 @barrettoflavio</a>
+  </div>
 
-  <div style="width:40px;height:1px;background:var(--line);margin:0 auto 16px;"></div>
+  <div style="width:50px;height:1px;background:var(--line);margin:0 auto 16px;"></div>
 
-  <div class="footer-sub">Formados pela Combat Tático — Escola de Formação credenciada pela Polícia Federal</div>
+  <div class="footer-sub" style="line-height:1.5;">Formados pela Combat Tático<br>Escola de Formação credenciada pela Polícia Federal</div>
   <div class="footer-copy">© 2026 Ricardo Taira · Todos os direitos reservados</div>
 </footer>
 
+
+<button class="btn-top" id="btnTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<!-- ══════ LIGHTBOX ══════ -->
+<div class="lightbox" id="lightbox" onclick="closeLB()">
+  <button class="lightbox-close" onclick="closeLB()">✕</button>
+  <img id="lbImg" src="" alt="">
+</div>
 </main>
 
 <script>
 const viewed=new Set();
+const openHistory=[];
+
 function toggle(header){
   const mod=header.closest('.modulo');
-  mod.classList.toggle('open');
+  const num=mod.id.replace('m','');
+  
   if(mod.classList.contains('open')){
-    const num=mod.id.replace('m','');
+    // Closing manually
+    mod.classList.remove('open');
+  } else {
+    // Opening
+    mod.classList.add('open');
     viewed.add(num);
+    
+    // Track open order
+    const idx=openHistory.indexOf(num);
+    if(idx>-1) openHistory.splice(idx,1);
+    openHistory.push(num);
+    
+    // Keep max 2 open: close the oldest if 3+
+    while(openHistory.length>2){
+      const oldest=openHistory.shift();
+      const oldMod=document.getElementById('m'+oldest);
+      if(oldMod) oldMod.classList.remove('open');
+    }
   }
   updateProgress();
 }
+
 function updateProgress(){
   const total=document.querySelectorAll('.modulo').length;
   const pct=(viewed.size/total)*100;
@@ -1083,19 +1458,31 @@ function updateProgress(){
     d.classList.toggle('viewed',viewed.has(m));
   });
 }
+
 document.querySelectorAll('.mod-dot').forEach(dot=>{
   dot.addEventListener('click',function(e){
     e.preventDefault();
     const id=this.getAttribute('href').replace('#','');
     const mod=document.getElementById(id);
+    const num=id.replace('m','');
     if(mod&&!mod.classList.contains('open')){
       mod.classList.add('open');
-      viewed.add(id.replace('m',''));
+      viewed.add(num);
+      const idx=openHistory.indexOf(num);
+      if(idx>-1) openHistory.splice(idx,1);
+      openHistory.push(num);
+      while(openHistory.length>2){
+        const oldest=openHistory.shift();
+        const oldMod=document.getElementById('m'+oldest);
+        if(oldMod) oldMod.classList.remove('open');
+      }
       updateProgress();
     }
     setTimeout(()=>mod.scrollIntoView({behavior:'smooth',block:'start'}),80);
   });
 });
+
+// Active dot on scroll
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
@@ -1107,7 +1494,25 @@ const obs=new IntersectionObserver(entries=>{
   });
 },{threshold:.2,rootMargin:'-90px 0px -50% 0px'});
 document.querySelectorAll('.modulo').forEach(m=>obs.observe(m));
-viewed.add('1');updateProgress();
+
+// Back to top button
+window.addEventListener('scroll',function(){
+  document.getElementById('btnTop').classList.toggle('show',window.scrollY>400);
+});
+
+updateProgress();
+
+// ── LIGHTBOX ──
+function openLB(src){
+  document.getElementById('lbImg').src=src;
+  document.getElementById('lightbox').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeLB(){
+  document.getElementById('lightbox').classList.remove('show');
+  document.body.style.overflow='';
+}
+
 
 /* ══════ CANVAS CARTUCHOS ══════ */
 (function(){
